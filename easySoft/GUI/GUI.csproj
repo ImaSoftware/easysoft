@@ -81,5 +81,15 @@
   <ItemGroup>
     <Folder Include="baseClass\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DLIB\DLIB.csproj">
+      <Project>{69f635cc-77e9-4e19-9267-6c0d5f874948}</Project>
+      <Name>DLIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{1ff5f5f6-74fa-495d-811a-aaf59b65e2b2}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
