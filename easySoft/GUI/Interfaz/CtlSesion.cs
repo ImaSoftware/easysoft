@@ -16,11 +16,12 @@ namespace GUI.Interfaz
         public CtlSesion()
         {
             InitializeComponent();
-            if (!DLIB.Globales.Parametros.Inicia_Sesion(System.Configuration.ConfigurationManager.ConnectionStrings[1].ConnectionString,"","","")) 
+            if (!DLIB.Globales.Parametros.Inicia_Sesion(System.Configuration.ConfigurationManager.ConnectionStrings[1].ConnectionString,"","",1)) 
             {
                 MessageBox.Show("No se logra conexion con la base de datos");
-                Application.Exit();
+                Environment.Exit(-1);
             }
+
         }
     }
 }

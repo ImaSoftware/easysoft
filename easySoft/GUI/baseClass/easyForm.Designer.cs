@@ -32,9 +32,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.padCtl = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.xTitulo = new System.Windows.Forms.Label();
-            this.padCtl = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "-";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -77,6 +78,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "W";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -86,6 +88,16 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "X";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // padCtl
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.padCtl, 4);
+            this.padCtl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.padCtl.Location = new System.Drawing.Point(3, 33);
+            this.padCtl.Name = "padCtl";
+            this.padCtl.Size = new System.Drawing.Size(1114, 511);
+            this.padCtl.TabIndex = 3;
             // 
             // panel2
             // 
@@ -95,6 +107,8 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(949, 24);
             this.panel2.TabIndex = 4;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.panel2.DoubleClick += new System.EventHandler(this.panel2_DoubleClick);
             // 
             // xTitulo
             // 
@@ -106,15 +120,6 @@
             this.xTitulo.Size = new System.Drawing.Size(71, 13);
             this.xTitulo.TabIndex = 0;
             this.xTitulo.Text = "easySoftware";
-            // 
-            // padCtl
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.padCtl, 4);
-            this.padCtl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.padCtl.Location = new System.Drawing.Point(3, 33);
-            this.padCtl.Name = "padCtl";
-            this.padCtl.Size = new System.Drawing.Size(1114, 511);
-            this.padCtl.TabIndex = 3;
             // 
             // easyForm
             // 
