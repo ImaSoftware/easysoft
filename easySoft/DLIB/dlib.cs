@@ -10,6 +10,55 @@ using System.Windows.Forms;
 
 namespace DLIB
 {
+    public class FrmInfo {
+        private bool _Err = false;
+        public bool Err
+        {
+            get { return _Err; }
+            // set { _NombreMostrar = value; }
+        }
+        private string _NombreMostrar = "";
+        public string NombreMostrar
+        {
+            get { return _NombreMostrar; }
+            // set { _NombreMostrar = value; }
+        }
+        private string _CtlNom = "";
+        public string CtlNom
+        {
+            get { return _CtlNom; }
+            // set { _CtlNom = value; }
+        }
+        private string _CtlOpt = "";
+        public string CtlOpt
+        {
+            get { return _CtlOpt; }
+            // set { _CtlOpt = value; }
+        }
+        private int _WinState = (int)FormWindowState.Normal;
+        public int WinState
+        {
+            get { return _WinState; }
+            // set { _WinState = value; }
+        }
+        public void LLenarInfo(DataTable tbinfo) {
+            if (tbinfo == null) {
+                _Err = true;
+                return;
+            }
+            if (tbinfo.Rows.Count != 1)
+            {
+                _Err = true;
+                return;
+            }
+            this._NombreMostrar = tbinfo.Rows[0]["NombreMostrar"].ToString();
+            this._CtlNom = tbinfo.Rows[0]["CtlNom"].ToString();
+            this._CtlOpt = tbinfo.Rows[0]["CtlOpt"].ToString();
+            this._WinState = (int)tbinfo.Rows[0]["winState"];
+        }
+
+        
+    }
     public class DAO
     {
         private bool _HayError = false;
@@ -33,17 +82,17 @@ namespace DLIB
                 return cn;
 
             }
-            public DataTable TraerTabla(string idTabla)
+            public DataTable TraerTabla(string idTabla, List<SqlParameter> xpar =null, bool esRoot=false)
             {
                 DataTable ret=null;
                 try
                 {
-                    using (SqlConnection cn = DAO.Conexion.Conectar(String.IsNullOrEmpty(Globales.Parametros.CadenaConexion)))
+                    using (SqlConnection cn = DAO.Conexion.Conectar(String.IsNullOrEmpty(Globales.Parametros.CadenaConexion) || esRoot))
                     {
                         //traer la consulta especificada
                         string sql = @"select consulta from davmerTablas where codtabla = @codTabla";
                         SqlCommand command = new SqlCommand(sql, cn);
-                        command.Parameters.Add("@codTabla", SqlDbType.Int);
+                        command.Parameters.Add("@codTabla", SqlDbType.VarChar);
                         command.Parameters["@codTabla"].Value = idTabla;
                         cn.Open();
                         SqlDataAdapter da = new SqlDataAdapter(command);
@@ -56,7 +105,15 @@ namespace DLIB
                             return null;
                         }
                         string query = dt.Rows[0][0].ToString();
-                        command = new SqlCommand(sql, cn);
+                        command = new SqlCommand(query, cn);
+                        //Agrego parametros de la consulta
+                        if (xpar != null)
+                        {
+                            foreach (SqlParameter p in xpar)
+                            {
+                                command.Parameters.Add(new SqlParameter( p.ParameterName,p.Value));
+                            }
+                        }
                         cn.Open();
                         da = new SqlDataAdapter(command);
                         ret = new DataTable();
@@ -64,10 +121,10 @@ namespace DLIB
                         cn.Close();
                     }
                 }
-                catch (SqlException)
+                catch (SqlException ex)
                 {
 
-                    MessageBox.Show("Error de conexión", "ERROR CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Error de conexión:" + Environment.NewLine + ex.Message, "ERROR CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return null;
                 }
                 return ret;
@@ -86,12 +143,18 @@ namespace DLIB
     }
     public class GlobC
     {
-        public DAO.Conexion connSql;
+        public DAO.Conexion connSql= new DAO.Conexion();
+        private string _UsrNom = "";
+        public string UsrNom
+        {
+            get { return _UsrNom; }
+            // set { _UsrNom = value; }
+        }
         private string _CadenaConexionRoot = "";
         public string CadenaConexionRoot
         {
             get { return _CadenaConexionRoot; }
-            // set { _CadenaConexion = value; }
+             set { _CadenaConexionRoot = value; }
         }
         private string _CadenaConexion = "";
         public string CadenaConexion
@@ -111,6 +174,7 @@ namespace DLIB
             get { return _CodCia; }
             //set{_CadenaConexion = value;}
         }
+
         /// <summary>
         /// Inicia sesion con los parametros dados y deja la conexion resultante grabada en Globales
         /// </summary>
@@ -127,10 +191,12 @@ namespace DLIB
                 using (SqlConnection cn = DAO.Conexion.Conectar(true))
                 {
                     //traer la cadena de conexion de la cia indicada si es exitosa 
-                    string sql = @"SELECT connstring  FROM empresas A inner join
-                                    (select codcia from Permisos where tipo='E' and  usercod= isnull(
-                                    (select codigo from usuarios where usernom =@nomuser and userpwd = @pwd),0) ) B on a.codcia=B.codcia 
-                                    where A.codcia = @codcia";
+                    string sql = @"SELECT (select Nombre from usuarios where CAST(usernom as varbinary(100)) = CAST(@nomuser as varbinary) 
+                                AND CAST(userpwd as varbinary(100)) = CAST(@pwd as varbinary(100)) ), a.connstring  FROM empresas A inner join
+                                (select codcia from Permisos where tipo='E' and  usercod= isnull(
+                                (select codigo from usuarios where CAST(usernom as varbinary(100)) = CAST(@nomuser as varbinary) 
+                                AND CAST(userpwd as varbinary(100)) = CAST(@pwd as varbinary(100)) ),0) ) B on a.codcia=B.codcia 
+                                where A.codcia = @codcia";
                     SqlCommand command = new SqlCommand(sql, cn);
                     command.Parameters.Add("@codcia", SqlDbType.Int );
                     command.Parameters["@codcia"].Value = ciax;
@@ -145,26 +211,27 @@ namespace DLIB
                     cn.Close();
                     if (dt.Rows.Count != 1)
                     {
-                        MessageBox.Show("No existe la compañía especificada o está duplicada", "ERROR CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return false;
                     }
-                    _CadenaConexion = dt.Rows[0][0].ToString();
+                    _CadenaConexion = dt.Rows[0][1].ToString();
+                    _UsrNom = dt.Rows[0][0].ToString();
                     using (SqlConnection cn2 = DAO.Conexion.Conectar())
                     {
                         cn2.Open();
-                        
                         cn2.Close();
                     }
                    
                     //si llego hasta este punto es porque si existe y si vale la segunda cadena de conexion
+                                      
+
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 _CadenaConexionRoot = "";
                 _CadenaConexion = "";
-                MessageBox.Show("Error de conexión", "ERROR CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
+                _UsrNom = "";
+                throw ex;
             }
             
             bool ret = true;

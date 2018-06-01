@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    static class Program
+    static class easySoftware
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -16,7 +16,17 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmSesion());
+            FrmSesion Sesion = new FrmSesion();
+            Sesion.ShowDialog();
+            if (Sesion.Resultado)
+            {
+                Application.Run(new Lobby());
+            }
+            else {
+                Environment.Exit(Environment.ExitCode);
+            }
+            
+          
         }
     }
 }
