@@ -60,35 +60,47 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1120, 31);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1120, 37);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(958, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(49, 23);
+            this.button1.Size = new System.Drawing.Size(49, 31);
             this.button1.TabIndex = 0;
+            this.button1.TabStop = false;
             this.button1.Text = "-";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(1013, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(49, 23);
+            this.button2.Size = new System.Drawing.Size(49, 31);
             this.button2.TabIndex = 1;
+            this.button2.TabStop = false;
             this.button2.Text = "W";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Location = new System.Drawing.Point(1068, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(49, 23);
+            this.button3.Size = new System.Drawing.Size(49, 31);
             this.button3.TabIndex = 2;
+            this.button3.TabStop = false;
             this.button3.Text = "X";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -99,7 +111,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(949, 25);
+            this.panel2.Size = new System.Drawing.Size(949, 31);
             this.panel2.TabIndex = 4;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             this.panel2.DoubleClick += new System.EventHandler(this.panel2_DoubleClick);
@@ -109,11 +121,13 @@
             this.xTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.xTitulo.AutoSize = true;
+            this.xTitulo.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xTitulo.Location = new System.Drawing.Point(9, 5);
             this.xTitulo.Name = "xTitulo";
-            this.xTitulo.Size = new System.Drawing.Size(71, 13);
+            this.xTitulo.Size = new System.Drawing.Size(145, 23);
             this.xTitulo.TabIndex = 0;
             this.xTitulo.Text = "easySoftware";
+            this.xTitulo.DoubleClick += new System.EventHandler(this.xTitulo_DoubleClick);
             // 
             // errP
             // 

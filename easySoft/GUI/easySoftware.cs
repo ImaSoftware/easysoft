@@ -22,11 +22,12 @@ namespace GUI
             {
                 Application.Run(new Lobby());
             }
-            else {
+            else
+            {
                 Environment.Exit(Environment.ExitCode);
             }
-            
-          
+
+
         }
     }
 }

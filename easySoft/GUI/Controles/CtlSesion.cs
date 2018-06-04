@@ -55,6 +55,7 @@ namespace GUI.Interfaz
             }
            
         }
+
         public void loader()
         {
             DLIB.Globales.Parametros.CadenaConexionRoot = System.Configuration.ConfigurationManager.ConnectionStrings[1].ConnectionString;
@@ -67,7 +68,7 @@ namespace GUI.Interfaz
             cmbEmpresas.ValueMember = "codcia";
             cmbEmpresas.DisplayMember = "Nombre";
             cmbEmpresas.SelectedIndex = 0;
-            cmbEmpresas.Update();
+
         }
 
         private void button2_Click(object sender, EventArgs e)

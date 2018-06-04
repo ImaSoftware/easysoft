@@ -40,7 +40,7 @@
             this.cFecHasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGenera = new System.Windows.Forms.Button();
             this.fechaini = new System.Windows.Forms.DateTimePicker();
-            this.fecha2 = new System.Windows.Forms.DateTimePicker();
+            this.fechahasta = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.SuspendLayout();
@@ -104,6 +104,7 @@
             this.dgvRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cTipo,
@@ -112,26 +113,34 @@
             this.dgvRoles.Location = new System.Drawing.Point(19, 141);
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.ReadOnly = true;
-            this.dgvRoles.Size = new System.Drawing.Size(304, 225);
+            this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRoles.Size = new System.Drawing.Size(383, 225);
             this.dgvRoles.TabIndex = 6;
+            this.dgvRoles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellDoubleClick);
             // 
             // cTipo
             // 
+            this.cTipo.DataPropertyName = "NOMBRE_REP";
             this.cTipo.HeaderText = "Tipo";
             this.cTipo.Name = "cTipo";
             this.cTipo.ReadOnly = true;
+            this.cTipo.Width = 53;
             // 
             // cFecDesde
             // 
+            this.cFecDesde.DataPropertyName = "FECHA_DES";
             this.cFecDesde.HeaderText = "Desde";
             this.cFecDesde.Name = "cFecDesde";
             this.cFecDesde.ReadOnly = true;
+            this.cFecDesde.Width = 63;
             // 
             // cFecHasta
             // 
+            this.cFecHasta.DataPropertyName = "FECHA_HAS";
             this.cFecHasta.HeaderText = "Hasta";
             this.cFecHasta.Name = "cFecHasta";
             this.cFecHasta.ReadOnly = true;
+            this.cFecHasta.Width = 60;
             // 
             // btnGenera
             // 
@@ -139,7 +148,7 @@
             this.btnGenera.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGenera.ImageKey = "diskette.png";
             this.btnGenera.ImageList = this.misImagenes;
-            this.btnGenera.Location = new System.Drawing.Point(173, 372);
+            this.btnGenera.Location = new System.Drawing.Point(252, 372);
             this.btnGenera.Name = "btnGenera";
             this.btnGenera.Size = new System.Drawing.Size(150, 33);
             this.btnGenera.TabIndex = 7;
@@ -154,14 +163,18 @@
             this.fechaini.Name = "fechaini";
             this.fechaini.Size = new System.Drawing.Size(100, 20);
             this.fechaini.TabIndex = 8;
+            this.fechaini.Value = new System.DateTime(2018, 6, 4, 15, 46, 25, 0);
+            this.fechaini.ValueChanged += new System.EventHandler(this.fechahasta_ValueChanged);
             // 
-            // fecha2
+            // fechahasta
             // 
-            this.fecha2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fecha2.Location = new System.Drawing.Point(221, 106);
-            this.fecha2.Name = "fecha2";
-            this.fecha2.Size = new System.Drawing.Size(100, 20);
-            this.fecha2.TabIndex = 9;
+            this.fechahasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fechahasta.Location = new System.Drawing.Point(221, 106);
+            this.fechahasta.Name = "fechahasta";
+            this.fechahasta.Size = new System.Drawing.Size(100, 20);
+            this.fechahasta.TabIndex = 9;
+            this.fechahasta.Value = new System.DateTime(2018, 6, 4, 15, 46, 14, 0);
+            this.fechahasta.ValueChanged += new System.EventHandler(this.fechahasta_ValueChanged);
             // 
             // FrmGenBan
             // 
@@ -169,8 +182,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button3;
-            this.ClientSize = new System.Drawing.Size(335, 417);
-            this.Controls.Add(this.fecha2);
+            this.ClientSize = new System.Drawing.Size(414, 417);
+            this.Controls.Add(this.fechahasta);
             this.Controls.Add(this.fechaini);
             this.Controls.Add(this.btnGenera);
             this.Controls.Add(this.dgvRoles);
@@ -193,7 +206,7 @@
             this.Controls.SetChildIndex(this.dgvRoles, 0);
             this.Controls.SetChildIndex(this.btnGenera, 0);
             this.Controls.SetChildIndex(this.fechaini, 0);
-            this.Controls.SetChildIndex(this.fecha2, 0);
+            this.Controls.SetChildIndex(this.fechahasta, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
             this.ResumeLayout(false);
@@ -214,6 +227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cFecHasta;
         private System.Windows.Forms.Button btnGenera;
         private System.Windows.Forms.DateTimePicker fechaini;
-        private System.Windows.Forms.DateTimePicker fecha2;
+        private System.Windows.Forms.DateTimePicker fechahasta;
     }
 }

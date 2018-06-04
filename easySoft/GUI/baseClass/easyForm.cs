@@ -63,5 +63,10 @@ namespace GUI.baseClass
         {
 
         }
+
+        private void xTitulo_DoubleClick(object sender, EventArgs e)
+        {
+            this.button2.PerformClick();
+        }
     }
 }

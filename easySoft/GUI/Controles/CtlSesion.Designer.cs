@@ -109,11 +109,12 @@
             // 
             this.cmbEmpresas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.cmbEmpresas, 3);
+            this.cmbEmpresas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpresas.FormattingEnabled = true;
             this.cmbEmpresas.Location = new System.Drawing.Point(90, 25);
             this.cmbEmpresas.Name = "cmbEmpresas";
             this.cmbEmpresas.Size = new System.Drawing.Size(388, 21);
-            this.cmbEmpresas.TabIndex = 3;
+            this.cmbEmpresas.TabIndex = 8;
             // 
             // txtusernom
             // 
@@ -122,16 +123,18 @@
             this.txtusernom.Location = new System.Drawing.Point(90, 62);
             this.txtusernom.Name = "txtusernom";
             this.txtusernom.Size = new System.Drawing.Size(388, 20);
-            this.txtusernom.TabIndex = 4;
+            this.txtusernom.TabIndex = 1;
             // 
             // txtuserpwd
             // 
             this.txtuserpwd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.txtuserpwd, 3);
-            this.txtuserpwd.Location = new System.Drawing.Point(90, 98);
+            this.txtuserpwd.Font = new System.Drawing.Font("Showcard Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtuserpwd.Location = new System.Drawing.Point(90, 96);
             this.txtuserpwd.Name = "txtuserpwd";
-            this.txtuserpwd.Size = new System.Drawing.Size(388, 20);
-            this.txtuserpwd.TabIndex = 5;
+            this.txtuserpwd.Size = new System.Drawing.Size(388, 24);
+            this.txtuserpwd.TabIndex = 2;
+            this.txtuserpwd.UseSystemPasswordChar = true;
             // 
             // button1
             // 
@@ -139,7 +142,7 @@
             this.button1.Location = new System.Drawing.Point(321, 141);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 34);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 3;
             this.button1.Text = "&Acceso";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);

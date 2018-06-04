@@ -41,9 +41,9 @@
             // ctlSesion1
             // 
             this.ctlSesion1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlSesion1.Location = new System.Drawing.Point(0, 31);
+            this.ctlSesion1.Location = new System.Drawing.Point(0, 37);
             this.ctlSesion1.Name = "ctlSesion1";
-            this.ctlSesion1.Size = new System.Drawing.Size(514, 209);
+            this.ctlSesion1.Size = new System.Drawing.Size(471, 203);
             this.ctlSesion1.TabIndex = 1;
             this.ctlSesion1.Resultado += new System.EventHandler(this.ctlSesion1_Acceso_Correcto);
             // 
@@ -51,7 +51,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 240);
+            this.ClientSize = new System.Drawing.Size(471, 240);
             this.Controls.Add(this.ctlSesion1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmSesion";
