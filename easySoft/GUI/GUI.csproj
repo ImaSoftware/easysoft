@@ -163,6 +163,7 @@
   <ItemGroup>
     <Content Include="banko.ico" />
     <Content Include="easy.ico" />
+    <None Include="Resources\INGRESO.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

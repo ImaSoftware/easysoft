@@ -12,6 +12,8 @@ namespace GUI.baseClass
 {
     public partial class easyForm : Form
     {
+        Point cursor = new Point(0, 0);
+        bool mouseD = false;
 
         public easyForm()
         {
@@ -67,6 +69,21 @@ namespace GUI.baseClass
         private void xTitulo_DoubleClick(object sender, EventArgs e)
         {
             this.button2.PerformClick();
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseD = true;
+            cursor = Cursor.Position;
+        }
+
+        private void panel2_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (mouseD) {
+                this.Location  = new Point(this.Location.X+cursor.X-cursor.X, this.Location.Y + cursor.Y - cursor.Y) ;
+                mouseD = false;
+            }
+            
         }
     }
 }

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(easyForm));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.barraTitulo = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -39,29 +39,29 @@
             this.errP = new System.Windows.Forms.ErrorProvider(this.components);
             this.miTip = new System.Windows.Forms.ToolTip(this.components);
             this.misImagenes = new System.Windows.Forms.ImageList(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
+            this.barraTitulo.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errP)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // barraTitulo
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1120, 37);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.barraTitulo.ColumnCount = 4;
+            this.barraTitulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.barraTitulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.barraTitulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.barraTitulo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.barraTitulo.Controls.Add(this.button1, 1, 0);
+            this.barraTitulo.Controls.Add(this.button2, 2, 0);
+            this.barraTitulo.Controls.Add(this.button3, 3, 0);
+            this.barraTitulo.Controls.Add(this.panel2, 0, 0);
+            this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barraTitulo.Location = new System.Drawing.Point(0, 0);
+            this.barraTitulo.Name = "barraTitulo";
+            this.barraTitulo.RowCount = 1;
+            this.barraTitulo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.barraTitulo.Size = new System.Drawing.Size(1120, 37);
+            this.barraTitulo.TabIndex = 0;
             // 
             // button1
             // 
@@ -115,6 +115,8 @@
             this.panel2.TabIndex = 4;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             this.panel2.DoubleClick += new System.EventHandler(this.panel2_DoubleClick);
+            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseUp);
             // 
             // xTitulo
             // 
@@ -128,6 +130,7 @@
             this.xTitulo.TabIndex = 0;
             this.xTitulo.Text = "easySoftware";
             this.xTitulo.DoubleClick += new System.EventHandler(this.xTitulo_DoubleClick);
+            this.xTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
             // 
             // errP
             // 
@@ -144,12 +147,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 547);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "easyForm";
             this.Text = "easyForm";
             this.Load += new System.EventHandler(this.easyForm_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.barraTitulo.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errP)).EndInit();
@@ -162,7 +165,7 @@
         private System.Windows.Forms.Label xTitulo;
         public System.Windows.Forms.ErrorProvider errP;
         public System.Windows.Forms.ToolTip miTip;
-        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.TableLayoutPanel barraTitulo;
         public System.Windows.Forms.ImageList misImagenes;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button button2;
