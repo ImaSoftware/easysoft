@@ -41,8 +41,7 @@ namespace GUI.Interfaz
             {
                 return;
             }
-            else
-
+            string Ruta = Path.GetDirectoryName(sf.FileName);
             //EXTRAER TIPO, Y FECHAS 
             for (int i = 0; i < dgvRoles.SelectedRows.Count; i++)
             {
@@ -51,53 +50,89 @@ namespace GUI.Interfaz
                 string cfecdesde = dgvRoles.SelectedRows[i].Cells[2].Value.ToString();
                 string cfechasta = dgvRoles.SelectedRows[i].Cells[3].Value.ToString();
                 string cbanco = cmbBanco.SelectedValue.ToString().Trim();
+
                 List<SqlParameter> myList = new List<SqlParameter>();
                 myList.Add(new SqlParameter("@desde", cfecdesde));
                 myList.Add(new SqlParameter("@hasta", cfechasta));
                 myList.Add(new SqlParameter("@bcodesde", cbanco));
-                DataTable Generado = DLIB.Globales.Parametros.connSql.TraerTabla("FRMGENBAN_003",myList);
+                string consulta = ((DataRowView)cmbBanco.SelectedItem).Row["consulta"].ToString().Trim();
+                string tipgen = ((DataRowView)cmbBanco.SelectedItem).Row["tipgen"].ToString().Trim();
+                DataTable Generado = DLIB.Globales.Parametros.connSql.TraerTabla(consulta, myList);
                 if (Generado == null)
                 {
-                    MessageBox.Show("Error al traer los datos", "Error", MessageBoxButtons.OK);
+                    continue;
                 }
                 if (Generado.Rows.Count == 0) {
-                    MessageBox.Show("No existen registros para exportar", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show("No existen registros para exportar ", "Error", MessageBoxButtons.OK);
+                    continue;
                 }
-
-                fileName = sf.FileName + (i == 0 ? "" : "_"+ cnomrep);
+                fileName = DLIB.DFUNC.GetSafeFilename(Path.GetFileNameWithoutExtension(sf.FileName) + "_" + cnomrep + "_" +  cfecdesde + "-" + cfechasta + "-" + i.ToString() );
                 //Recorrer lo generado y poner en el archivo correcto 
-                try {
-
-                    //Pass the filepath and filename to the StreamWriter Constructor
-                    StreamWriter sw = new StreamWriter(fileName,false);
-                    StreamWriter sw2 = null;
-                    foreach (DataRow dgen in Generado.Rows)
+                try
+                {
+                    if (String.Equals(tipgen, "T"))
                     {
-                        if (String.Equals(dgen["TIPO"], "EX"))
+                        var builder = new StringBuilder();
+                        foreach (DataRow row in Generado.Rows)
                         {
-                            if (sw2 == null)
+                            foreach (var cell in row.ItemArray)
                             {
-                                sw2 = new StreamWriter(fileName + "EXTERNOS", false);
+                                builder.Append(cell.ToString());
+                                if (cell != row.ItemArray[((Array)row.ItemArray).Length - 1])
+                                    builder.Append("\t");
                             }
-                            sw2.WriteLine(dgen["RES"]);
+                            builder.Append(Environment.NewLine);
                         }
-                        else {
-                            sw.WriteLine(dgen["RES"]);
+
+                        var file = new FileStream(Ruta + "\\" + fileName + ".txt", FileMode.Create);
+                        var writer = new StreamWriter(file);
+                        writer.Write(builder.ToString());
+                        writer.Flush();
+                        writer.Close();
+                    }
+                    else { 
+                        if(String.IsNullOrEmpty(tipgen))
+                        {
+                            //Pass the filepath and filename to the StreamWriter Constructor
+                            StreamWriter sw = null;
+                            StreamWriter sw2 = null;
+                            foreach (DataRow dgen in Generado.Rows)
+                            {
+                                if (String.Equals(dgen["TIPO"], "EX"))
+                                {
+                                    if (sw2 == null)
+                                    {
+                                        sw2 = new StreamWriter(Ruta + "\\" + fileName + "EXTERNOS.txt", false);
+                                    }
+                                    sw2.WriteLine(dgen["RES"]);
+                                }
+                                else
+                                {
+                                    if (sw == null)
+                                    {
+                                        sw = new StreamWriter(Ruta + "\\" + fileName + ".txt", false);
+                                    }
+                                    sw.WriteLine(dgen["RES"]);
+                                }
+                            }
+                            //Close the file
+                            if (sw2 != null) { sw2.Close(); }
+                            if (sw != null) { sw.Close(); }
                         }
                     }
-                    //Close the file
-                    if (sw2 != null){ sw2.Close();}
-                    sw.Close();
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Exception: " + e.Message);
+                    MessageBox.Show("Exception: " + e.Message);
+                    continue;
                 }
                 finally
                 {
-                    Console.WriteLine("Executing finally block.");
+                  
+
                 }
             }
+            MessageBox.Show("El proceso ha finalizado");
         }
         private void cargaGrid()
         {

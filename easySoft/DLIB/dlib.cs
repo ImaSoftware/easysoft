@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,7 +102,7 @@ namespace DLIB
                         cn.Close();
                         if (dt.Rows.Count != 1)
                         {
-                            MessageBox.Show("No existe la tabla especificada o está duplicada", "ERROR DAVMERTABLA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("No existe la tabla especificada o está duplicada: "+ Environment.NewLine + idTabla.Trim(), "ERROR DAVMERTABLA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return null;
                         }
                         string query = dt.Rows[0][0].ToString();
@@ -134,7 +135,12 @@ namespace DLIB
     }
     public static class DFUNC
     {
+        public static string GetSafeFilename(string filename)
+        {
 
+            return string.Join("", filename.Split(Path.GetInvalidFileNameChars()));
+
+        }
     }
     public static class Globales {
         
