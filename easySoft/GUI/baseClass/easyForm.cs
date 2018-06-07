@@ -12,7 +12,7 @@ namespace GUI.baseClass
 {
     public partial class easyForm : Form
     {
-        Point cursor = new Point(0, 0);
+        Point cursori = new Point(0, 0);
         bool mouseD = false;
 
         public easyForm()
@@ -74,16 +74,27 @@ namespace GUI.baseClass
         private void panel2_MouseDown(object sender, MouseEventArgs e)
         {
             mouseD = true;
-            cursor = Cursor.Position;
+            cursori = Cursor.Position;
         }
 
         private void panel2_MouseUp(object sender, MouseEventArgs e)
         {
             if (mouseD) {
-                this.Location  = new Point(this.Location.X+cursor.X-cursor.X, this.Location.Y + cursor.Y - cursor.Y) ;
+                Point cursorn = Cursor.Position;
+                this.Location  = new Point(this.Location.X+ cursorn.X-cursori.X, this.Location.Y + cursorn.Y - cursori.Y) ;
                 mouseD = false;
             }
             
+        }
+
+        private void panel2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseD)
+            {
+                Point cursorn = Cursor.Position;
+                this.Location = new Point(this.Location.X + cursorn.X - cursori.X, this.Location.Y + cursorn.Y - cursori.Y);
+                cursori = Cursor.Position;
+            }
         }
     }
 }

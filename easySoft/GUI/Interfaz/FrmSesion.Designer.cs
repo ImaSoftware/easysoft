@@ -49,6 +49,7 @@
             this.ctlSesion1.TabIndex = 1;
             this.ctlSesion1.Resultado += new System.EventHandler(this.ctlSesion1_Acceso_Correcto);
             this.ctlSesion1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ctlSesion1_MouseDown);
+            this.ctlSesion1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ctlSesion1_MouseMove);
             this.ctlSesion1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ctlSesion1_MouseUp);
             // 
             // FrmSesion

@@ -29,7 +29,7 @@ namespace GUI
         }
 
 
-        Point cursor = new Point(0, 0);
+        Point cursori = new Point(0, 0);
         bool mouseD = false;
 
 
@@ -50,14 +50,14 @@ namespace GUI
         private void ctlSesion1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseD = true;
-            cursor = Cursor.Position;
+            cursori = Cursor.Position;
         }
 
         private void ctlSesion1_MouseUp(object sender, MouseEventArgs e)
         {
             if (mouseD)
             {
-                this.Location = new Point(this.Location.X + Cursor.Position.X - cursor.X, this.Location.Y + Cursor.Position.Y - cursor.Y);
+                this.Location = new Point(this.Location.X + Cursor.Position.X - cursori.X, this.Location.Y + Cursor.Position.Y - cursori.Y);
                 mouseD = false;
             }
         }
@@ -66,6 +66,16 @@ namespace GUI
         {
             if (e.KeyCode == Keys.Escape) {
                 Environment.Exit(-1);
+            }
+        }
+
+        private void ctlSesion1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseD)
+            {
+                Point cursorn = Cursor.Position;
+                this.Location = new Point(this.Location.X + cursorn.X - cursori.X, this.Location.Y + cursorn.Y - cursori.Y);
+                cursori = Cursor.Position;
             }
         }
     }

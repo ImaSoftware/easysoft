@@ -116,6 +116,7 @@
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             this.panel2.DoubleClick += new System.EventHandler(this.panel2_DoubleClick);
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
             this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseUp);
             // 
             // xTitulo
@@ -131,6 +132,8 @@
             this.xTitulo.Text = "easySoftware";
             this.xTitulo.DoubleClick += new System.EventHandler(this.xTitulo_DoubleClick);
             this.xTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            this.xTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
+            this.xTitulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseUp);
             // 
             // errP
             // 
