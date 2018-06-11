@@ -27,7 +27,7 @@ namespace GUI
 
         }
         private void LLenaTree() {
-
+            easyMenu1.LLenaTree(); 
         }
 
         private void OpenForm(string xcodigo) {
@@ -66,6 +66,17 @@ namespace GUI
         {
             //Aqui para carga directa de formulario en modo de depuracion
             OpenForm("2");
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            //Aqui para carga directa de formulario en modo de depuracion
+            OpenForm("2");
+        }
+
+        private void easyMenu1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

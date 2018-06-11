@@ -50,10 +50,12 @@
     <StartupObject>GUI.easySoftware</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>facil.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MetroFramework">
+      <HintPath>..\..\..\..\..\Desktop\MetroFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -73,6 +75,18 @@
     </Compile>
     <Compile Include="baseClass\easyForm.Designer.cs">
       <DependentUpon>easyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\easyMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\easyMenu.Designer.cs">
+      <DependentUpon>easyMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\easymenubutton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\easymenubutton.Designer.cs">
+      <DependentUpon>easymenubutton.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\FrmGenBan.cs">
       <SubType>Form</SubType>
@@ -102,6 +116,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="baseClass\easyForm.resx">
       <DependentUpon>easyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\easyMenu.resx">
+      <DependentUpon>easyMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\easymenubutton.resx">
+      <DependentUpon>easymenubutton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FrmGenBan.resx">
       <DependentUpon>FrmGenBan.cs</DependentUpon>
@@ -163,6 +183,21 @@
   <ItemGroup>
     <Content Include="banko.ico" />
     <Content Include="easy.ico" />
+    <Content Include="facil.ico" />
+    <None Include="Resources\home1.png" />
+    <None Include="Resources\worker.png" />
+    <None Include="Resources\warehouse.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\hand.png" />
+    <None Include="Resources\growth.png" />
+    <None Include="Resources\give-money.png" />
+    <None Include="Resources\employee.png" />
+    <None Include="Resources\building.png" />
+    <None Include="Resources\book.png" />
+    <None Include="Resources\arrow-up.png" />
+    <None Include="Resources\arrow-rigth.png" />
+    <None Include="Resources\arrow-left.png" />
+    <None Include="Resources\arrow-down.png" />
     <None Include="Resources\INGRESO.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
