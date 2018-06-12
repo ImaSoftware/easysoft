@@ -23,13 +23,9 @@ namespace GUI
 
         private void Lobby_Load(object sender, EventArgs e)
         {
-            LLenaTree();
+            easyMenu1.LLena_Menu();
 
         }
-        private void LLenaTree() {
-            easyMenu1.LLenaTree(); 
-        }
-
         private void OpenForm(string xcodigo) {
 
             DLIB.FrmInfo myInfo = capaNego.getFrmInfo(xcodigo);

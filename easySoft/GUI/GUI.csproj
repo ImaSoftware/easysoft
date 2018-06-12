@@ -184,6 +184,10 @@
     <Content Include="banko.ico" />
     <Content Include="easy.ico" />
     <Content Include="facil.ico" />
+    <None Include="Resources\sell.png" />
+    <None Include="Resources\create.png" />
+    <None Include="Resources\buy.png" />
+    <None Include="Resources\buy.bmp" />
     <None Include="Resources\home1.png" />
     <None Include="Resources\worker.png" />
     <None Include="Resources\warehouse.png" />

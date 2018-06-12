@@ -80,7 +80,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(288, 558);
+            this.panel1.Size = new System.Drawing.Size(263, 558);
             this.panel1.TabIndex = 1;
             // 
             // easymenubutton21
@@ -89,7 +89,7 @@
             this.easymenubutton21.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton21.Location = new System.Drawing.Point(0, 1000);
             this.easymenubutton21.Name = "easymenubutton21";
-            this.easymenubutton21.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton21.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton21.TabIndex = 20;
             // 
             // easymenubutton20
@@ -98,7 +98,7 @@
             this.easymenubutton20.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton20.Location = new System.Drawing.Point(0, 950);
             this.easymenubutton20.Name = "easymenubutton20";
-            this.easymenubutton20.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton20.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton20.TabIndex = 19;
             // 
             // easymenubutton19
@@ -107,7 +107,7 @@
             this.easymenubutton19.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton19.Location = new System.Drawing.Point(0, 900);
             this.easymenubutton19.Name = "easymenubutton19";
-            this.easymenubutton19.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton19.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton19.TabIndex = 18;
             // 
             // easymenubutton18
@@ -116,7 +116,7 @@
             this.easymenubutton18.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton18.Location = new System.Drawing.Point(0, 850);
             this.easymenubutton18.Name = "easymenubutton18";
-            this.easymenubutton18.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton18.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton18.TabIndex = 17;
             // 
             // easymenubutton17
@@ -125,7 +125,7 @@
             this.easymenubutton17.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton17.Location = new System.Drawing.Point(0, 800);
             this.easymenubutton17.Name = "easymenubutton17";
-            this.easymenubutton17.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton17.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton17.TabIndex = 16;
             // 
             // easymenubutton16
@@ -134,7 +134,7 @@
             this.easymenubutton16.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton16.Location = new System.Drawing.Point(0, 750);
             this.easymenubutton16.Name = "easymenubutton16";
-            this.easymenubutton16.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton16.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton16.TabIndex = 15;
             // 
             // easymenubutton15
@@ -143,7 +143,7 @@
             this.easymenubutton15.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton15.Location = new System.Drawing.Point(0, 700);
             this.easymenubutton15.Name = "easymenubutton15";
-            this.easymenubutton15.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton15.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton15.TabIndex = 14;
             // 
             // easymenubutton14
@@ -152,7 +152,7 @@
             this.easymenubutton14.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton14.Location = new System.Drawing.Point(0, 650);
             this.easymenubutton14.Name = "easymenubutton14";
-            this.easymenubutton14.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton14.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton14.TabIndex = 13;
             // 
             // easymenubutton13
@@ -161,7 +161,7 @@
             this.easymenubutton13.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton13.Location = new System.Drawing.Point(0, 600);
             this.easymenubutton13.Name = "easymenubutton13";
-            this.easymenubutton13.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton13.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton13.TabIndex = 12;
             // 
             // easymenubutton12
@@ -170,7 +170,7 @@
             this.easymenubutton12.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton12.Location = new System.Drawing.Point(0, 550);
             this.easymenubutton12.Name = "easymenubutton12";
-            this.easymenubutton12.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton12.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton12.TabIndex = 11;
             // 
             // easymenubutton11
@@ -179,7 +179,7 @@
             this.easymenubutton11.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton11.Location = new System.Drawing.Point(0, 500);
             this.easymenubutton11.Name = "easymenubutton11";
-            this.easymenubutton11.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton11.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton11.TabIndex = 10;
             // 
             // easymenubutton10
@@ -188,7 +188,7 @@
             this.easymenubutton10.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton10.Location = new System.Drawing.Point(0, 450);
             this.easymenubutton10.Name = "easymenubutton10";
-            this.easymenubutton10.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton10.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton10.TabIndex = 9;
             // 
             // easymenubutton9
@@ -197,7 +197,7 @@
             this.easymenubutton9.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton9.Location = new System.Drawing.Point(0, 400);
             this.easymenubutton9.Name = "easymenubutton9";
-            this.easymenubutton9.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton9.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton9.TabIndex = 8;
             // 
             // easymenubutton8
@@ -206,7 +206,7 @@
             this.easymenubutton8.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton8.Location = new System.Drawing.Point(0, 350);
             this.easymenubutton8.Name = "easymenubutton8";
-            this.easymenubutton8.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton8.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton8.TabIndex = 7;
             // 
             // easymenubutton7
@@ -215,7 +215,7 @@
             this.easymenubutton7.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton7.Location = new System.Drawing.Point(0, 300);
             this.easymenubutton7.Name = "easymenubutton7";
-            this.easymenubutton7.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton7.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton7.TabIndex = 6;
             // 
             // easymenubutton6
@@ -224,7 +224,7 @@
             this.easymenubutton6.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton6.Location = new System.Drawing.Point(0, 250);
             this.easymenubutton6.Name = "easymenubutton6";
-            this.easymenubutton6.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton6.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton6.TabIndex = 5;
             // 
             // easymenubutton5
@@ -233,7 +233,7 @@
             this.easymenubutton5.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton5.Location = new System.Drawing.Point(0, 200);
             this.easymenubutton5.Name = "easymenubutton5";
-            this.easymenubutton5.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton5.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton5.TabIndex = 4;
             // 
             // easymenubutton4
@@ -242,7 +242,7 @@
             this.easymenubutton4.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton4.Location = new System.Drawing.Point(0, 150);
             this.easymenubutton4.Name = "easymenubutton4";
-            this.easymenubutton4.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton4.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton4.TabIndex = 3;
             // 
             // easymenubutton3
@@ -251,7 +251,7 @@
             this.easymenubutton3.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton3.Location = new System.Drawing.Point(0, 100);
             this.easymenubutton3.Name = "easymenubutton3";
-            this.easymenubutton3.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton3.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton3.TabIndex = 2;
             // 
             // easymenubutton2
@@ -260,7 +260,7 @@
             this.easymenubutton2.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton2.Location = new System.Drawing.Point(0, 50);
             this.easymenubutton2.Name = "easymenubutton2";
-            this.easymenubutton2.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton2.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton2.TabIndex = 1;
             // 
             // easymenubutton1
@@ -269,7 +269,7 @@
             this.easymenubutton1.Dock = System.Windows.Forms.DockStyle.Top;
             this.easymenubutton1.Location = new System.Drawing.Point(0, 0);
             this.easymenubutton1.Name = "easymenubutton1";
-            this.easymenubutton1.Size = new System.Drawing.Size(271, 50);
+            this.easymenubutton1.Size = new System.Drawing.Size(246, 50);
             this.easymenubutton1.TabIndex = 0;
             // 
             // easyMenu
@@ -278,7 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "easyMenu";
-            this.Size = new System.Drawing.Size(288, 558);
+            this.Size = new System.Drawing.Size(263, 558);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
