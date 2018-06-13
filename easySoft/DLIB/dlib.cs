@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DLIB
 {
-    public class FrmInfo {
+    public class MenuInfo {
         private bool _Err = false;
         public bool Err
         {
@@ -42,6 +42,36 @@ namespace DLIB
             get { return _WinState; }
             // set { _WinState = value; }
         }
+        private int _xtip = 0;
+        public int xtip
+        {
+            get { return _xtip; }
+            // set { _CtlOpt = value; }
+        }
+        private int _xcod = 0;
+        public int codigo
+        {
+            get { return _xcod; }
+            // set { _CtlOpt = value; }
+        }
+        private string _image_Key = "";
+        public string image_Key
+        {
+            get { return _image_Key; }
+            // set { _CtlOpt = value; }
+        }
+        private string _Desc = "";
+        public string Desc
+        {
+            get { return _Desc; }
+            // set { _CtlOpt = value; }
+        }
+        private bool _xinform = false;
+        public bool Inform
+        {
+            get { return _xinform; }
+            // set { _CtlOpt = value; }
+        }
         public void LLenarInfo(DataTable tbinfo) {
             if (tbinfo == null) {
                 _Err = true;
@@ -52,10 +82,15 @@ namespace DLIB
                 _Err = true;
                 return;
             }
+            this._xcod = (int)tbinfo.Rows[0]["codigo"];
             this._NombreMostrar = tbinfo.Rows[0]["NombreMostrar"].ToString();
             this._CtlNom = tbinfo.Rows[0]["CtlNom"].ToString();
             this._CtlOpt = tbinfo.Rows[0]["CtlOpt"].ToString();
-            this._WinState = (int)tbinfo.Rows[0]["winState"];
+            this._WinState =  (int)(tbinfo.Rows[0]["winState"]==DBNull.Value?0: (int)tbinfo.Rows[0]["winState"]);
+            this._xtip= (tbinfo.Rows[0]["Tipo"] == DBNull.Value ? 0 : (int)tbinfo.Rows[0]["Tipo"]);
+            this._image_Key = (string)tbinfo.Rows[0]["ImageKey"].ToString();
+            this._xinform = (tbinfo.Rows[0]["inForm"] == DBNull.Value ? false : (bool)tbinfo.Rows[0]["inForm"]);
+            this._Desc = (string)tbinfo.Rows[0]["Descripcion"].ToString();
         }
 
         

@@ -22,7 +22,7 @@ namespace GUI.Interfaz
         public FrmGenBan(string xtitulo, string args)
         {
             InitializeComponent();
-            this.SetTitulo(xtitulo);
+            this.Titulo=xtitulo;
         }
 
         private void btnGenera_Click(object sender, EventArgs e)

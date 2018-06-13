@@ -184,6 +184,8 @@
     <Content Include="banko.ico" />
     <Content Include="easy.ico" />
     <Content Include="facil.ico" />
+    <None Include="Resources\line.png" />
+    <None Include="Resources\nosave.bmp" />
     <None Include="Resources\sell.png" />
     <None Include="Resources\create.png" />
     <None Include="Resources\buy.png" />

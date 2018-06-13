@@ -13,6 +13,13 @@ namespace GUI.Controles
 {
     public partial class easyMenu : UserControl
     {
+        public event EventHandler AbrirPrograma = delegate { };
+
+        protected virtual void OnRaiseAbrirPrograma(object xbtn)
+        {
+            AbrirPrograma(xbtn, EventArgs.Empty);
+        }
+
         public easyMenu()
         {
             InitializeComponent();
@@ -34,19 +41,21 @@ namespace GUI.Controles
                 easymenubutton ebutt = (easymenubutton)this.panel1.Controls[i];
                 if (i < Generado.Rows.Count)
                 {
-                   
                     easymenubutton.Tipo xTip = (easymenubutton.Tipo)Generado.Rows[i]["Tipo"];
-                    string xDesc = (string)Generado.Rows[i]["NombreMostrar"];
-                    string xImag = (string)Generado.Rows[i]["imageKey"];
                     string xacce = (string)Generado.Rows[i]["codigoAcceso"];
-                    ebutt.CargaOPT(xTip, xDesc, xImag, xacce);
+                    string xctl = (Generado.Rows[i]["codigo"] == null ? "" : Generado.Rows[i]["codigo"].ToString());
+                    ebutt.CargaOPT(xctl);
+                    ebutt.ClickPrograma += Ebutt_ClickPrograma;
                 }
                 else {
                     ebutt.Visible = false;
                 }
             }
-
-
+        }
+        
+        public void Ebutt_ClickPrograma(object xsender, EventArgs e)
+        {
+            OnRaiseAbrirPrograma((easymenubutton)xsender);
         }
     }
 }

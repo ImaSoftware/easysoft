@@ -29,8 +29,15 @@ namespace GUI.baseClass
             this.Close();
         }
         //definir control de click en ControlBox con un evento
+        private string _xTitulo = "";
+        public string Titulo
+        {
+            get { return _xTitulo; }
+            set { _xTitulo = value; SetTitulo(value); }
+        }
 
-        public void SetTitulo(string texto)
+
+        private void SetTitulo(string texto)
         {
             this.xTitulo.Text = texto;
         }

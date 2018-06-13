@@ -12,20 +12,28 @@ namespace GUI.Controles
 {
     public partial class easymenubutton : UserControl
     {
+        Negocio.Lobby capaNego = new Negocio.Lobby();
         Color ModuColor;
         Color MenuColor;
         Color ProgColor;
-        public string codigoAcceso="";
+        public DLIB.MenuInfo myInfo;
+        public event EventHandler ClickPrograma;
+        protected virtual void OnRaiseClickPrograma()
+        {
+            EventHandler handler = ClickPrograma;
+            handler(this, new EventArgs ());//Provoca el evento
+        }
         public enum Tipo { Modulo, Menu,  Programa }
         Tipo miTipo = Tipo.Modulo;
         public easymenubutton()
         {
             InitializeComponent();
         }
-        public void CargaOPT(Tipo xtip, string Desc, string image_Key, string accessCode )
+        public void CargaOPT(string xcodigo)
         {
-            this.codigoAcceso = accessCode;
-            miTipo = xtip;
+            //Tipo xtip, string Desc, string image_Key, string accessCode, string xprgCod
+            myInfo = capaNego.getFrmInfo(xcodigo);
+            miTipo = (Tipo)myInfo.xtip;
             ModuColor = Color.FromArgb(32, 57, 86);
             MenuColor = Color.FromArgb(25, 48, 72);
             ProgColor = Color.FromArgb(25, 48, 72);
@@ -34,7 +42,7 @@ namespace GUI.Controles
                 button1.ImageKey = "";
                 pictureBox1.Visible = false;
             }
-            switch (xtip)
+            switch (miTipo)
             {
                 case Tipo.Modulo:
                     pictureBox1.BackColor = ModuColor;
@@ -47,6 +55,7 @@ namespace GUI.Controles
                     this.BackColor = MenuColor;
                     break;
                 case Tipo.Programa:
+                    button1.ImageKey = "";
                     pictureBox1.BackColor = ProgColor;
                     button1.BackColor = ProgColor;
                     this.BackColor = ProgColor;
@@ -57,7 +66,7 @@ namespace GUI.Controles
                     this.BackColor = ModuColor;
                     break;
             }
-            switch (image_Key)
+            switch (myInfo.image_Key)
             {
                 case  "book":
                     pictureBox1.BackgroundImage = GUI.Properties.Resources.book;
@@ -95,16 +104,22 @@ namespace GUI.Controles
                 case "sell":
                     pictureBox1.BackgroundImage = GUI.Properties.Resources.sell;
                     break;
+                case "line":
+                    pictureBox1.BackgroundImage = GUI.Properties.Resources.line; ;
+                    break;
                 default:
                     pictureBox1.BackgroundImage = pictureBox1.InitialImage;
                     break;
             }
-            button1.Text = Desc;
+            button1.Text = myInfo.NombreMostrar;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (miTipo == Tipo.Programa) { button1.ImageKey = ""; return; }
+            if (miTipo == Tipo.Programa) {
+                button1.ImageKey = "";
+                OnRaiseClickPrograma();
+            }
             if (button1.ImageKey.Equals("arrow-down.png"))
             {
                 button1.ImageKey = "arrow-up.png";
