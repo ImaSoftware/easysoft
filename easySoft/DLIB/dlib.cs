@@ -60,6 +60,12 @@ namespace DLIB
             get { return _image_Key; }
             // set { _CtlOpt = value; }
         }
+        private string _codAcceso = "";
+        public string codAcceso
+        {
+            get { return _codAcceso; }
+            // set { _CtlOpt = value; }
+        }
         private string _Desc = "";
         public string Desc
         {
@@ -84,6 +90,7 @@ namespace DLIB
             }
             this._xcod = (int)tbinfo.Rows[0]["codigo"];
             this._NombreMostrar = tbinfo.Rows[0]["NombreMostrar"].ToString();
+            this._NombreMostrar = tbinfo.Rows[0]["NombreMostrar"].ToString();
             this._CtlNom = tbinfo.Rows[0]["CtlNom"].ToString();
             this._CtlOpt = tbinfo.Rows[0]["CtlOpt"].ToString();
             this._WinState =  (int)(tbinfo.Rows[0]["winState"]==DBNull.Value?0: (int)tbinfo.Rows[0]["winState"]);
@@ -91,6 +98,7 @@ namespace DLIB
             this._image_Key = (string)tbinfo.Rows[0]["ImageKey"].ToString();
             this._xinform = (tbinfo.Rows[0]["inForm"] == DBNull.Value ? false : (bool)tbinfo.Rows[0]["inForm"]);
             this._Desc = (string)tbinfo.Rows[0]["Descripcion"].ToString();
+            this._codAcceso = (string)tbinfo.Rows[0]["codigoAcceso"].ToString();
         }
 
         

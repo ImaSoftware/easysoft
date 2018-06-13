@@ -118,7 +118,6 @@ namespace GUI.Controles
         {
             if (miTipo == Tipo.Programa) {
                 button1.ImageKey = "";
-                OnRaiseClickPrograma();
             }
             if (button1.ImageKey.Equals("arrow-down.png"))
             {
@@ -128,6 +127,7 @@ namespace GUI.Controles
             {
                 button1.ImageKey = "arrow-down.png";
             }
+            OnRaiseClickPrograma();
         }
     }
 }
