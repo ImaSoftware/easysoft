@@ -25,6 +25,9 @@ namespace GUI.Controles
         }
         public enum Tipo { Modulo, Menu,  Programa }
         Tipo miTipo = Tipo.Modulo;
+        public bool contraido=true;
+        public easymenubutton Padre;
+        public List<easymenubutton> Hijos= new List<easymenubutton>();
         public easymenubutton()
         {
             InitializeComponent();
@@ -112,20 +115,24 @@ namespace GUI.Controles
                     break;
             }
             button1.Text = myInfo.NombreMostrar;
+            if (miTipo == Tipo.Programa)
+            {
+                button1.ImageKey = "";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (miTipo == Tipo.Programa) {
-                button1.ImageKey = "";
-            }
+           
             if (button1.ImageKey.Equals("arrow-down.png"))
             {
-                button1.ImageKey = "arrow-up.png";
+                button1.ImageKey = " ";
+                contraido = false;
             }
             else
             {
                 button1.ImageKey = "arrow-down.png";
+                contraido = true;
             }
             OnRaiseClickPrograma();
         }

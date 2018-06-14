@@ -54,6 +54,12 @@ namespace DLIB
             get { return _xcod; }
             // set { _CtlOpt = value; }
         }
+        private long _Nivel = 0;
+        public long Nivel
+        {
+            get { return _Nivel; }
+            // set { _CtlOpt = value; }
+        }
         private string _image_Key = "";
         public string image_Key
         {
@@ -99,6 +105,7 @@ namespace DLIB
             this._xinform = (tbinfo.Rows[0]["inForm"] == DBNull.Value ? false : (bool)tbinfo.Rows[0]["inForm"]);
             this._Desc = (string)tbinfo.Rows[0]["Descripcion"].ToString();
             this._codAcceso = (string)tbinfo.Rows[0]["codigoAcceso"].ToString();
+            this._Nivel = _codAcceso.LongCount(letra => letra.ToString() == ".");
         }
 
         
@@ -223,6 +230,7 @@ namespace DLIB
             get { return _CodCia; }
             //set{_CadenaConexion = value;}
         }
+
 
         /// <summary>
         /// Inicia sesion con los parametros dados y deja la conexion resultante grabada en Globales
