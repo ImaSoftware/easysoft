@@ -84,7 +84,7 @@ namespace GUI.Controles
             {                
                 easymenubutton ebutt = (easymenubutton)this.panel1.Controls[i];
                 if (ebutt.myInfo == null){ continue ; }
-                //if (ebutt.Padre == null) { continue; }
+                if (ebutt.Padre == null) { continue; }
                 if (ebutt.myInfo.codAcceso.StartsWith(codAcceso)&& !ebutt.myInfo.codAcceso.Equals(codAcceso)) {
                     if (tipo == easymenubutton.Tipo.Modulo && ebutt.myInfo.xtip != (int)easymenubutton.Tipo.Modulo && ebutt.myInfo.Nivel == ((int)tipo) + 2) {
                         ebutt.Visible = !ebutt.Visible ;
