@@ -33,15 +33,15 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.mainsplit = new System.Windows.Forms.SplitContainer();
             this.easyMenu1 = new GUI.Controles.easyMenu();
             this.VentanaMain = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.errP)).BeginInit();
             this.barraEstado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainsplit)).BeginInit();
+            this.mainsplit.Panel1.SuspendLayout();
+            this.mainsplit.Panel2.SuspendLayout();
+            this.mainsplit.SuspendLayout();
             this.SuspendLayout();
             // 
             // misImagenes
@@ -76,30 +76,30 @@
             this.toolStripButton1.Text = "Cerrar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
-            // splitContainer1
+            // mainsplit
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 37);
-            this.splitContainer1.Name = "splitContainer1";
+            this.mainsplit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainsplit.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.mainsplit.Location = new System.Drawing.Point(0, 37);
+            this.mainsplit.Name = "mainsplit";
             // 
-            // splitContainer1.Panel1
+            // mainsplit.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.easyMenu1);
+            this.mainsplit.Panel1.Controls.Add(this.easyMenu1);
             // 
-            // splitContainer1.Panel2
+            // mainsplit.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.VentanaMain);
-            this.splitContainer1.Size = new System.Drawing.Size(1142, 630);
-            this.splitContainer1.SplitterDistance = 303;
-            this.splitContainer1.TabIndex = 2;
+            this.mainsplit.Panel2.Controls.Add(this.VentanaMain);
+            this.mainsplit.Size = new System.Drawing.Size(1142, 630);
+            this.mainsplit.SplitterDistance = 71;
+            this.mainsplit.TabIndex = 2;
             // 
             // easyMenu1
             // 
             this.easyMenu1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.easyMenu1.Location = new System.Drawing.Point(0, 0);
             this.easyMenu1.Name = "easyMenu1";
-            this.easyMenu1.Size = new System.Drawing.Size(303, 630);
+            this.easyMenu1.Size = new System.Drawing.Size(71, 630);
             this.easyMenu1.TabIndex = 1;
             this.easyMenu1.AbrirPrograma += new System.EventHandler(this.easyMenu1_AbrirPrograma);
             // 
@@ -109,7 +109,7 @@
             this.VentanaMain.Location = new System.Drawing.Point(0, 0);
             this.VentanaMain.Name = "VentanaMain";
             this.VentanaMain.SelectedIndex = 0;
-            this.VentanaMain.Size = new System.Drawing.Size(835, 630);
+            this.VentanaMain.Size = new System.Drawing.Size(1067, 630);
             this.VentanaMain.TabIndex = 0;
             // 
             // Lobby
@@ -117,21 +117,21 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1142, 692);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.mainsplit);
             this.Controls.Add(this.barraEstado);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Lobby";
             this.Text = "Lobby";
             this.Load += new System.EventHandler(this.Lobby_Load);
             this.Controls.SetChildIndex(this.barraEstado, 0);
-            this.Controls.SetChildIndex(this.splitContainer1, 0);
+            this.Controls.SetChildIndex(this.mainsplit, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errP)).EndInit();
             this.barraEstado.ResumeLayout(false);
             this.barraEstado.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.mainsplit.Panel1.ResumeLayout(false);
+            this.mainsplit.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mainsplit)).EndInit();
+            this.mainsplit.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,7 +142,7 @@
         private System.Windows.Forms.ToolStrip barraEstado;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer mainsplit;
         private Controles.easyMenu easyMenu1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.TabControl VentanaMain;

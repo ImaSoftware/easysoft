@@ -72,6 +72,7 @@ namespace GUI
         private void easyMenu1_AbrirPrograma(object sender, EventArgs e)
         {
             OpenForm(((Controles.easymenubutton)sender).myInfo);
+
         }
     }
 }
