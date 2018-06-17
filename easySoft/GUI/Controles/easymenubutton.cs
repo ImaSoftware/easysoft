@@ -43,28 +43,28 @@ namespace GUI.Controles
             if (miTipo == Tipo.Programa)
             {
                 button1.ImageKey = "";
-                pictureBox1.Visible = false;
+               button2.Visible  = false;
             }
             switch (miTipo)
             {
                 case Tipo.Modulo:
-                    pictureBox1.BackColor = ModuColor;
+                    button2.BackColor = ModuColor;
                     button1.BackColor = ModuColor;
                     this.BackColor = ModuColor;
                     break;
                 case Tipo.Menu:
-                    pictureBox1.BackColor = MenuColor;
+                    button2.BackColor = MenuColor;
                     button1.BackColor = MenuColor;
                     this.BackColor = MenuColor;
                     break;
                 case Tipo.Programa:
                     button1.ImageKey = "";
-                    pictureBox1.BackColor = ProgColor;
+                    button2.BackColor = ProgColor;
                     button1.BackColor = ProgColor;
                     this.BackColor = ProgColor;
                     break;
                 default:
-                    pictureBox1.BackColor = ModuColor;
+                    button2.BackColor = ModuColor;
                     button1.BackColor = ModuColor;
                     this.BackColor = ModuColor;
                     break;
@@ -72,46 +72,46 @@ namespace GUI.Controles
             switch (myInfo.image_Key)
             {
                 case  "book":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.book;
+                    button2.BackgroundImage = GUI.Properties.Resources.book;
                     break;
                 case "building":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.building;
+                    button2.BackgroundImage = GUI.Properties.Resources.building;
                     break;
                 case "employee":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.employee;
+                    button2.BackgroundImage = GUI.Properties.Resources.employee;
                     break;
                 case "give_money":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.give_money;
+                    button2.BackgroundImage = GUI.Properties.Resources.give_money;
                     break;
                 case "growth":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.growth;
+                    button2.BackgroundImage = GUI.Properties.Resources.growth;
                     break;
                 case "hand":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.hand;
+                    button2.BackgroundImage = GUI.Properties.Resources.hand;
                     break;
                 case "home":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.home;
+                    button2.BackgroundImage = GUI.Properties.Resources.home;
                     break;
                 case "warehouse":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.warehouse;
+                    button2.BackgroundImage = GUI.Properties.Resources.warehouse;
                     break;
                 case "worker":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.worker;
+                    button2.BackgroundImage = GUI.Properties.Resources.worker;
                     break;
                 case "create":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.create;
+                    button2.BackgroundImage = GUI.Properties.Resources.create;
                     break;
                 case "buy":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.buy;
+                    button2.BackgroundImage = GUI.Properties.Resources.buy;
                     break;
                 case "sell":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.sell;
+                    button2.BackgroundImage = GUI.Properties.Resources.sell;
                     break;
                 case "line":
-                    pictureBox1.BackgroundImage = GUI.Properties.Resources.line; ;
+                    button2.BackgroundImage = GUI.Properties.Resources.line; 
                     break;
                 default:
-                    pictureBox1.BackgroundImage = pictureBox1.InitialImage;
+                    button2.BackgroundImage = null;
                     break;
             }
             button1.Text = myInfo.NombreMostrar;
@@ -119,7 +119,19 @@ namespace GUI.Controles
             {
                 button1.ImageKey = "";
             }
+            button2.BackgroundImageLayout = ImageLayout.Zoom;
+            //seteando tooltip
+            if (this.myInfo.xtip == (int)Tipo.Modulo)
+            {
+                btnToolTip.SetToolTip(button2, myInfo.NombreMostrar);
+
+            }
+            else {
+                btnToolTip.SetToolTip(button1, myInfo.Desc);
+            }
         }
+        
+    
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -136,5 +148,7 @@ namespace GUI.Controles
             }
             OnRaiseClickPrograma();
         }
+
+       
     }
 }

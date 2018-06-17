@@ -26,10 +26,10 @@ namespace GUI.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PROGRAMACION;Initial Catalog=davmerRoot;Integrated Security=False;Per" +
-            "sist Security Info=True;User ID=sa;Password=Rootpass1;Connect Timeout=30;Encrypt" +
-            "=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailo" +
-            "ver=False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-E34DBKN;Initial Catalog=davmerRoot;Integrated Security=False;" +
+            "Persist Security Info=True;User ID=sa;Password=Rootpass1;Connect Timeout=30;Encr" +
+            "ypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFa" +
+            "ilover=False")]
         public string connSQL {
             get {
                 return ((string)(this["connSQL"]));
