@@ -72,7 +72,18 @@ namespace GUI
         private void easyMenu1_AbrirPrograma(object sender, EventArgs e)
         {
             OpenForm(((Controles.easymenubutton)sender).myInfo);
+            this.mainsplit.SplitterDistance = easyMenu1.cambiaWidth();
+            this.easyMenu1.soloModulo();
+        }
 
+        private void easyMenu1_AbrirNoPrograma(object sender, EventArgs e)
+        {
+           this.mainsplit.SplitterDistance= easyMenu1.cambiaWidth();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (VentanaMain.SelectedTab != null) { this.VentanaMain.TabPages.Remove(VentanaMain.SelectedTab); }
         }
     }
 }

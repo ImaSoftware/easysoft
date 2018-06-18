@@ -69,6 +69,7 @@
             this.toolStripButton1.Text = "Cerrar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton1.ToolTipText = "Cerrar Ficha";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // mainsplit
             // 
@@ -96,6 +97,7 @@
             this.easyMenu1.Size = new System.Drawing.Size(71, 630);
             this.easyMenu1.TabIndex = 1;
             this.easyMenu1.AbrirPrograma += new System.EventHandler(this.easyMenu1_AbrirPrograma);
+            this.easyMenu1.AbrirNoPrograma += new System.EventHandler(this.easyMenu1_AbrirNoPrograma);
             // 
             // VentanaMain
             // 

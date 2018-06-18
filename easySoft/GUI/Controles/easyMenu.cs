@@ -15,11 +15,16 @@ namespace GUI.Controles
     {
         DataTable Generado;
         public event EventHandler AbrirPrograma = delegate { };
+        public event EventHandler AbrirNoPrograma = delegate { };
         int[] splitDistances = new int[3] { 71, 83, 300 };
         public enum SplitterMode { Solo_Botones, Botones_y_Barra, Completo }
         protected virtual void OnRaiseAbrirPrograma(object xbtn)
         {
             AbrirPrograma(xbtn, EventArgs.Empty);
+        }
+        protected virtual void OnRaiseAbrirNoPrograma(object xbtn)
+        {
+            AbrirNoPrograma(xbtn, EventArgs.Empty);
         }
         SplitterMode ModoSplitter = SplitterMode.Solo_Botones;
         public easyMenu()
@@ -98,12 +103,16 @@ namespace GUI.Controles
         }
         private void Ebutt_ClickPrograma(object xsender, EventArgs e)
         {
+            ProcesaClick(((easymenubutton)xsender).myInfo.codAcceso, (easymenubutton.Tipo)((easymenubutton)xsender).myInfo.xtip);
             if (((easymenubutton)xsender).myInfo.xtip == (int)easymenubutton.Tipo.Programa)
             {
+                ModoSplitter = SplitterMode.Solo_Botones;
                 OnRaiseAbrirPrograma((easymenubutton)xsender);
-
             }
-            ProcesaClick(((easymenubutton)xsender).myInfo.codAcceso, (easymenubutton.Tipo)((easymenubutton)xsender).myInfo.xtip);
+            else {
+                OnRaiseAbrirNoPrograma((easymenubutton)xsender);
+            }
+           
         }
 
         private void ProcesaClick(string codAcceso, easymenubutton.Tipo tipo)
@@ -134,9 +143,24 @@ namespace GUI.Controles
                 ModoSplitter = SplitterMode.Completo;
             }
         }
-        public void cambiaWidth()
+        public int cambiaWidth()
         {
-            this.Width = splitDistances[(int)ModoSplitter];
+            return  splitDistances[(int)ModoSplitter];
+        }
+        public void  soloModulo() {
+            for (int i = this.panel1.Controls.Count - 1; i >= 0; i--)
+            {
+                int iTabla = this.panel1.Controls.Count - 1 - i;
+                easymenubutton ebutt = (easymenubutton)this.panel1.Controls[i];
+                if (ebutt.myInfo !=null)
+                {
+                    if (ebutt.myInfo.Nivel != 1)
+                    {
+                        //siempre va a ser niveles mayores a uno 
+                        ebutt.Visible = false;
+                    }
+                }
+            }
         }
     }
 }

@@ -53,9 +53,6 @@
     <ApplicationIcon>facil.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MetroFramework">
-      <HintPath>..\..\..\..\..\Desktop\MetroFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -182,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="banko.ico" />
+    <Content Include="CONTA2.ico" />
     <Content Include="easy.ico" />
     <Content Include="facil.ico" />
     <None Include="Resources\line.png" />
