@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             this.barraEstado = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.mainsplit = new System.Windows.Forms.SplitContainer();
@@ -53,18 +52,12 @@
             // 
             this.barraEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barraEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
             this.toolStripButton1});
             this.barraEstado.Location = new System.Drawing.Point(0, 667);
             this.barraEstado.Name = "barraEstado";
+            this.barraEstado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.barraEstado.Size = new System.Drawing.Size(1142, 25);
             this.barraEstado.TabIndex = 1;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(86, 22);
-            this.toolStripLabel1.Text = "toolStripLabel1";
             // 
             // toolStripButton1
             // 
@@ -75,6 +68,7 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "Cerrar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripButton1.ToolTipText = "Cerrar Ficha";
             // 
             // mainsplit
             // 
@@ -140,7 +134,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip barraEstado;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.SplitContainer mainsplit;
         private Controles.easyMenu easyMenu1;

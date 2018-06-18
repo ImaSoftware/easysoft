@@ -31,6 +31,7 @@ namespace GUI.Controles
         public easymenubutton()
         {
             InitializeComponent();
+
         }
         public void CargaOPT(string xcodigo)
         {
@@ -149,6 +150,9 @@ namespace GUI.Controles
             OnRaiseClickPrograma();
         }
 
-       
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
