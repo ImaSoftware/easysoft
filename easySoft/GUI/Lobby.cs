@@ -85,5 +85,10 @@ namespace GUI
         {
             if (VentanaMain.SelectedTab != null) { this.VentanaMain.TabPages.Remove(VentanaMain.SelectedTab); }
         }
+
+        private void easyMenu1_MouseLeave(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

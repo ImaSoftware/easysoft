@@ -16,7 +16,7 @@ namespace GUI.Controles
         DataTable Generado;
         public event EventHandler AbrirPrograma = delegate { };
         public event EventHandler AbrirNoPrograma = delegate { };
-        int[] splitDistances = new int[3] { 71, 83, 300 };
+        int[] splitDistances = new int[3] { 71, 83, 315 };
         public enum SplitterMode { Solo_Botones, Botones_y_Barra, Completo }
         protected virtual void OnRaiseAbrirPrograma(object xbtn)
         {
@@ -161,6 +161,11 @@ namespace GUI.Controles
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+         
         }
     }
 }

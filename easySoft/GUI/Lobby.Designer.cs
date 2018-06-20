@@ -98,6 +98,7 @@
             this.easyMenu1.TabIndex = 1;
             this.easyMenu1.AbrirPrograma += new System.EventHandler(this.easyMenu1_AbrirPrograma);
             this.easyMenu1.AbrirNoPrograma += new System.EventHandler(this.easyMenu1_AbrirNoPrograma);
+            this.easyMenu1.MouseLeave += new System.EventHandler(this.easyMenu1_MouseLeave);
             // 
             // VentanaMain
             // 
