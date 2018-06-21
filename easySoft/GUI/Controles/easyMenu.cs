@@ -34,7 +34,9 @@ namespace GUI.Controles
 
         public void LLena_Menu()
         {
-            Generado = DLIB.Globales.Parametros.connSql.TraerTabla("LOBBY_002", null, true);
+            List<SqlParameter> myList = new List<SqlParameter>();
+            myList.Add(new SqlParameter("@usrcod", DLIB.Globales.Parametros.CodUser));
+            Generado = DLIB.Globales.Parametros.connSql.TraerTabla("LOBBY_002", myList, true);
             if (Generado == null)
             {
                 MessageBox.Show("Error");

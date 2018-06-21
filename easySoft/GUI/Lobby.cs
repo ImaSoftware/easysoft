@@ -90,5 +90,19 @@ namespace GUI
         {
            
         }
+
+        private void keyButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea cambiar de usuario y cerrar la sesion actual?", "Confirmacion", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                FrmSesion Sesion = new FrmSesion();
+                Sesion.ShowDialog();
+                if (Sesion.Resultado)
+                {
+                    DLIB.Globales.Parametros.Otra = true;
+                    this.Close();
+                  
+                }
+            }
+        }
     }
 }

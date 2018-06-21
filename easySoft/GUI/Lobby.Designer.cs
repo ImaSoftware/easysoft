@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             this.barraEstado = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.keyButton = new System.Windows.Forms.ToolStripButton();
             this.mainsplit = new System.Windows.Forms.SplitContainer();
             this.easyMenu1 = new GUI.Controles.easyMenu();
             this.VentanaMain = new System.Windows.Forms.TabControl();
@@ -51,7 +52,8 @@
             // 
             this.barraEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barraEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.keyButton});
             this.barraEstado.Location = new System.Drawing.Point(0, 667);
             this.barraEstado.Name = "barraEstado";
             this.barraEstado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -69,6 +71,16 @@
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton1.ToolTipText = "Cerrar Ficha";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // keyButton
+            // 
+            this.keyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.keyButton.Image = global::GUI.Properties.Resources.llave;
+            this.keyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.keyButton.Name = "keyButton";
+            this.keyButton.Size = new System.Drawing.Size(23, 22);
+            this.keyButton.Text = "toolStripButton2";
+            this.keyButton.Click += new System.EventHandler(this.keyButton_Click);
             // 
             // mainsplit
             // 
@@ -140,5 +152,6 @@
         private Controles.easyMenu easyMenu1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.TabControl VentanaMain;
+        private System.Windows.Forms.ToolStripButton keyButton;
     }
 }

@@ -30,7 +30,11 @@ namespace GUI.Interfaz
         public CtlSesion()
         {
             InitializeComponent();
-          
+            string[] localCNF = DLIB.DFUNC.UsrWinReg();
+            txtusernom.Text = (string.IsNullOrEmpty(localCNF[0])) ? String.Empty :localCNF[0];
+            if (!String.IsNullOrEmpty(localCNF[1]))
+            { cmbEmpresas.SelectedValue = localCNF[1]; }
+            if (!string.IsNullOrEmpty(txtusernom.Text)) { txtuserpwd.Focus(); } else { txtusernom.Focus(); }
         }
 
 
@@ -59,7 +63,7 @@ namespace GUI.Interfaz
         public void loader()
         {
             DLIB.Globales.Parametros.CadenaConexionRoot = System.Configuration.ConfigurationManager.ConnectionStrings[1].ConnectionString;
-            Empresas = DLIB.Globales.Parametros.connSql.TraerTabla("LOGGIN_001");
+            Empresas = DLIB.Globales.Parametros.connSql.TraerTabla("LOGGIN_001",null,true);
             if (Empresas == null)
             {
                 Environment.Exit(Environment.ExitCode);

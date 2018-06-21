@@ -182,6 +182,7 @@
     <Content Include="CONTA2.ico" />
     <Content Include="easy.ico" />
     <Content Include="facil.ico" />
+    <None Include="Resources\llave.png" />
     <None Include="Resources\line.png" />
     <None Include="Resources\nosave.bmp" />
     <None Include="Resources\sell.png" />

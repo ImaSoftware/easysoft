@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -185,6 +186,20 @@ namespace DLIB
     }
     public static class DFUNC
     {
+        public static string[] UsrWinReg(bool grabar = false)
+        {
+            if (grabar)
+            {
+                Interaction.SaveSetting("easysoft", "Configuracion", "UsrId", Globales.Parametros.UsrId );
+                Interaction.SaveSetting("easysoft", "Configuracion", "CodCia", Globales.Parametros.CodCia.ToString());
+                return null;
+            }
+            else
+            {
+                return new string[]{ Interaction.GetSetting("easysoft", "Configuracion", "UsrId"),
+                Interaction.GetSetting("easysoft", "Configuracion", "CodCia")};
+            }
+        }
         public static string GetSafeFilename(string filename)
         {
 
@@ -218,18 +233,31 @@ namespace DLIB
             get { return _CadenaConexion; }
            // set { _CadenaConexion = value; }
         }
-        private string _CodUser = "";
-        public string CodUser
+        private string _UsrId = "";
+        public string UsrId
         {
-            get { return _CodUser; }
+            get { return _UsrId; }
             //set{_CodUser = value;}
         }
-        private string _CodCia = "";
-        public string CodCia
+        private int _CodCia = -1;
+        public int CodCia
         {
             get { return _CodCia; }
             //set{_CadenaConexion = value;}
         }
+        private int _CodUser = -1;
+        public int CodUser
+        {
+            get { return _CodUser; }
+            //set{_CadenaConexion = value;}
+        }
+        private bool _Otra = false;
+        public bool Otra
+        {
+            get { return _Otra; }
+            set{ _Otra = value;}
+        }
+
 
 
         /// <summary>
@@ -248,11 +276,15 @@ namespace DLIB
                 using (SqlConnection cn = DAO.Conexion.Conectar(true))
                 {
                     //traer la cadena de conexion de la cia indicada si es exitosa 
-                    string sql = @"SELECT (select Nombre from usuarios where CAST(usernom as varbinary(100)) = CAST(@nomuser as varbinary) 
-                                AND CAST(userpwd as varbinary(100)) = CAST(@pwd as varbinary(100)) ), a.connstring  FROM empresas A inner join
-                                (select codcia from Permisos where tipo='E' and  usercod= isnull(
-                                (select codigo from usuarios where CAST(usernom as varbinary(100)) = CAST(@nomuser as varbinary) 
-                                AND CAST(userpwd as varbinary(100)) = CAST(@pwd as varbinary(100)) ),0) ) B on a.codcia=B.codcia 
+                    string sql = @"SELECT  a.connstring, c.Nombre, c.codigo FROM empresas A 
+                                left join (
+	                                select usernom, userpwd , codigo,Nombre from usuarios
+                                 )C on CAST(usernom as varbinary(100)) = CAST(@nomuser as varbinary) 
+                                AND CAST(userpwd as varbinary(100)) = CAST(@pwd as varbinary(100))
+                                inner join
+                                (
+                                select usercod, codcia from Permisos where tipo='E'   
+                                 ) B on a.codcia=B.codcia and b.usercod= isnull(c.codigo,0)
                                 where A.codcia = @codcia";
                     SqlCommand command = new SqlCommand(sql, cn);
                     command.Parameters.Add("@codcia", SqlDbType.Int );
@@ -270,17 +302,18 @@ namespace DLIB
                     {
                         return false;
                     }
-                    _CadenaConexion = dt.Rows[0][1].ToString();
-                    _UsrNom = dt.Rows[0][0].ToString();
+                    _CadenaConexion = dt.Rows[0][0].ToString();
                     using (SqlConnection cn2 = DAO.Conexion.Conectar())
                     {
                         cn2.Open();
                         cn2.Close();
                     }
-                   
                     //si llego hasta este punto es porque si existe y si vale la segunda cadena de conexion
-                                      
-
+                    _UsrNom = dt.Rows[0][1].ToString();
+                    _UsrId = usrx;
+                    _CodUser = (int)dt.Rows[0][2];
+                    _CodCia = ciax;
+                   DFUNC.UsrWinReg(true);
                 }
             }
             catch (SqlException ex)
