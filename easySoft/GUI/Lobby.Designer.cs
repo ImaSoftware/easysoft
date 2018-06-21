@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             this.barraEstado = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.mainsplit = new System.Windows.Forms.SplitContainer();
             this.easyMenu1 = new GUI.Controles.easyMenu();
             this.VentanaMain = new System.Windows.Forms.TabControl();
@@ -137,7 +136,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip barraEstado;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.SplitContainer mainsplit;
         private Controles.easyMenu easyMenu1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
