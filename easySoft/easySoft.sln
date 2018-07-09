@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLIB", "DLIB\DLIB.csproj", "{69F635CC-77E9-4E19-9267-6C0D5F874948}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "easyApp", "easyApp\easyApp.csproj", "{A5945BAD-D02E-4952-857E-235EFD4C6538}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "easyWebApp", "easyWebApp\easyWebApp.csproj", "{6365B489-39EE-420C-9D04-3BE4B7CF7F0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{69F635CC-77E9-4E19-9267-6C0D5F874948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69F635CC-77E9-4E19-9267-6C0D5F874948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69F635CC-77E9-4E19-9267-6C0D5F874948}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5945BAD-D02E-4952-857E-235EFD4C6538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5945BAD-D02E-4952-857E-235EFD4C6538}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5945BAD-D02E-4952-857E-235EFD4C6538}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5945BAD-D02E-4952-857E-235EFD4C6538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6365B489-39EE-420C-9D04-3BE4B7CF7F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6365B489-39EE-420C-9D04-3BE4B7CF7F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6365B489-39EE-420C-9D04-3BE4B7CF7F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6365B489-39EE-420C-9D04-3BE4B7CF7F0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
