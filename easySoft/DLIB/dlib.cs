@@ -13,6 +13,12 @@ using System.Windows.Forms;
 namespace DLIB
 {
     public class MenuInfo {
+        private bool _esEasy = false;
+        public bool esEasy
+        {
+            get { return _esEasy; }
+            // set { _NombreMostrar = value; }
+        }
         private bool _Err = false;
         public bool Err
         {
@@ -104,6 +110,7 @@ namespace DLIB
             this._xtip= (tbinfo.Rows[0]["Tipo"] == DBNull.Value ? 0 : (int)tbinfo.Rows[0]["Tipo"]);
             this._image_Key = (string)tbinfo.Rows[0]["ImageKey"].ToString();
             this._xinform = (tbinfo.Rows[0]["inForm"] == DBNull.Value ? false : (bool)tbinfo.Rows[0]["inForm"]);
+            this._esEasy  = (tbinfo.Rows[0]["esEasy"] == DBNull.Value ? false : (bool)tbinfo.Rows[0]["esEasy"]);
             this._Desc = (string)tbinfo.Rows[0]["Descripcion"].ToString();
             this._codAcceso = (string)tbinfo.Rows[0]["codigoAcceso"].ToString();
             this._Nivel = _codAcceso.LongCount(letra => letra.ToString() == ".");
