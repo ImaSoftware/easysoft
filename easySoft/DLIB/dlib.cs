@@ -1,13 +1,18 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Security;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DLIB
@@ -214,6 +219,101 @@ namespace DLIB
 
         }
     }
+    public class Parametro
+    {
+        public Parametro(string argN, object argVal, int fsize = 0)
+        {
+            Nombre = argN;
+            value = argVal;
+            size = fsize;
+        }
+        public string Nombre;
+        public object value;
+        public int size;
+    }
+
+
+    public class RepoMan
+    {
+        // ***********************EMULACION DE REPOMAN ***************************
+        // REPORTE DINAMICO A TRAVES DE SENTENCIA ALMACENADA EN BASE DE DATOS 
+        // Clase pensada para usarse como extractor de info de repo
+        // ***********************************************************************
+        private string clave;
+        private string _Comentario = "";
+        public string Comentario
+        {
+            get { return _Comentario; }
+            // set { _UsrNom = value; }
+        }
+        private bool _EnableExternalImages = false;
+        public bool EnableExternalImages
+        {
+            get { return _EnableExternalImages; }
+            //  set { _EnableExternalImages = value; }
+        }
+        private string query;
+        private List<SqlParameter> xpar = null;
+        public DataSet db = new DataSet();
+        public RepoMan(string _nR, List<SqlParameter> _xpar = null)
+        {
+            clave = _nR;
+            xpar = _xpar;
+        }
+        public void load()
+        {
+            using (SqlConnection cn = DAO.Conexion.Conectar())
+            {
+                // El nombre del repo me indica que debo buscar
+                string sql = @"Select Sentencia, EnableExternalImages, comentario from repoman where namereport = @clave ";
+                SqlCommand command = new SqlCommand(sql, cn);
+                command.Parameters.Add("@clave", SqlDbType.VarChar);
+                command.Parameters["@clave"].Value = clave;
+                cn.Open();
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                DataTable dtt = new DataTable();
+                da.Fill(dtt);
+                cn.Close();
+                if (dtt.Rows.Count != 1)
+                {
+                    Interaction.MsgBox("mas de una fila para definicion de reporte");
+                    db = null;
+                    return;
+                }
+                this._Comentario = (dtt.Rows[0]["COMENTARIO"] == DBNull.Value ? "" : (string)dtt.Rows[0]["COMENTARIO"]);
+                this._EnableExternalImages = (dtt.Rows[0]["EnableExternalImages"] == DBNull.Value ? false : (bool)dtt.Rows[0]["EnableExternalImages"]);
+                string  query = (dtt.Rows[0]["Sentencia"] == DBNull.Value ? "" : (string)dtt.Rows[0]["Sentencia"]); 
+                command = new SqlCommand(query, cn);
+                //Agrego parametros de la consulta
+                if (xpar != null)
+                {
+                    foreach (SqlParameter p in xpar)
+                    {
+                        command.Parameters.Add(new SqlParameter(p.ParameterName, p.Value));
+                    }
+                }
+                cn.Open();
+                da = new SqlDataAdapter(command);
+                db = new DataSet();
+                da.Fill(db);
+                cn.Close();
+            }
+            // Aqui necesito los nombres de las tablas para poder hacer match con el origen de datos 
+            // que se pone en la definición del reporte. Para ello la primera tabla de todo conjunto de datos
+            // deberá ser una que especifique dichos nombres
+            for (var j = 0; j <= db.Tables.Count - 1; j++)
+            {
+                if (j == 0)
+                    continue;
+                DataTable table = db.Tables[j];
+                string nT = db.Tables[0].Rows[0]["N" + j.ToString().Trim()].ToString();
+                table.TableName = nT;
+            }
+        }
+    }
+
+
+
     public static class Globales {
         
         public static GlobC Parametros = new GlobC();
