@@ -315,7 +315,7 @@ namespace DLIB
 
 
     public static class Globales {
-        
+        public const Keys keyhelp = Keys.F2;
         public static GlobC Parametros = new GlobC();
         
     }

@@ -54,7 +54,7 @@
             this.barraEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.keyButton});
-            this.barraEstado.Location = new System.Drawing.Point(0, 667);
+            this.barraEstado.Location = new System.Drawing.Point(0, 588);
             this.barraEstado.Name = "barraEstado";
             this.barraEstado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.barraEstado.Size = new System.Drawing.Size(1142, 25);
@@ -96,7 +96,7 @@
             // mainsplit.Panel2
             // 
             this.mainsplit.Panel2.Controls.Add(this.VentanaMain);
-            this.mainsplit.Size = new System.Drawing.Size(1142, 630);
+            this.mainsplit.Size = new System.Drawing.Size(1142, 551);
             this.mainsplit.SplitterDistance = 71;
             this.mainsplit.TabIndex = 2;
             // 
@@ -105,7 +105,7 @@
             this.easyMenu1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.easyMenu1.Location = new System.Drawing.Point(0, 0);
             this.easyMenu1.Name = "easyMenu1";
-            this.easyMenu1.Size = new System.Drawing.Size(71, 630);
+            this.easyMenu1.Size = new System.Drawing.Size(71, 551);
             this.easyMenu1.TabIndex = 1;
             this.easyMenu1.AbrirPrograma += new System.EventHandler(this.easyMenu1_AbrirPrograma);
             this.easyMenu1.AbrirNoPrograma += new System.EventHandler(this.easyMenu1_AbrirNoPrograma);
@@ -117,14 +117,14 @@
             this.VentanaMain.Location = new System.Drawing.Point(0, 0);
             this.VentanaMain.Name = "VentanaMain";
             this.VentanaMain.SelectedIndex = 0;
-            this.VentanaMain.Size = new System.Drawing.Size(1067, 630);
+            this.VentanaMain.Size = new System.Drawing.Size(1067, 551);
             this.VentanaMain.TabIndex = 0;
             // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1142, 692);
+            this.ClientSize = new System.Drawing.Size(1142, 613);
             this.Controls.Add(this.mainsplit);
             this.Controls.Add(this.barraEstado);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

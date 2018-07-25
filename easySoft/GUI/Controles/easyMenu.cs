@@ -30,6 +30,7 @@ namespace GUI.Controles
         public easyMenu()
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(32, 57, 86);
         }
 
         public void LLena_Menu()

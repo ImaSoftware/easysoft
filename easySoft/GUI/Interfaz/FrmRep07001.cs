@@ -31,7 +31,7 @@ namespace GUI.Interfaz
         }
         private void CreaRepo() {
             List<DLIB.Parametro> lo = new List<DLIB.Parametro>();
-            lo.Add(new DLIB.Parametro("userid", "HOLGER"));
+            lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId));
             lo.Add(new DLIB.Parametro("fecini", fecIni.Value));
             lo.Add(new DLIB.Parametro("fecfin", fecFin.Value));
             List<SqlParameter> prmtr = new List<SqlParameter>();
@@ -48,6 +48,7 @@ namespace GUI.Interfaz
             }
             //this.WindowState = FormWindowState.Maximized;
             this.visor.ProcessingMode = ProcessingMode.Local;
+            this.visor.LocalReport.DataSources.Clear();
             try
             {
                 for (int j = 0; j <= repo.db.Tables.Count - 1; j++)
@@ -89,6 +90,82 @@ namespace GUI.Interfaz
         {
 
             this.visor.RefreshReport();
+            pnlPrinDist = pnlPrin.SplitterDistance;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            saltaDist = true;
+            this.pnlPrin.SplitterDistance = (this.button4.ImageIndex == 0 ? pnlPrinDist : button4.Height); ;
+            this.panelFiltro.Visible = (this.button4.ImageIndex == 0 ? true : false);
+            this.button4.ImageIndex = (this.button4.ImageIndex == 0 ? 1 : 0);
+            saltaDist = false;
+        }
+        private int pnlPrinDist = 0;
+        private bool saltaDist = false;
+        private void pnlPrin_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (saltaDist ){ return; }
+            pnlPrinDist= pnlPrin.SplitterDistance;
+        }
+
+        private void txtprov_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtprov.Text.Trim())) {
+                proveDesc.Text = "Todos los proveedores";
+                return;
+            }
+            List<SqlParameter> lo = new List<SqlParameter>();
+            lo.Add(new SqlParameter("@codprov", txtprov.Text.Trim()));
+            DataTable dbYY = DLIB.Globales.Parametros.connSql.TraerTabla("RSC_001", lo);
+            if (dbYY != null)
+            {
+                if (dbYY.Rows.Count != 1)
+                {
+                    MessageBox.Show("Codigo no existe o se encuentra repetido. Verifique...");
+                    txtprov.Text = "";
+                    proveDesc.Text = "Todos los proveedores";
+                    return;
+                }
+                else
+                {
+                    proveDesc.Text = (dbYY.Rows[0][0] == null ? "" : (string)dbYY.Rows[0][0]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error al seleccionar el conjunto de datos...");
+                txtprov.Text = "";
+                proveDesc.Text = "Todos los proveedores";
+                return;
+            }
+        }
+
+        private void txtLoteIni_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtLoteFin.Text.Trim()))
+            {
+                txtLoteFin.Text = txtLoteIni.Text;
+            }
+        }
+
+        private void txtprov_KeyUp(object sender, KeyEventArgs e)
+        {
+            easySearch repoSearch = new easySearch("E_TB06A110", "Codigo",null);
+            switch (e.KeyCode)
+            {
+                case DLIB.Globales.keyhelp:
+                        DialogResult x = repoSearch.ShowDialog();
+                    if (x == DialogResult.OK && repoSearch.Resultado!=null) {
+                        txtprov.Text = repoSearch.Resultado.ToString();
+                    }
+                    break;
+            }
+        }
+
+        private void pnlPrin_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

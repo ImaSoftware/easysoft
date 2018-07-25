@@ -104,6 +104,12 @@
     <Compile Include="Controles\easymenubutton.Designer.cs">
       <DependentUpon>easymenubutton.cs</DependentUpon>
     </Compile>
+    <Compile Include="easySearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="easySearch.Designer.cs">
+      <DependentUpon>easySearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controles\rsCuadro.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     <EmbeddedResource Include="Controles\easymenubutton.resx">
       <DependentUpon>easymenubutton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="easySearch.resx">
+      <DependentUpon>easySearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controles\rsCuadro.resx">
       <DependentUpon>rsCuadro.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,7 +206,6 @@
     <EmbeddedResource Include="Repform.resx">
       <DependentUpon>Repform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\R_07001D.rdlc" />
     <None Include="davmerCorpDataSet1.xsc">
       <DependentUpon>davmerCorpDataSet1.xsd</DependentUpon>
     </None>
