@@ -44,7 +44,7 @@ namespace GUI
                     //page.Name = "Panel" + myInfo.codigo.ToString()
                     VentanaMain.TabPages.Add(page);
                     VentanaMain.SelectedTab = page;
-                    string ruta = "\\\\192.168.100.20\\alpwinsql\\easysoft.exe ";
+                    string ruta = "\\\\192.168.100.20\\alpwinsql\\reprueba.exe ";
                     //ruta: Direccion donde se encuetra la aplicacion.
                     //"": Parametro en caso de que tu aplicacion este esperando un valor
                     ProcessStartInfo info = new ProcessStartInfo(ruta, "");

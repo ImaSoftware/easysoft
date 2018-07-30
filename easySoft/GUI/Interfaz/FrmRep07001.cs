@@ -31,9 +31,13 @@ namespace GUI.Interfaz
         }
         private void CreaRepo() {
             List<DLIB.Parametro> lo = new List<DLIB.Parametro>();
-            lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId));
-            lo.Add(new DLIB.Parametro("fecini", fecIni.Value));
-            lo.Add(new DLIB.Parametro("fecfin", fecFin.Value));
+            lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId,true));
+            lo.Add(new DLIB.Parametro("fecini", fecIni.Value,true));
+            lo.Add(new DLIB.Parametro("fecfin", fecFin.Value,true));
+            lo.Add(new DLIB.Parametro("provee", txtprov.Text.Trim()));
+            lo.Add(new DLIB.Parametro("loteini", txtLoteIni.Text.Trim()));
+            lo.Add(new DLIB.Parametro("lotefin", txtLoteFin.Text.Trim()));
+
             List<SqlParameter> prmtr = new List<SqlParameter>();
             foreach (DLIB.Parametro pm in lo)
             {
@@ -67,12 +71,15 @@ namespace GUI.Interfaz
             if (lo != null)
             {
                 ReportParameter[] parametr = new ReportParameter[0];
-                Array.Resize(ref parametr, lo.Count);
+                
                 int i = 0;
                 foreach (DLIB.Parametro pm in lo)
                 {
-                    parametr[i] = new ReportParameter(pm.Nombre, pm.value.ToString());
-                    i++;
+                    if (pm.inReport) {
+                        Array.Resize(ref parametr, i+1);
+                        parametr[i] = new ReportParameter(pm.Nombre, pm.value.ToString());
+                        i++;
+                    }
                 }
                 try
                 {

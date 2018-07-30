@@ -221,15 +221,17 @@ namespace DLIB
     }
     public class Parametro
     {
-        public Parametro(string argN, object argVal, int fsize = 0)
+        public Parametro(string argN, object argVal, bool arginRepo =false, int fsize = 0)
         {
             Nombre = argN;
             value = argVal;
             size = fsize;
+            inReport = arginRepo;
         }
         public string Nombre;
         public object value;
         public int size;
+        public bool inReport;
     }
 
 
