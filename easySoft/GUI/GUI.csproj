@@ -130,10 +130,16 @@
     <Compile Include="Interfaz\FrmGenBan.Designer.cs">
       <DependentUpon>FrmGenBan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaz\FrmRep07001.cs">
+    <Compile Include="Interfaz\Reportes\FrmRep03001.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaz\FrmRep07001.Designer.cs">
+    <Compile Include="Interfaz\Reportes\FrmRep03001.Designer.cs">
+      <DependentUpon>FrmRep03001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep07001.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep07001.Designer.cs">
       <DependentUpon>FrmRep07001.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\FrmSesion.cs">
@@ -156,10 +162,10 @@
       <DependentUpon>Lobby.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repform.cs">
+    <Compile Include="baseClass\Repform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Repform.Designer.cs">
+    <Compile Include="baseClass\Repform.Designer.cs">
       <DependentUpon>Repform.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -181,7 +187,10 @@
     <EmbeddedResource Include="Interfaz\FrmGenBan.resx">
       <DependentUpon>FrmGenBan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interfaz\FrmRep07001.resx">
+    <EmbeddedResource Include="Interfaz\Reportes\FrmRep03001.resx">
+      <DependentUpon>FrmRep03001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\Reportes\FrmRep07001.resx">
       <DependentUpon>FrmRep07001.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FrmSesion.resx">
@@ -203,7 +212,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Repform.resx">
+    <EmbeddedResource Include="baseClass\Repform.resx">
       <DependentUpon>Repform.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="davmerCorpDataSet1.xsc">
@@ -258,6 +267,7 @@
     <Content Include="CONTA2.ico" />
     <Content Include="easy.ico" />
     <Content Include="facil.ico" />
+    <None Include="Resources\geninf.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

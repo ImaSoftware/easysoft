@@ -1,6 +1,6 @@
-﻿namespace GUI
+﻿namespace GUI.Interfaz.Reportes
 {
-    partial class Repform
+    partial class FrmRep03001
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Repform));
-            this.visor = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRep03001));
             ((System.ComponentModel.ISupportInitialize)(this.errP)).BeginInit();
             this.SuspendLayout();
             // 
@@ -37,34 +36,22 @@
             // 
             this.misImagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("misImagenes.ImageStream")));
             this.misImagenes.Images.SetKeyName(0, "diskette.png");
+            this.misImagenes.Images.SetKeyName(1, "arrow-up.png");
+            this.misImagenes.Images.SetKeyName(2, "arrow-down.png");
             // 
-            // visor
-            // 
-            this.visor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.visor.Location = new System.Drawing.Point(0, 37);
-            this.visor.Name = "visor";
-            this.visor.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote;
-            this.visor.ServerReport.BearerToken = null;
-            this.visor.Size = new System.Drawing.Size(800, 413);
-            this.visor.TabIndex = 1;
-            // 
-            // Repform
+            // FrmRep03001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.visor);
-            this.Name = "Repform";
-            this.Text = "Repform";
-            this.Load += new System.EventHandler(this.Repform_Load);
-            this.Controls.SetChildIndex(this.visor, 0);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FrmRep03001";
+            this.Text = "Contraste Existencia y Costos";
             ((System.ComponentModel.ISupportInitialize)(this.errP)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Microsoft.Reporting.WinForms.ReportViewer visor;
     }
 }

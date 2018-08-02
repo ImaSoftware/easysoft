@@ -38,16 +38,16 @@
             this.rBres = new System.Windows.Forms.RadioButton();
             this.rbDet = new System.Windows.Forms.RadioButton();
             this.pnlPrin = new System.Windows.Forms.SplitContainer();
+            this.panelFiltro = new System.Windows.Forms.Panel();
             this.txtLoteFin = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtLoteIni = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.proveDesc = new System.Windows.Forms.TextBox();
             this.txtprov = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.btnImages = new System.Windows.Forms.ImageList(this.components);
             this.visor = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.panelFiltro = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errP)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlPrin)).BeginInit();
@@ -158,12 +158,42 @@
             this.pnlPrin.TabIndex = 15;
             this.pnlPrin.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pnlPrin_SplitterMoved);
             // 
+            // panelFiltro
+            // 
+            this.panelFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelFiltro.Controls.Add(this.groupBox1);
+            this.panelFiltro.Controls.Add(this.txtLoteFin);
+            this.panelFiltro.Controls.Add(this.label1);
+            this.panelFiltro.Controls.Add(this.btnGenera);
+            this.panelFiltro.Controls.Add(this.label2);
+            this.panelFiltro.Controls.Add(this.txtLoteIni);
+            this.panelFiltro.Controls.Add(this.fecIni);
+            this.panelFiltro.Controls.Add(this.label3);
+            this.panelFiltro.Controls.Add(this.fecFin);
+            this.panelFiltro.Controls.Add(this.proveDesc);
+            this.panelFiltro.Controls.Add(this.txtprov);
+            this.panelFiltro.Location = new System.Drawing.Point(3, 0);
+            this.panelFiltro.Name = "panelFiltro";
+            this.panelFiltro.Size = new System.Drawing.Size(1025, 74);
+            this.panelFiltro.TabIndex = 29;
+            // 
             // txtLoteFin
             // 
             this.txtLoteFin.Location = new System.Drawing.Point(163, 43);
             this.txtLoteFin.Name = "txtLoteFin";
             this.txtLoteFin.Size = new System.Drawing.Size(88, 20);
             this.txtLoteFin.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Proveedor";
             // 
             // txtLoteIni
             // 
@@ -204,15 +234,6 @@
             this.txtprov.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtprov_KeyUp);
             this.txtprov.Leave += new System.EventHandler(this.txtprov_Leave);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Proveedor";
-            // 
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -237,31 +258,11 @@
             this.visor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.visor.Location = new System.Drawing.Point(0, 0);
             this.visor.Name = "visor";
+            this.visor.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote;
             this.visor.ServerReport.BearerToken = null;
             this.visor.Size = new System.Drawing.Size(1031, 267);
             this.visor.TabIndex = 0;
             this.visor.TabStop = false;
-            // 
-            // panelFiltro
-            // 
-            this.panelFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFiltro.Controls.Add(this.groupBox1);
-            this.panelFiltro.Controls.Add(this.txtLoteFin);
-            this.panelFiltro.Controls.Add(this.label1);
-            this.panelFiltro.Controls.Add(this.btnGenera);
-            this.panelFiltro.Controls.Add(this.label2);
-            this.panelFiltro.Controls.Add(this.txtLoteIni);
-            this.panelFiltro.Controls.Add(this.fecIni);
-            this.panelFiltro.Controls.Add(this.label3);
-            this.panelFiltro.Controls.Add(this.fecFin);
-            this.panelFiltro.Controls.Add(this.proveDesc);
-            this.panelFiltro.Controls.Add(this.txtprov);
-            this.panelFiltro.Location = new System.Drawing.Point(3, 0);
-            this.panelFiltro.Name = "panelFiltro";
-            this.panelFiltro.Size = new System.Drawing.Size(1025, 74);
-            this.panelFiltro.TabIndex = 29;
             // 
             // FrmRep07001
             // 
