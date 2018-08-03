@@ -14,46 +14,69 @@ namespace GUI.baseClass
 {
     public partial class Repform : easyForm
     {
-        string nameReport = "";
-        List<DLIB.Parametro> Paramis = new List<DLIB.Parametro>();
+        private string _nameReport = "";
+        public string nameReport
+        {
+            get { return _nameReport; }
+            set { _nameReport = value; }
+        }
+        public List<DLIB.Parametro> Paramis = new List<DLIB.Parametro>();
+
         int id = 0;
         private int pnlPrinDist = 0;
         private bool saltaDist = false;
         public Repform()
         {
             InitializeComponent();
+            ///No borres esto si estas en REPFORM
+            ///Ubicar aqui siempre el nombre del reporte en cada uno de los formularios hijos 
+            ///EJ:  this.nameReport = "R_03001";
         }
-        public Repform(string nomrepo, List<DLIB.Parametro> argParam = null)
-        {
-            InitializeComponent();
-            nameReport = nomrepo;
-            Paramis = argParam;
-        }
-
-
-
         private void Repform_Load(object sender, EventArgs e)
         {
             if (DesignMode) { return; }
-            //pnlPrinDist = splitter.SplitterDistance;
+            this.visor.RefreshReport();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            saltaDist = true;
+            //this.splitter.SplitterDistance = (this.button4.ImageIndex == 0 ? pnlPrinDist : button4.Height); ;
+           // this.ctlParam.Visible = (this.button4.ImageIndex == 0 ? true : false);
+            this.button4.ImageIndex = (this.button4.ImageIndex == 0 ? 1 : 0);
+            saltaDist = false;
+
+        }
+        /// <summary>
+        /// Recoger los parametros desde los controles del form hijo 
+        /// </summary>
+        public virtual void RecogeParametros() {
+        }
+        private void CreaRepo()
+        {
+            if (String.IsNullOrEmpty(nameReport.Trim())) { MessageBox.Show("Nombre de Reporte no está definido. Verifique"); }
             List<SqlParameter> prmtr = new List<SqlParameter>();
             foreach (DLIB.Parametro pm in Paramis)
             {
-                prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
+                prmtr.Add(new SqlParameter(pm.Nombre, pm.value));//todos los parametros a la consulta del repoman
             }
             DLIB.RepoMan repo = new DLIB.RepoMan(nameReport, prmtr);
             repo.load();
             this.visor.SetDisplayMode(DisplayMode.Normal);
-            this.Titulo = repo.Comentario;
-            this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\" + nameReport + ".rdlc";
-            this.WindowState = FormWindowState.Maximized;
+            //this.Titulo = repo.Comentario;
+            if (String.IsNullOrEmpty(visor.LocalReport.ReportPath))
+            {
+                this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\"+ nameReport+ ".rdlc";
+            }
+            //this.WindowState = FormWindowState.Maximized;
             this.visor.ProcessingMode = ProcessingMode.Local;
+            this.visor.LocalReport.DataSources.Clear();
             try
             {
                 for (int j = 0; j <= repo.db.Tables.Count - 1; j++)
                 {
                     if (j == 0)
-                        continue;
+                        continue;//Saltar tabla con el nombre de las tablas que siempre debe de ser la primera en el conjunto de seleccion 
                     DataTable table = repo.db.Tables[j];
                     this.visor.LocalReport.DataSources.Add(new ReportDataSource(table.TableName, table));
                 }
@@ -66,79 +89,8 @@ namespace GUI.baseClass
             if (Paramis != null)
             {
                 ReportParameter[] parametr = new ReportParameter[0];
-                Array.Resize(ref parametr, Paramis.Count);
                 int i = 0;
                 foreach (DLIB.Parametro pm in Paramis)
-                {
-                    parametr[i] = new ReportParameter(pm.Nombre, pm.value.ToString());
-                    i++;
-                }
-                try
-                {
-                    visor.LocalReport.SetParameters(parametr);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("opps: " + ex.Message);
-                }
-            }
-            this.visor.RefreshReport();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            saltaDist = true;
-            //this.splitter.SplitterDistance = (this.button4.ImageIndex == 0 ? pnlPrinDist : button4.Height); ;
-           // this.ctlParam.Visible = (this.button4.ImageIndex == 0 ? true : false);
-            this.button4.ImageIndex = (this.button4.ImageIndex == 0 ? 1 : 0);
-            saltaDist = false;
-        }
-        private void CreaRepo()
-        {
-            List<DLIB.Parametro> lo = new List<DLIB.Parametro>();
-            //lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId, true));
-            //lo.Add(new DLIB.Parametro("fecini", fecIni.Value, true));
-            //lo.Add(new DLIB.Parametro("fecfin", fecFin.Value, true));
-            //lo.Add(new DLIB.Parametro("provee", txtprov.Text.Trim()));
-            //lo.Add(new DLIB.Parametro("loteini", txtLoteIni.Text.Trim()));
-            //lo.Add(new DLIB.Parametro("lotefin", txtLoteFin.Text.Trim()));
-            List<SqlParameter> prmtr = new List<SqlParameter>();
-            foreach (DLIB.Parametro pm in lo)
-            {
-                prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
-            }
-            DLIB.RepoMan repo = new DLIB.RepoMan("R_07001D", prmtr);
-            repo.load();
-            this.visor.SetDisplayMode(DisplayMode.Normal);
-            //this.Titulo = repo.Comentario;
-            if (String.IsNullOrEmpty(visor.LocalReport.ReportPath))
-            {
-                this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\R_07001D.rdlc";
-            }
-            //this.WindowState = FormWindowState.Maximized;
-            this.visor.ProcessingMode = ProcessingMode.Local;
-            this.visor.LocalReport.DataSources.Clear();
-            try
-            {
-                for (int j = 0; j <= repo.db.Tables.Count - 1; j++)
-                {
-                    if (j == 0)
-                        continue;
-                    DataTable table = repo.db.Tables[j];
-                    this.visor.LocalReport.DataSources.Add(new ReportDataSource(table.TableName, table));
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("opps: " + ex.Message);
-            }
-            this.visor.LocalReport.EnableExternalImages = repo.EnableExternalImages;
-            if (lo != null)
-            {
-                ReportParameter[] parametr = new ReportParameter[0];
-
-                int i = 0;
-                foreach (DLIB.Parametro pm in lo)
                 {
                     if (pm.inReport)
                     {
@@ -157,6 +109,14 @@ namespace GUI.baseClass
                 }
             }
             this.visor.RefreshReport();
+        }
+
+        private void btnGenera_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            RecogeParametros();
+            CreaRepo();
+            Cursor = Cursors.Default;
         }
         //private void splitter_SplitterMoved(object sender, SplitterEventArgs e)
         //{

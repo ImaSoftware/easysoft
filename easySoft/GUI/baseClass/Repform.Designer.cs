@@ -86,6 +86,7 @@
             this.btnGenera.TabIndex = 30;
             this.btnGenera.Text = "         Emitir Reporte";
             this.btnGenera.UseVisualStyleBackColor = true;
+            this.btnGenera.Click += new System.EventHandler(this.btnGenera_Click);
             // 
             // Repform
             // 

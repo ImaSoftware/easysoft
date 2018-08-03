@@ -61,9 +61,13 @@ namespace GUI
                     SetParent(proc1.MainWindowHandle, page.Handle);
                     SendMessage(proc1.MainWindowHandle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
                 }
-                else { 
+                else {
                     //crear instancia
-                    Type elTipo = Type.GetType("GUI.Interfaz."+myInfo.CtlNom);
+                    string xpr = "GUI.Interfaz.";
+                    if (myInfo.CtlNom.ToUpper().Contains("FRMREP")) {
+                        xpr = "GUI.Interfaz.Reportes.";
+                    }
+                    Type elTipo = Type.GetType(xpr+myInfo.CtlNom);
                     if (elTipo != null) {
                         Object obj = Activator.CreateInstance(elTipo,new Object[]{ myInfo.NombreMostrar, myInfo.CtlOpt}) as Object;
                     
