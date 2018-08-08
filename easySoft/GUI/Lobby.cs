@@ -90,7 +90,9 @@ namespace GUI
                                 ((baseClass.easyForm)obj).Show();
                                 VentanaMain.TabPages.Add(page);
                                 VentanaMain.SelectedTab =page;
-                                ((baseClass.easyForm)obj).barraTitulo.Visible = false;
+
+                                ((baseClass.easyForm)obj).quitarBarraTitulo();
+
                             }
                         }
                         else

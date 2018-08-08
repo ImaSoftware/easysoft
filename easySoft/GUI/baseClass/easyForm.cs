@@ -103,5 +103,16 @@ namespace GUI.baseClass
                 cursori = Cursor.Position;
             }
         }
+        public void quitarBarraTitulo() {
+            int alto = this.barraTitulo.Height;
+            this.barraTitulo.Visible = false;
+            foreach (Control ctl in this.Controls)
+            {
+                ctl.Location = new Point(ctl.Location.X, ctl.Location.Y - alto);
+                if (ctl.HasChildren) { ctl.Height = ctl.Height + alto; }
+            }
+            
+        }
+
     }
 }

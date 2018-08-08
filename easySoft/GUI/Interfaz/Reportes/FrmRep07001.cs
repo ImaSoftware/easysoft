@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUI.Interfaz
+namespace GUI.Interfaz.Reportes
 {
     public partial class FrmRep07001 : baseClass.easyForm
     {
@@ -31,17 +31,18 @@ namespace GUI.Interfaz
         }
         private void CreaRepo() {
             List<DLIB.Parametro> lo = new List<DLIB.Parametro>();
-            lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId,true));
-            lo.Add(new DLIB.Parametro("fecini", fecIni.Value,true));
-            lo.Add(new DLIB.Parametro("fecfin", fecFin.Value,true));
-            lo.Add(new DLIB.Parametro("provee", txtprov.Text.Trim()));
-            lo.Add(new DLIB.Parametro("loteini", txtLoteIni.Text.Trim()));
-            lo.Add(new DLIB.Parametro("lotefin", txtLoteFin.Text.Trim()));
+            lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId,DLIB.Parametro.tipo.Ambos));
+            lo.Add(new DLIB.Parametro("fecini", fecIni.Value, DLIB.Parametro.tipo.Ambos));
+            lo.Add(new DLIB.Parametro("fecfin", fecFin.Value, DLIB.Parametro.tipo.Ambos));
+            lo.Add(new DLIB.Parametro("provee", txtprov.Text.Trim(), DLIB.Parametro.tipo.SoloSQL));
+            lo.Add(new DLIB.Parametro("loteini", txtLoteIni.Text.Trim(), DLIB.Parametro.tipo.SoloSQL));
+            lo.Add(new DLIB.Parametro("lotefin", txtLoteFin.Text.Trim(), DLIB.Parametro.tipo.SoloSQL));
 
             List<SqlParameter> prmtr = new List<SqlParameter>();
             foreach (DLIB.Parametro pm in lo)
             {
-                prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
+                if(pm.tip != DLIB.Parametro.tipo.SoloRepo )
+                    prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
             }
             DLIB.RepoMan repo = new DLIB.RepoMan("R_07001D", prmtr);
             repo.load();
@@ -75,7 +76,7 @@ namespace GUI.Interfaz
                 int i = 0;
                 foreach (DLIB.Parametro pm in lo)
                 {
-                    if (pm.inReport) {
+                    if (pm.tip != DLIB.Parametro.tipo.SoloSQL) {
                         Array.Resize(ref parametr, i+1);
                         parametr[i] = new ReportParameter(pm.Nombre, pm.value.ToString());
                         i++;
@@ -171,6 +172,11 @@ namespace GUI.Interfaz
         }
 
         private void pnlPrin_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtLoteIni_TextChanged(object sender, EventArgs e)
         {
 
         }

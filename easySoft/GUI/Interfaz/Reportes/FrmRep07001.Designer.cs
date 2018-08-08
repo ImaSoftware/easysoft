@@ -1,4 +1,4 @@
-﻿namespace GUI.Interfaz
+﻿namespace GUI.Interfaz.Reportes
 {
     partial class FrmRep07001
     {
@@ -201,6 +201,7 @@
             this.txtLoteIni.Name = "txtLoteIni";
             this.txtLoteIni.Size = new System.Drawing.Size(88, 20);
             this.txtLoteIni.TabIndex = 21;
+            this.txtLoteIni.TextChanged += new System.EventHandler(this.txtLoteIni_TextChanged);
             this.txtLoteIni.Leave += new System.EventHandler(this.txtLoteIni_Leave);
             // 
             // label3

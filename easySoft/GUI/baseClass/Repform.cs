@@ -25,6 +25,7 @@ namespace GUI.baseClass
         int id = 0;
         private int pnlPrinDist = 0;
         private bool saltaDist = false;
+        private DataSet ActDb;
         public Repform()
         {
             InitializeComponent();
@@ -58,10 +59,12 @@ namespace GUI.baseClass
             List<SqlParameter> prmtr = new List<SqlParameter>();
             foreach (DLIB.Parametro pm in Paramis)
             {
-                prmtr.Add(new SqlParameter(pm.Nombre, pm.value));//todos los parametros a la consulta del repoman
+                if (pm.tip != DLIB.Parametro.tipo.SoloRepo)
+                    prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
             }
             DLIB.RepoMan repo = new DLIB.RepoMan(nameReport, prmtr);
             repo.load();
+            this.ActDb = repo.db;
             this.visor.SetDisplayMode(DisplayMode.Normal);
             //this.Titulo = repo.Comentario;
             if (String.IsNullOrEmpty(visor.LocalReport.ReportPath))
@@ -92,7 +95,7 @@ namespace GUI.baseClass
                 int i = 0;
                 foreach (DLIB.Parametro pm in Paramis)
                 {
-                    if (pm.inReport)
+                    if (pm.tip != DLIB.Parametro.tipo.SoloSQL)
                     {
                         Array.Resize(ref parametr, i + 1);
                         parametr[i] = new ReportParameter(pm.Nombre, pm.value.ToString());
@@ -117,6 +120,24 @@ namespace GUI.baseClass
             RecogeParametros();
             CreaRepo();
             Cursor = Cursors.Default;
+        }
+
+        private void visor_Drillthrough(object sender, DrillthroughEventArgs e)
+        {
+            LocalReport localReport = (LocalReport)e.Report;
+            string fn = System.IO.Path.GetFileNameWithoutExtension(localReport.ReportPath);
+            localReport.DataSources.Clear();
+            for (int j = 0; j <= this.ActDb.Tables.Count - 1; j++)
+            {
+                if (j == 0)
+                    continue;//Saltar tabla con el nombre de las tablas que siempre debe de ser la primera en el conjunto de seleccion 
+                DataTable table = this.ActDb.Tables[j];
+                localReport.DataSources.Add(new ReportDataSource(table.TableName, table));
+            }
+
+         
+          //  localReport.DataSources.Add(new ReportDataSource("Employees",
+            //    LoadEmployeesData()));
         }
         //private void splitter_SplitterMoved(object sender, SplitterEventArgs e)
         //{

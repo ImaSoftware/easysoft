@@ -221,17 +221,18 @@ namespace DLIB
     }
     public class Parametro
     {
-        public Parametro(string argN, object argVal, bool arginRepo =false, int fsize = 0)
+        public enum tipo { SoloSQL, SoloRepo, Ambos}
+        public Parametro(string argN, object argVal, tipo xtipo = tipo.Ambos, int fsize = 0)
         {
             Nombre = argN;
             value = argVal;
             size = fsize;
-            inReport = arginRepo;
+            tip = xtipo;
         }
         public string Nombre;
         public object value;
         public int size;
-        public bool inReport;
+        public tipo tip;
     }
 
 

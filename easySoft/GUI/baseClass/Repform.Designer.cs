@@ -54,6 +54,7 @@
             this.visor.ServerReport.BearerToken = null;
             this.visor.Size = new System.Drawing.Size(800, 267);
             this.visor.TabIndex = 1;
+            this.visor.Drillthrough += new Microsoft.Reporting.WinForms.DrillthroughEventHandler(this.visor_Drillthrough);
             // 
             // imageList1
             // 
