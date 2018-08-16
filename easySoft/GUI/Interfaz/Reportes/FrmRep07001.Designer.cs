@@ -39,6 +39,9 @@
             this.rbDet = new System.Windows.Forms.RadioButton();
             this.pnlPrin = new System.Windows.Forms.SplitContainer();
             this.panelFiltro = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.compraDesc = new System.Windows.Forms.TextBox();
+            this.txtcompra = new System.Windows.Forms.TextBox();
             this.txtLoteFin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLoteIni = new System.Windows.Forms.TextBox();
@@ -73,7 +76,7 @@
             this.btnGenera.Location = new System.Drawing.Point(872, 10);
             this.btnGenera.Name = "btnGenera";
             this.btnGenera.Size = new System.Drawing.Size(150, 49);
-            this.btnGenera.TabIndex = 27;
+            this.btnGenera.TabIndex = 28;
             this.btnGenera.Text = "         Emitir Reporte";
             this.btnGenera.UseVisualStyleBackColor = true;
             this.btnGenera.Click += new System.EventHandler(this.btnGenera_Click);
@@ -81,7 +84,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(259, 46);
+            this.label1.Location = new System.Drawing.Point(488, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 10;
@@ -90,24 +93,24 @@
             // fecIni
             // 
             this.fecIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fecIni.Location = new System.Drawing.Point(307, 44);
+            this.fecIni.Location = new System.Drawing.Point(536, 38);
             this.fecIni.Name = "fecIni";
             this.fecIni.Size = new System.Drawing.Size(95, 20);
-            this.fecIni.TabIndex = 23;
+            this.fecIni.TabIndex = 24;
             // 
             // fecFin
             // 
             this.fecFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fecFin.Location = new System.Drawing.Point(413, 44);
+            this.fecFin.Location = new System.Drawing.Point(642, 38);
             this.fecFin.Name = "fecFin";
             this.fecFin.Size = new System.Drawing.Size(95, 20);
-            this.fecFin.TabIndex = 24;
+            this.fecFin.TabIndex = 25;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.rBres);
             this.groupBox1.Controls.Add(this.rbDet);
-            this.groupBox1.Location = new System.Drawing.Point(524, 7);
+            this.groupBox1.Location = new System.Drawing.Point(763, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(97, 62);
             this.groupBox1.TabIndex = 14;
@@ -120,7 +123,7 @@
             this.rBres.Location = new System.Drawing.Point(18, 35);
             this.rBres.Name = "rBres";
             this.rBres.Size = new System.Drawing.Size(72, 17);
-            this.rBres.TabIndex = 26;
+            this.rBres.TabIndex = 27;
             this.rBres.Text = "Resumido";
             this.rBres.UseVisualStyleBackColor = true;
             // 
@@ -131,7 +134,7 @@
             this.rbDet.Location = new System.Drawing.Point(18, 15);
             this.rbDet.Name = "rbDet";
             this.rbDet.Size = new System.Drawing.Size(70, 17);
-            this.rbDet.TabIndex = 25;
+            this.rbDet.TabIndex = 26;
             this.rbDet.TabStop = true;
             this.rbDet.Text = "Detallado";
             this.rbDet.UseVisualStyleBackColor = true;
@@ -163,6 +166,9 @@
             this.panelFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelFiltro.Controls.Add(this.label4);
+            this.panelFiltro.Controls.Add(this.compraDesc);
+            this.panelFiltro.Controls.Add(this.txtcompra);
             this.panelFiltro.Controls.Add(this.groupBox1);
             this.panelFiltro.Controls.Add(this.txtLoteFin);
             this.panelFiltro.Controls.Add(this.label1);
@@ -179,9 +185,40 @@
             this.panelFiltro.Size = new System.Drawing.Size(1025, 74);
             this.panelFiltro.TabIndex = 29;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Comprador";
+            // 
+            // compraDesc
+            // 
+            this.compraDesc.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.compraDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.compraDesc.ForeColor = System.Drawing.Color.SlateBlue;
+            this.compraDesc.Location = new System.Drawing.Point(131, 38);
+            this.compraDesc.Name = "compraDesc";
+            this.compraDesc.ReadOnly = true;
+            this.compraDesc.Size = new System.Drawing.Size(328, 20);
+            this.compraDesc.TabIndex = 30;
+            this.compraDesc.TabStop = false;
+            this.compraDesc.Text = "Todos los proveedores";
+            // 
+            // txtcompra
+            // 
+            this.txtcompra.Location = new System.Drawing.Point(70, 38);
+            this.txtcompra.Name = "txtcompra";
+            this.txtcompra.Size = new System.Drawing.Size(60, 20);
+            this.txtcompra.TabIndex = 23;
+            this.txtcompra.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtvende_KeyUp);
+            this.txtcompra.Leave += new System.EventHandler(this.txtvende_Leave);
+            // 
             // txtLoteFin
             // 
-            this.txtLoteFin.Location = new System.Drawing.Point(163, 43);
+            this.txtLoteFin.Location = new System.Drawing.Point(649, 12);
             this.txtLoteFin.Name = "txtLoteFin";
             this.txtLoteFin.Size = new System.Drawing.Size(88, 20);
             this.txtLoteFin.TabIndex = 22;
@@ -197,7 +234,7 @@
             // 
             // txtLoteIni
             // 
-            this.txtLoteIni.Location = new System.Drawing.Point(69, 43);
+            this.txtLoteIni.Location = new System.Drawing.Point(555, 12);
             this.txtLoteIni.Name = "txtLoteIni";
             this.txtLoteIni.Size = new System.Drawing.Size(88, 20);
             this.txtLoteIni.TabIndex = 21;
@@ -207,7 +244,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 48);
+            this.label3.Location = new System.Drawing.Point(522, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 20;
@@ -243,7 +280,7 @@
             this.button4.Location = new System.Drawing.Point(0, 75);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(1031, 26);
-            this.button4.TabIndex = 28;
+            this.button4.TabIndex = 29;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -308,5 +345,8 @@
         private System.Windows.Forms.TextBox proveDesc;
         private System.Windows.Forms.TextBox txtprov;
         private System.Windows.Forms.Panel panelFiltro;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox compraDesc;
+        private System.Windows.Forms.TextBox txtcompra;
     }
 }

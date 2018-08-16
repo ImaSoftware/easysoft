@@ -2,9 +2,10 @@
 <xs:schema id="davmerCorpDataSet1" targetNamespace="http://tempuri.org/davmerCorpDataSet1.xsd" xmlns:mstns="http://tempuri.org/davmerCorpDataSet1.xsd" xmlns="http://tempuri.org/davmerCorpDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="REPO07001D" GeneratorFunctionsComponentClassName="REPO07001D" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="REPO07001D" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="REPO07001D" GeneratorFunctionsComponentClassName="REPO07001D" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="REPO07001D" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection ConnectionStringObject="Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;User ID=sa;Password=Rootpass1" IsAppSettingsProperty="false" Modifier="Assembly" Name="programacion.davmerCorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection ConnectionStringObject="Data Source=192.168.100.20\sqlexpress;Initial Catalog=davmercorp;Persist Security Info=True;User ID=sa;Password=Rootpass1" IsAppSettingsProperty="false" Modifier="Assembly" Name="apserver01\sqlexpress.davmercorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_07001DTableAdapter" GeneratorDataComponentClassName="sp_07001DTableAdapter" Name="sp_07001D" UserDataComponentName="sp_07001DTableAdapter">
@@ -250,6 +251,26 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_07001RTableAdapter" GeneratorDataComponentClassName="sp_07001RTableAdapter" Name="sp_07001R" UserDataComponentName="sp_07001RTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="apserver01\sqlexpress.davmercorp.dbo" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from ##resu2</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="prov_cli" DataSetColumn="prov_cli" />
+              <Mapping SourceColumn="proveedor" DataSetColumn="proveedor" />
+              <Mapping SourceColumn="totAdeuda" DataSetColumn="totAdeuda" />
+              <Mapping SourceColumn="mes" DataSetColumn="mes" />
+              <Mapping SourceColumn="comprador" DataSetColumn="comprador" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -258,7 +279,7 @@
   <xs:element name="davmerCorpDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="davmerCorpDataSet1" msprop:Generator_UserDSName="davmerCorpDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="sp_07001D" msprop:Generator_TableClassName="sp_07001DDataTable" msprop:Generator_TableVarName="tablesp_07001D" msprop:Generator_TablePropName="sp_07001D" msprop:Generator_RowDeletingName="sp_07001DRowDeleting" msprop:Generator_RowChangingName="sp_07001DRowChanging" msprop:Generator_RowEvHandlerName="sp_07001DRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_07001DRowDeleted" msprop:Generator_UserTableName="sp_07001D" msprop:Generator_RowChangedName="sp_07001DRowChanged" msprop:Generator_RowEvArgName="sp_07001DRowChangeEvent" msprop:Generator_RowClassName="sp_07001DRow">
+        <xs:element name="sp_07001D" msprop:Generator_TableClassName="sp_07001DDataTable" msprop:Generator_TableVarName="tablesp_07001D" msprop:Generator_RowChangedName="sp_07001DRowChanged" msprop:Generator_TablePropName="sp_07001D" msprop:Generator_RowDeletingName="sp_07001DRowDeleting" msprop:Generator_RowChangingName="sp_07001DRowChanging" msprop:Generator_RowEvHandlerName="sp_07001DRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_07001DRowDeleted" msprop:Generator_RowClassName="sp_07001DRow" msprop:Generator_UserTableName="sp_07001D" msprop:Generator_RowEvArgName="sp_07001DRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="fecha" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnfecha" msprop:Generator_ColumnPropNameInRow="fecha" msprop:Generator_ColumnPropNameInTable="fechaColumn" msprop:Generator_UserColumnName="fecha" type="xs:dateTime" minOccurs="0" />
@@ -295,7 +316,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="EXISLOTE" msprop:Generator_TableClassName="EXISLOTEDataTable" msprop:Generator_TableVarName="tableEXISLOTE" msprop:Generator_RowChangedName="EXISLOTERowChanged" msprop:Generator_TablePropName="EXISLOTE" msprop:Generator_RowDeletingName="EXISLOTERowDeleting" msprop:Generator_RowChangingName="EXISLOTERowChanging" msprop:Generator_RowEvHandlerName="EXISLOTERowChangeEventHandler" msprop:Generator_RowDeletedName="EXISLOTERowDeleted" msprop:Generator_RowClassName="EXISLOTERow" msprop:Generator_UserTableName="EXISLOTE" msprop:Generator_RowEvArgName="EXISLOTERowChangeEvent">
+        <xs:element name="EXISLOTE" msprop:Generator_TableClassName="EXISLOTEDataTable" msprop:Generator_TableVarName="tableEXISLOTE" msprop:Generator_TablePropName="EXISLOTE" msprop:Generator_RowDeletingName="EXISLOTERowDeleting" msprop:Generator_RowChangingName="EXISLOTERowChanging" msprop:Generator_RowEvHandlerName="EXISLOTERowChangeEventHandler" msprop:Generator_RowDeletedName="EXISLOTERowDeleted" msprop:Generator_UserTableName="EXISLOTE" msprop:Generator_RowChangedName="EXISLOTERowChanged" msprop:Generator_RowEvArgName="EXISLOTERowChangeEvent" msprop:Generator_RowClassName="EXISLOTERow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="no_parte" msprop:Generator_ColumnVarNameInTable="columnno_parte" msprop:Generator_ColumnPropNameInRow="no_parte" msprop:Generator_ColumnPropNameInTable="no_parteColumn" msprop:Generator_UserColumnName="no_parte" minOccurs="0">
@@ -353,7 +374,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="KARDEX" msprop:Generator_TableClassName="KARDEXDataTable" msprop:Generator_TableVarName="tableKARDEX" msprop:Generator_RowChangedName="KARDEXRowChanged" msprop:Generator_TablePropName="KARDEX" msprop:Generator_RowDeletingName="KARDEXRowDeleting" msprop:Generator_RowChangingName="KARDEXRowChanging" msprop:Generator_RowEvHandlerName="KARDEXRowChangeEventHandler" msprop:Generator_RowDeletedName="KARDEXRowDeleted" msprop:Generator_RowClassName="KARDEXRow" msprop:Generator_UserTableName="KARDEX" msprop:Generator_RowEvArgName="KARDEXRowChangeEvent">
+        <xs:element name="KARDEX" msprop:Generator_TableClassName="KARDEXDataTable" msprop:Generator_TableVarName="tableKARDEX" msprop:Generator_TablePropName="KARDEX" msprop:Generator_RowDeletingName="KARDEXRowDeleting" msprop:Generator_RowChangingName="KARDEXRowChanging" msprop:Generator_RowEvHandlerName="KARDEXRowChangeEventHandler" msprop:Generator_RowDeletedName="KARDEXRowDeleted" msprop:Generator_UserTableName="KARDEX" msprop:Generator_RowChangedName="KARDEXRowChanged" msprop:Generator_RowEvArgName="KARDEXRowChangeEvent" msprop:Generator_RowClassName="KARDEXRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="tipo" msprop:Generator_ColumnVarNameInTable="columntipo" msprop:Generator_ColumnPropNameInRow="tipo" msprop:Generator_ColumnPropNameInTable="tipoColumn" msprop:Generator_UserColumnName="tipo" minOccurs="0">
@@ -496,7 +517,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="S_ASAL" msprop:Generator_TableClassName="S_ASALDataTable" msprop:Generator_TableVarName="tableS_ASAL" msprop:Generator_RowChangedName="S_ASALRowChanged" msprop:Generator_TablePropName="S_ASAL" msprop:Generator_RowDeletingName="S_ASALRowDeleting" msprop:Generator_RowChangingName="S_ASALRowChanging" msprop:Generator_RowEvHandlerName="S_ASALRowChangeEventHandler" msprop:Generator_RowDeletedName="S_ASALRowDeleted" msprop:Generator_RowClassName="S_ASALRow" msprop:Generator_UserTableName="S_ASAL" msprop:Generator_RowEvArgName="S_ASALRowChangeEvent">
+        <xs:element name="S_ASAL" msprop:Generator_TableClassName="S_ASALDataTable" msprop:Generator_TableVarName="tableS_ASAL" msprop:Generator_TablePropName="S_ASAL" msprop:Generator_RowDeletingName="S_ASALRowDeleting" msprop:Generator_RowChangingName="S_ASALRowChanging" msprop:Generator_RowEvHandlerName="S_ASALRowChangeEventHandler" msprop:Generator_RowDeletedName="S_ASALRowDeleted" msprop:Generator_UserTableName="S_ASAL" msprop:Generator_RowChangedName="S_ASALRowChanged" msprop:Generator_RowEvArgName="S_ASALRowChangeEvent" msprop:Generator_RowClassName="S_ASALRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="no_parte" msprop:Generator_ColumnVarNameInTable="columnno_parte" msprop:Generator_ColumnPropNameInRow="no_parte" msprop:Generator_ColumnPropNameInTable="no_parteColumn" msprop:Generator_UserColumnName="no_parte">
@@ -629,7 +650,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="COMPARATIVO" msprop:Generator_TableClassName="COMPARATIVODataTable" msprop:Generator_TableVarName="tableCOMPARATIVO" msprop:Generator_RowChangedName="COMPARATIVORowChanged" msprop:Generator_TablePropName="COMPARATIVO" msprop:Generator_RowDeletingName="COMPARATIVORowDeleting" msprop:Generator_RowChangingName="COMPARATIVORowChanging" msprop:Generator_RowEvHandlerName="COMPARATIVORowChangeEventHandler" msprop:Generator_RowDeletedName="COMPARATIVORowDeleted" msprop:Generator_RowClassName="COMPARATIVORow" msprop:Generator_UserTableName="COMPARATIVO" msprop:Generator_RowEvArgName="COMPARATIVORowChangeEvent">
+        <xs:element name="COMPARATIVO" msprop:Generator_TableClassName="COMPARATIVODataTable" msprop:Generator_TableVarName="tableCOMPARATIVO" msprop:Generator_TablePropName="COMPARATIVO" msprop:Generator_RowDeletingName="COMPARATIVORowDeleting" msprop:Generator_RowChangingName="COMPARATIVORowChanging" msprop:Generator_RowEvHandlerName="COMPARATIVORowChangeEventHandler" msprop:Generator_RowDeletedName="COMPARATIVORowDeleted" msprop:Generator_UserTableName="COMPARATIVO" msprop:Generator_RowChangedName="COMPARATIVORowChanged" msprop:Generator_RowEvArgName="COMPARATIVORowChangeEvent" msprop:Generator_RowClassName="COMPARATIVORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ITEM" msprop:Generator_ColumnVarNameInTable="columnITEM" msprop:Generator_ColumnPropNameInRow="ITEM" msprop:Generator_ColumnPropNameInTable="ITEMColumn" msprop:Generator_UserColumnName="ITEM">
@@ -652,6 +673,35 @@
               <xs:element name="COSTRESU" msprop:Generator_ColumnVarNameInTable="columnCOSTRESU" msprop:Generator_ColumnPropNameInRow="COSTRESU" msprop:Generator_ColumnPropNameInTable="COSTRESUColumn" msprop:Generator_UserColumnName="COSTRESU" type="xs:decimal" />
               <xs:element name="EXISLOTE" msprop:Generator_ColumnVarNameInTable="columnEXISLOTE" msprop:Generator_ColumnPropNameInRow="EXISLOTE" msprop:Generator_ColumnPropNameInTable="EXISLOTEColumn" msprop:Generator_UserColumnName="EXISLOTE" type="xs:decimal" />
               <xs:element name="DIFF" msprop:Generator_ColumnVarNameInTable="columnDIFF" msprop:Generator_ColumnPropNameInRow="DIFF" msprop:Generator_ColumnPropNameInTable="DIFFColumn" msprop:Generator_UserColumnName="DIFF" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sp_07001R" msprop:Generator_TableClassName="sp_07001RDataTable" msprop:Generator_TableVarName="tablesp_07001R" msprop:Generator_TablePropName="sp_07001R" msprop:Generator_RowDeletingName="sp_07001RRowDeleting" msprop:Generator_RowChangingName="sp_07001RRowChanging" msprop:Generator_RowEvHandlerName="sp_07001RRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_07001RRowDeleted" msprop:Generator_UserTableName="sp_07001R" msprop:Generator_RowChangedName="sp_07001RRowChanged" msprop:Generator_RowEvArgName="sp_07001RRowChangeEvent" msprop:Generator_RowClassName="sp_07001RRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="prov_cli" msprop:Generator_ColumnVarNameInTable="columnprov_cli" msprop:Generator_ColumnPropNameInRow="prov_cli" msprop:Generator_ColumnPropNameInTable="prov_cliColumn" msprop:Generator_UserColumnName="prov_cli" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="proveedor" msprop:Generator_ColumnVarNameInTable="columnproveedor" msprop:Generator_ColumnPropNameInRow="proveedor" msprop:Generator_ColumnPropNameInTable="proveedorColumn" msprop:Generator_UserColumnName="proveedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="totAdeuda" msprop:Generator_ColumnVarNameInTable="columntotAdeuda" msprop:Generator_ColumnPropNameInRow="totAdeuda" msprop:Generator_ColumnPropNameInTable="totAdeudaColumn" msprop:Generator_UserColumnName="totAdeuda" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mes" msprop:Generator_ColumnVarNameInTable="columnmes" msprop:Generator_ColumnPropNameInRow="mes" msprop:Generator_ColumnPropNameInTable="mesColumn" msprop:Generator_UserColumnName="mes" type="xs:int" minOccurs="0" />
+              <xs:element name="comprador" msprop:Generator_ColumnVarNameInTable="columncomprador" msprop:Generator_ColumnPropNameInRow="comprador" msprop:Generator_ColumnPropNameInTable="compradorColumn" msprop:Generator_UserColumnName="comprador" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

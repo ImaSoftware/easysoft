@@ -287,6 +287,7 @@ namespace DLIB
                 this._EnableExternalImages = (dtt.Rows[0]["EnableExternalImages"] == DBNull.Value ? false : (bool)dtt.Rows[0]["EnableExternalImages"]);
                 string  query = (dtt.Rows[0]["Sentencia"] == DBNull.Value ? "" : (string)dtt.Rows[0]["Sentencia"]); 
                 command = new SqlCommand(query, cn);
+                command.CommandTimeout = 0;
                 //Agrego parametros de la consulta
                 if (xpar != null)
                 {

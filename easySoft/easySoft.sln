@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLIB", "DLIB\DLIB.csproj", "{69F635CC-77E9-4E19-9267-6C0D5F874948}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proof", "proof\proof.csproj", "{8590BB19-71FA-4A7E-A312-058CBD01DA6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{69F635CC-77E9-4E19-9267-6C0D5F874948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69F635CC-77E9-4E19-9267-6C0D5F874948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69F635CC-77E9-4E19-9267-6C0D5F874948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8590BB19-71FA-4A7E-A312-058CBD01DA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8590BB19-71FA-4A7E-A312-058CBD01DA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8590BB19-71FA-4A7E-A312-058CBD01DA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8590BB19-71FA-4A7E-A312-058CBD01DA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

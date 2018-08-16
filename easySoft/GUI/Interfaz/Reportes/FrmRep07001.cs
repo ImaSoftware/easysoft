@@ -30,6 +30,12 @@ namespace GUI.Interfaz.Reportes
             Cursor = Cursors.Default;
         }
         private void CreaRepo() {
+            string namereport = "";
+            if (this.rbDet.Checked)
+                namereport = "R_07001D";
+            else {
+                namereport = "R_07001R";
+            }
             List<DLIB.Parametro> lo = new List<DLIB.Parametro>();
             lo.Add(new DLIB.Parametro("userid", DLIB.Globales.Parametros.UsrId,DLIB.Parametro.tipo.Ambos));
             lo.Add(new DLIB.Parametro("fecini", fecIni.Value, DLIB.Parametro.tipo.Ambos));
@@ -37,20 +43,24 @@ namespace GUI.Interfaz.Reportes
             lo.Add(new DLIB.Parametro("provee", txtprov.Text.Trim(), DLIB.Parametro.tipo.SoloSQL));
             lo.Add(new DLIB.Parametro("loteini", txtLoteIni.Text.Trim(), DLIB.Parametro.tipo.SoloSQL));
             lo.Add(new DLIB.Parametro("lotefin", txtLoteFin.Text.Trim(), DLIB.Parametro.tipo.SoloSQL));
-
+            lo.Add(new DLIB.Parametro("comprador", txtcompra.Text.Trim(), DLIB.Parametro.tipo.Ambos));
             List<SqlParameter> prmtr = new List<SqlParameter>();
             foreach (DLIB.Parametro pm in lo)
             {
                 if(pm.tip != DLIB.Parametro.tipo.SoloRepo )
                     prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
             }
-            DLIB.RepoMan repo = new DLIB.RepoMan("R_07001D", prmtr);
+            DLIB.RepoMan repo = new DLIB.RepoMan(namereport, prmtr);
             repo.load();
             this.visor.SetDisplayMode(DisplayMode.Normal);
             //this.Titulo = repo.Comentario;
-            if (String.IsNullOrEmpty(visor.LocalReport.ReportPath)) {
-                this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\R_07001D.rdlc";
+
+            if (String.IsNullOrEmpty(visor.LocalReport.ReportPath)||
+                !this.visor.LocalReport.ReportPath.Equals(System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\" + namereport + ".rdlc"))
+            {
+                this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\" + namereport + ".rdlc";
             }
+            
             //this.WindowState = FormWindowState.Maximized;
             this.visor.ProcessingMode = ProcessingMode.Local;
             this.visor.LocalReport.DataSources.Clear();
@@ -178,6 +188,56 @@ namespace GUI.Interfaz.Reportes
 
         private void txtLoteIni_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void txtvende_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtcompra.Text.Trim()))
+            {
+                compraDesc.Text = "Todos los proveedores";
+                return;
+            }
+            List<SqlParameter> lo = new List<SqlParameter>();
+            lo.Add(new SqlParameter("@codigo", txtcompra.Text.Trim()));
+            DataTable dbYY = DLIB.Globales.Parametros.connSql.TraerTabla("RSC_003", lo);
+            if (dbYY != null)
+            {
+                if (dbYY.Rows.Count != 1)
+                {
+                    MessageBox.Show("Codigo no existe o se encuentra repetido. Verifique...");
+                    txtcompra.Text = "";
+                    compraDesc.Text = "Todos los proveedores";
+                    return;
+                }
+                else
+                {
+                    compraDesc.Text = (dbYY.Rows[0][0] == null ? "" : (string)dbYY.Rows[0][0]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error al seleccionar el conjunto de datos...");
+                txtcompra.Text = "";
+                compraDesc.Text = "Todos los proveedores";
+                return;
+            }
+        }
+
+        private void txtvende_KeyUp(object sender, KeyEventArgs e)
+        {
+            List<SqlParameter> p = new List<SqlParameter>();p.Add(new SqlParameter("@nomtag", "I_COMPRA"));
+            easySearch repoSearch = new easySearch("ALPTABLA", "Codigo", p);
+            switch (e.KeyCode)
+            {
+                case DLIB.Globales.keyhelp:
+                    DialogResult x = repoSearch.ShowDialog();
+                    if (x == DialogResult.OK && repoSearch.Resultado != null)
+                    {
+                        txtcompra.Text = repoSearch.Resultado.ToString();
+                    }
+                    break;
+            }
 
         }
     }
