@@ -104,6 +104,11 @@
     <Compile Include="Controles\easymenubutton.Designer.cs">
       <DependentUpon>easymenubutton.cs</DependentUpon>
     </Compile>
+    <Compile Include="davmerRootDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>davmerRootDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="easySearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +160,12 @@
       <DependentUpon>CtlSesion.cs</DependentUpon>
     </Compile>
     <Compile Include="easySoftware.cs" />
+    <Compile Include="Interfaz\Reportes\FrmRep07002.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep07002.Designer.cs">
+      <DependentUpon>FrmRep07002.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lobby.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +210,9 @@
     <EmbeddedResource Include="Controles\CtlSesion.resx">
       <DependentUpon>CtlSesion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\Reportes\FrmRep07002.resx">
+      <DependentUpon>FrmRep07002.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +239,17 @@
     </None>
     <None Include="davmerCorpDataSet1.xss">
       <DependentUpon>davmerCorpDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="davmerRootDataSet.xsc">
+      <DependentUpon>davmerRootDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="davmerRootDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>davmerRootDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="davmerRootDataSet.xss">
+      <DependentUpon>davmerRootDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
