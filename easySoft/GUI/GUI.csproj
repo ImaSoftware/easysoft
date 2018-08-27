@@ -166,6 +166,12 @@
     <Compile Include="Interfaz\Reportes\FrmRep07002.Designer.cs">
       <DependentUpon>FrmRep07002.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep10001.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep10001.Designer.cs">
+      <DependentUpon>FrmRep10001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lobby.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +336,7 @@
     <None Include="Resources\INGRESO.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Reportes\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
