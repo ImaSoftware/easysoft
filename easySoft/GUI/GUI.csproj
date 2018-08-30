@@ -135,6 +135,12 @@
     <Compile Include="Interfaz\FrmGenBan.Designer.cs">
       <DependentUpon>FrmGenBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\FrmRecepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FrmRecepcion.Designer.cs">
+      <DependentUpon>FrmRecepcion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\Reportes\FrmRep03001.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FrmGenBan.resx">
       <DependentUpon>FrmGenBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FrmRecepcion.resx">
+      <DependentUpon>FrmRecepcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Reportes\FrmRep03001.resx">
       <DependentUpon>FrmRep03001.cs</DependentUpon>
