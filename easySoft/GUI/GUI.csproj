@@ -172,6 +172,12 @@
     <Compile Include="Interfaz\Reportes\FrmRep07002.Designer.cs">
       <DependentUpon>FrmRep07002.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep08001.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\Reportes\FrmRep08001.Designer.cs">
+      <DependentUpon>FrmRep08001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\Reportes\FrmRep10001.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Reportes\FrmRep07002.resx">
       <DependentUpon>FrmRep07002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\Reportes\FrmRep08001.resx">
+      <DependentUpon>FrmRep08001.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>

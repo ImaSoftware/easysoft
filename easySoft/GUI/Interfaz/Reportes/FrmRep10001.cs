@@ -20,6 +20,7 @@ namespace GUI.Interfaz.Reportes
         public FrmRep10001(string xtitulo, string args)
         {
             InitializeComponent();
+            this.Titulo = xtitulo;
             this.nameReport = "R_10001";
         }
         public override void RecogeParametros()

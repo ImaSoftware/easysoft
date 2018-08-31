@@ -48,9 +48,8 @@
             // misImagenes
             // 
             this.misImagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("misImagenes.ImageStream")));
-            this.misImagenes.Images.SetKeyName(0, "diskette.png");
+            this.misImagenes.Images.SetKeyName(0, "arrow-down.png");
             this.misImagenes.Images.SetKeyName(1, "arrow-up.png");
-            this.misImagenes.Images.SetKeyName(2, "arrow-down.png");
             // 
             // label1
             // 

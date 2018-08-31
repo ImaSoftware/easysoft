@@ -23,6 +23,7 @@ namespace GUI.Interfaz.Reportes
         public FrmRep03001(string xtitulo, string args)
         {
             InitializeComponent();
+            this.Titulo = xtitulo;
             this.nameReport = "R_03001";
             // this.Titulo = "Contraste Existencia y Costos";
         }

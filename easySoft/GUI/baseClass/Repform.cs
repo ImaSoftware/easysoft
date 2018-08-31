@@ -22,9 +22,7 @@ namespace GUI.baseClass
         }
         public List<DLIB.Parametro> Paramis = new List<DLIB.Parametro>();
 
-        int id = 0;
-        private int pnlPrinDist = 0;
-        private bool saltaDist = false;
+        private bool HideShow = false;//Hide para true, Show para False
         private DataSet ActDb;
         public Repform()
         {
@@ -33,19 +31,44 @@ namespace GUI.baseClass
             ///Ubicar aqui siempre el nombre del reporte en cada uno de los formularios hijos 
             ///EJ:  this.nameReport = "R_03001";
         }
+        public Repform(string xtitulo, string args)
+        {
+            InitializeComponent();
+            this.Titulo = xtitulo;
+            ///No borres esto si estas en REPFORM
+            ///Ubicar aqui siempre el nombre del reporte en cada uno de los formularios hijos 
+            ///EJ:  this.nameReport = "R_03001";
+        }
+        Point iniL;
         private void Repform_Load(object sender, EventArgs e)
         {
             if (DesignMode) { return; }
             this.visor.RefreshReport();
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            saltaDist = true;
-            //this.splitter.SplitterDistance = (this.button4.ImageIndex == 0 ? pnlPrinDist : button4.Height); ;
-           // this.ctlParam.Visible = (this.button4.ImageIndex == 0 ? true : false);
-            this.button4.ImageIndex = (this.button4.ImageIndex == 0 ? 1 : 0);
-            saltaDist = false;
+            if (iniL.Equals(new Point(0,0)))
+            { iniL = button4.Location; }
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl != button4 && ctl != visor && ctl != barraTitulo)
+                {
+                    ctl.Visible = HideShow;
+                }
+            }
+            if (!HideShow){
+                button4.Location = new Point(0, 0);
+                visor.Location = new Point(0, button4.Bottom+2);
+                visor.Height = visor.Height + iniL.Y;
+            } else{
+                button4.Location = new Point(iniL.X, iniL.Y);
+                visor.Location = new Point(0, button4.Bottom + 2);
+                visor.Height = visor.Height - iniL.Y;
+            }
+            HideShow = !HideShow;
+            button4.ImageIndex = (HideShow ? 0 : 1);
 
         }
         /// <summary>
@@ -136,13 +159,16 @@ namespace GUI.baseClass
             }
 
          
-          //  localReport.DataSources.Add(new ReportDataSource("Employees",
-            //    LoadEmployeesData()));
+         
         }
-        //private void splitter_SplitterMoved(object sender, SplitterEventArgs e)
-        //{
-        //    if (saltaDist) { return; }
-        //   // pnlPrinDist = splitter.SplitterDistance;
-        //}
+
+        private void visor_ReportRefresh(object sender, CancelEventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            RecogeParametros();
+            CreaRepo();
+            Cursor = Cursors.Default;
+
+        }
     }
 }

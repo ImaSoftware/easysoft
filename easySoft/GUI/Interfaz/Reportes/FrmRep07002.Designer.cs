@@ -42,9 +42,8 @@
             // misImagenes
             // 
             this.misImagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("misImagenes.ImageStream")));
-            this.misImagenes.Images.SetKeyName(0, "diskette.png");
+            this.misImagenes.Images.SetKeyName(0, "arrow-down.png");
             this.misImagenes.Images.SetKeyName(1, "arrow-up.png");
-            this.misImagenes.Images.SetKeyName(2, "arrow-down.png");
             // 
             // label1
             // 
@@ -75,6 +74,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmRep07002";
             this.Text = "FrmRep07002";
+            this.Load += new System.EventHandler(this.FrmRep07002_Load);
             this.Controls.SetChildIndex(this.visor, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.fecIni, 0);

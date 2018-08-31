@@ -20,13 +20,22 @@ namespace GUI
             Sesion.ShowDialog();
             if (Sesion.Resultado)
             {
-                Lobby frmNew = new Lobby();
-                Application.Run(frmNew);
-                while (DLIB.Globales.Parametros.Otra) {
-                    DLIB.Globales.Parametros.Otra = false;
-                    Lobby frm2 = new Lobby();
-                    Application.Run(frm2);
+                try
+                {
+                    Lobby frmNew = new Lobby();
+                    Application.Run(frmNew);
+                    while (DLIB.Globales.Parametros.Otra)
+                    {
+                        DLIB.Globales.Parametros.Otra = false;
+                        Lobby frm2 = new Lobby();
+                        Application.Run(frm2);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + Environment.NewLine + (ex.InnerException == null ? "" : ex.InnerException.Message));
+                }
+
             }
             else
             {

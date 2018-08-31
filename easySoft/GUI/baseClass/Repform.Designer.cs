@@ -40,20 +40,20 @@
             // misImagenes
             // 
             this.misImagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("misImagenes.ImageStream")));
-            this.misImagenes.Images.SetKeyName(0, "diskette.png");
+            this.misImagenes.Images.SetKeyName(0, "arrow-down.png");
             this.misImagenes.Images.SetKeyName(1, "arrow-up.png");
-            this.misImagenes.Images.SetKeyName(2, "arrow-down.png");
             // 
             // visor
             // 
             this.visor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.visor.Location = new System.Drawing.Point(0, 142);
+            this.visor.Location = new System.Drawing.Point(0, 138);
             this.visor.Name = "visor";
             this.visor.ServerReport.BearerToken = null;
             this.visor.Size = new System.Drawing.Size(800, 267);
             this.visor.TabIndex = 1;
+            this.visor.ReportRefresh += new System.ComponentModel.CancelEventHandler(this.visor_ReportRefresh);
             this.visor.Drillthrough += new Microsoft.Reporting.WinForms.DrillthroughEventHandler(this.visor_Drillthrough);
             // 
             // imageList1
@@ -68,7 +68,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.ImageIndex = 1;
             this.button4.ImageList = this.misImagenes;
-            this.button4.Location = new System.Drawing.Point(0, 114);
+            this.button4.Location = new System.Drawing.Point(0, 109);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(800, 28);
             this.button4.TabIndex = 29;
@@ -81,7 +81,7 @@
             this.btnGenera.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGenera.ImageKey = "geninf.png";
             this.btnGenera.ImageList = this.imageList1;
-            this.btnGenera.Location = new System.Drawing.Point(650, 43);
+            this.btnGenera.Location = new System.Drawing.Point(652, 41);
             this.btnGenera.Name = "btnGenera";
             this.btnGenera.Size = new System.Drawing.Size(142, 65);
             this.btnGenera.TabIndex = 30;

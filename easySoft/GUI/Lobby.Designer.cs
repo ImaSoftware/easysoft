@@ -102,6 +102,7 @@
             // 
             // easyMenu1
             // 
+            this.easyMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(57)))), ((int)(((byte)(86)))));
             this.easyMenu1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.easyMenu1.Location = new System.Drawing.Point(0, 0);
             this.easyMenu1.Name = "easyMenu1";

@@ -362,6 +362,12 @@ namespace DLIB
             get { return _CodUser; }
             //set{_CadenaConexion = value;}
         }
+        private int _UsrSexo = -1;
+        public int UsrSexo
+        {
+            get { return _UsrSexo; }
+            //set{_CadenaConexion = value;}
+        }
         private bool _Otra = false;
         public bool Otra
         {
