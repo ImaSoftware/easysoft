@@ -1,0 +1,105 @@
+replace tempocab.docgen WITH IIF(EMPTY(tempocab.docgen),thisformset.forma1.txttrn.Value,tempocab.docgen)
+			xTipo = coalesce(tempoCab.docGen,'')
+			.forma1.txttrn.Value = xTipo
+			.forma1.txttrn.valid
+			cL = "select VEN  from dp15aven  where usuario = ?m_userid"
+			xven = coalesce(thisformset.oconsola.exReqVal(cl),'')
+			xtipt	= thisformset.tip_t 
+			xgrupt	= thisformset.grupot 
+			xPeri 	= thisformset.forma1.txtperi.Value 
+			
+	*		verificar si es electronica
+			cl="select coalesce(celectro,'N') celectro ,coalesce(tipo,'') tipo from dp03acom where codigo=?xTipo "
+			this.oconsola.execute(cL,"tiposcx")
+			thisformset.generaELECTRO= iif(tiposcx.celectro='S', .t.,.f.)
+			xtipt	= tiposcx.tipo
+			use in sele("tiposcx")
+
+	        *:Verifico el CREDITO del cliente
+			cL=		"select coalesce(diasp,0)diasp from dp05a110 where codigo= ?tempoCab.codcli "
+			this.oconsola.execute(cL,"clientesX")		
+			xDiascred=	clientesX.diasp			
+			use in sele('clientesX')
+		    *:****
+		    
+	        thisformset.oconsola.beginTrn("T2")		&&empiezo transaccion
+		    
+		    
+			cL="execute sp_numsecu ?tempoCab.docGen,'03'"
+	        this.oconsola.execute(cL,"DbZZ")
+		    xnumero = dbZZ.secuencia	
+		    numitera = numitera+1        
+		    IF numitera = 1
+		    	secIni = xnumero 
+		    ENDIF 
+		    secfin = xnumero
+		    use in (sele("dbZZ"))		 
+		    
+			
+	        *Grabamos el detalle
+
+			store 0 to nBaseTax,nBase0			
+			nLineaDet=0
+			sele tempo1
+			SET KEY TO tempoCab.codcli
+			go top
+			scan
+				
+				*:Tabla de Items
+				cL="select tipo, nombre, factor,vstock from dp03a110 where no_parte=?tempo1.no_parte "
+				this.oconsola.execute(cL,"items")
+							
+				if items.tipo!="T" 
+					xVice = iif(tempo1.porICE>0,((tempo1.precio_t*tempo1.porICE)/100),0)
+                    nLineaDet = nLineaDet+1				
+					poriva	=iif(tempo1.iva_sn="S",thisformset.v_iva,0)		
+					valiva	=(((tempo1.precio_t+xVice)*poriva)/100)
+					precio_ne=(tempo1.precio_t)
+					
+					cL=		"insert into dp03amov (tipo,numero,linea,tipo_t,presenta,factor,fecha_tra,"
+					cL=cL+	"no_parte,bodega,cantidad,precio_u,precio_t,cubica_u,cubica_t,pordes,valdes,"
+					cL=cL+	"poriva,valiva,costo_u,costo_t,precio_ne,servicio,van,nservicio,tprecio,porICE,partidaICE "
+					cL=cL+	") values ("
+					cL=cL+	"?xTipo ,?xnumero,?nLineaDet,?xtipt,?tempo1.tipo,?items.factor,"
+					cL=cL+	"?.forma2.txtfecha.value,?tempo1.no_parte,?.forma2.txtbodega.value,?tempo1.cantidad,"
+					cL=cL+	"?tempo1.precio_u,?tempo1.precio_t,?tempo1.cubica_u,?tempo1.cubica_t,"
+					cL=cL+	"0,0,?poriva,?valiva,0,0,?precio_ne,"
+					cL=cL+	"'',0,?items.nombre,'A', ?tempo1.porICE, ?tempo1.partidaICE"
+					cL=cL+	") "									
+
+                    nBaseTax	=nBaseTax	+iif(poriva>0,precio_ne * iif(tempo1.porICE>0,1+(tempo1.porICE/100),1) ,0)
+			        nBase0		=nBase0		+iif(poriva>0,0,precio_ne * iif(tempo1.porICE>0,1+(tempo1.porICE/100),1))
+
+					IF !thisformset.oconsola.execute(cL)
+						thisformset.Release
+						RETURN 
+					ENDIF 
+
+				
+				endif
+				use in sele('items')
+				sele tempo1
+			endscan
+			
+			* Grabado de cabecera
+			cL=		"insert into dpinvcab (tipo,numero,tipo_t,grupo,fecha_tra,fecha_ven,"
+			cL=cL+	"bodega,prov_cli,total_mov,pordes,total_des,poriva,total_iva,total_ice,total_trn,"
+			cL=cL+	"userfec,usercla,vendedor,comenta,tp_precio,remite,comenta2,anoMES,"
+			cL=cL+  "base_tax,base_0"
+			cL=cL+	")values("
+			cL=cL+	"?xTipo ,?xnumero,?xtipt,?xgrupt,?.forma2.txtfecha.value,?.forma2.txtfecha.value+?xDiascred,"
+			cL=cL+	"?.forma2.txtbodega.value,?tempoCab.codcli,?tempoCab.total_mov,0,"
+			cL=cL+	"0,?.v_iva,?tempoCab.total_iva,?tempoCab.total_ice,?tempoCab.total_trn,getdate(),"
+			cL=cL+	"?m_userid, ?xven,'Documento Generado Automaticamente ','A',"
+			cL=cL+	"'','',?xperi ,?nBaseTax,?nBase0"
+			cL=cL+	")"
+			IF !thisformset.oconsola.execute(cl)
+				thisformset.Release
+				RETURN
+			ENDIF 
+			
+			IF thisformset.generaELECTRO
+				=df_ArmarFE(tempocab.docgen,xnumero,thisformset.nConecta)
+			endif
+	        thisformset.oconsola.commitTRN		
+			WAIT WINDOW ALLTRIM(STR(numitera))+"/"+ALLTRIM(STR(xtot)) nowait

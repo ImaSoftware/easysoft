@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "655045",
+    "ThreadId": "268338",
+    "Html": "\r\n<p>Hola,</p>\r\n<p>estoy probando esta libreria y no soy capaz de que en los xml firmados, en la etiqueta Signature, aparezca el prefijo ds:.</p>\r\n<p>He leido que es un bug de .net, pero en los ejemplos que poneis, da la sensacion de que lo conseguis. &iquest;Hay que hacer algo en concreto?</p>\r\n<p>&nbsp;</p>\r\n<p>Un saludo.</p>\r\n<p>&nbsp;</p>\r\n<p>David</p>\r\n",
+    "PostedDate": "2011-08-09T02:59:49.32-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1123128",
+    "ThreadId": "268338",
+    "Html": "Any one knows the solution?<br />\n",
+    "PostedDate": "2013-11-13T13:08:39.38-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1193418",
+    "ThreadId": "268338",
+    "Html": "Yo tengo el mismo problema, saben como se lo puede solucionar ?\r<br />\nGracias de antemano<br />\n",
+    "PostedDate": "2014-01-23T10:56:52.04-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1336741",
+    "ThreadId": "268338",
+    "Html": "Existe ya el parche de la librería que incorpore el prefijo ds:?<br />\n",
+    "PostedDate": "2014-12-23T04:29:37.247-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

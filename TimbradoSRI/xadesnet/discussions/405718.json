@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "951880",
+    "ThreadId": "405718",
+    "Html": "\r\n<p><br>\r\nIs&nbsp; your component capable returning a digitial signature with a &quot;ds&quot; prefix?<br>\r\n<br>\r\nMicrosoft's default tool for SignedXML returns a Signature element but with no &quot;ds&quot; prefix, and if you try to manipulate the XML later\r\n<br>\r\nand add a &quot;ds&quot; prefix to the node the digital signature breaks.<br>\r\n<br>\r\nafter computing singature, default SignedXML GetXml() returns :<br>\r\n---------------------------<br>\r\n&lt;Signature xmlns=&quot;http://www.w3.org/2000/09/xmldsig#&gt;<br>\r\n...<br>\r\n&lt;/Signature&gt;<br>\r\n<br>\r\n<br>\r\nneed it to return :<br>\r\n---------------------------<br>\r\n&lt;ds:Signature xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&gt;<br>\r\n...<br>\r\n&lt;/ds:Signature&gt;</p>\r\n",
+    "PostedDate": "2012-12-05T12:34:24.677-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1123125",
+    "ThreadId": "405718",
+    "Html": "Any one knows the solution?<br />\n",
+    "PostedDate": "2013-11-13T13:07:30.787-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1342998",
+    "ThreadId": "577989",
+    "Html": "Saludos\r<br />\nEstoy intentando firmar con su libreria un archivo xml, al momento de terminar la firma hace la validacion y da como error Firma Invalida, ademas el archivo q genera es diferente a uno q ya tengo firmado pero con una herramienta en java, los estandares q me dan para la firma digital son:\r<br />\nEstándar de firma XadES_BES <a href=\"http://uri.etsi.org/01903/v1.3.2/ts_101903v010302p.pdf\" rel=\"nofollow\">http://uri.etsi.org/01903/v1.3.2/ts_101903v010302p.pdf</a>\r<br />\nVersión del esquema 1.3.2 <a href=\"http://uri.etsi.org/01903/v1.3.2#\" rel=\"nofollow\">http://uri.etsi.org/01903/v1.3.2#</a>\r<br />\nCodificación UTF-8\r<br />\nTipo de firma ENVELOPED <a href=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\" rel=\"nofollow\">http://www.w3.org/2000/09/xmldsig#enveloped-signature</a>\r<br />\nme pueden confimar si su libreria puede firmar con estos estandares.\r<br />\nLes adjunto los archivos el uno generado en java y el otro con su libreria y el xml original, agradeciendo por la pronta respuesta a mi inquietud les agradezco de antemano.\r<br />\n<a href=\"https://drive.google.com/file/d/0B3PANEQpXyWsNDNBSk45RWh5cE0/view?usp=sharing\" rel=\"nofollow\">https://drive.google.com/file/d/0B3PANEQpXyWsNDNBSk45RWh5cE0/view?usp=sharing</a>\r<br />\n<a href=\"https://drive.google.com/file/d/0B3PANEQpXyWsTko5WVlsSEJZRk0/view?usp=sharing\" rel=\"nofollow\">https://drive.google.com/file/d/0B3PANEQpXyWsTko5WVlsSEJZRk0/view?usp=sharing</a>\r<br />\n<a href=\"https://drive.google.com/file/d/0B3PANEQpXyWsMG5PeVB6QWxrWVU/view?usp=sharing\" rel=\"nofollow\">https://drive.google.com/file/d/0B3PANEQpXyWsMG5PeVB6QWxrWVU/view?usp=sharing</a><br />\n",
+    "PostedDate": "2015-01-17T22:55:32.893-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "556791",
+    "ThreadId": "243659",
+    "Html": "\r\n<p>My code:</p>\r\n<p>&nbsp;XmlDocument document = XadesNetLib.XAdES.XadesHelper.Sign(xml).Using(certificate).IncludingCertificateInSignature().SignAndGetXml();</p>\r\n<p>throws XadesNetLib.Exceptions.InvalidParameterException: Path of signed file cannot be null</p>\r\n<p>I think this is a bug.</p>\r\n<p>On the other hand</p>\r\n<p>&nbsp;XadesNetLib.XAdES.XadesHelper.Sign(xml).Using(certificate).IncludingCertificateInSignature().SignToFile(Server.MapPath(&quot;~/output.xml&quot;)); &nbsp;works just fine.</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-01-28T03:13:00.257-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558167",
+    "ThreadId": "243659",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>It is not really a bug, but a lack of functionality. When we first conceived the library, in order to maintain extreme simplicity, we thought an output file would be always needed. So, we considered not to specify this path an error.</p>\r\n<p>I'll create an issue to give the functionality you provide: In case an output path is not provided, the library will return the XmlDocument, not raising an exception.</p>\r\n<p>Regards,</p>\r\n<p>Luis</p>\r\n",
+    "PostedDate": "2011-01-31T08:56:43.853-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558169",
+    "ThreadId": "243659",
+    "Html": "\r\n<p>Issue created:&nbsp;http://xadesnet.codeplex.com/workitem/38</p>\r\n",
+    "PostedDate": "2011-01-31T08:57:12.697-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

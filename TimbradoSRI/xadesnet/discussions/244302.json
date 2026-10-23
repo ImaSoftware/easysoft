@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "559343",
+    "ThreadId": "244302",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>How can i do to add co sign ?</p>\r\n<p>Thanks</p>\r\n",
+    "PostedDate": "2011-02-02T06:00:02.693-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "559355",
+    "ThreadId": "244302",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>Co sign is planned for release 1.3, so I'm afraid it's going to take a while until it's ready. We're addressing some bugs so developing new features is kind of a secondary right now.</p>\r\n<p>You can follow the progress in the following item of the issue tracker:</p>\r\n<p><a href=\"http://xadesnet.codeplex.com/workitem/5\">http://xadesnet.codeplex.com/workitem/5</a></p>\r\n<p>Regards</p>\r\n",
+    "PostedDate": "2011-02-02T06:21:36.857-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

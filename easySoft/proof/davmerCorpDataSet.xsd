@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;User ID=sa;Password=Rootpass1" IsAppSettingsProperty="false" Modifier="Assembly" Name="programacion.davmerCorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection ConnectionStringObject="Data Source=localhost;Initial Catalog=davmerCorp;Integrated Security=True;Encrypt=True;TrustServerCertificate=False;Persist Security Info=False" IsAppSettingsProperty="false" Modifier="Assembly" Name="programacion.davmerCorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="asal1TableAdapter" GeneratorDataComponentClassName="asal1TableAdapter" Name="asal1" UserDataComponentName="asal1TableAdapter">

@@ -2464,8 +2464,7 @@ namespace GUI.davmerRootDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=192.168.100.20\\sqlexpress;Initial Catalog=davmercorp;Persist Security" +
-                " Info=True;User ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.RuntimeConfig.RootConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2673,8 +2672,7 @@ namespace GUI.davmerRootDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=192.168.100.20\\sqlexpress;Initial Catalog=davmercorp;Persist Security" +
-                " Info=True;User ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.RuntimeConfig.RootConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2936,8 +2934,7 @@ namespace GUI.davmerRootDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION\\PROGRAMACION17;Initial Catalog=davmercorp;Persist Securi" +
-                "ty Info=True;User ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.RuntimeConfig.RootConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3214,8 +3211,7 @@ namespace GUI.davmerRootDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION\\PROGRAMACION17;Initial Catalog=davmercorp;Persist Securi" +
-                "ty Info=True;User ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.RuntimeConfig.RootConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

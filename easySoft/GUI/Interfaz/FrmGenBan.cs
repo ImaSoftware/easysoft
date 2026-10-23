@@ -1,189 +1,130 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+
 namespace GUI.Interfaz
 {
     public partial class FrmGenBan : baseClass.easyForm
     {
-        DataTable Bancos = new DataTable();
-        DataTable Roles = new DataTable();
-        public FrmGenBan()
-        {
-            InitializeComponent();
-        }
-        public FrmGenBan(string xtitulo, string args)
-        {
-            InitializeComponent();
-            this.Titulo=xtitulo;
-        }
+        private bool loading = true;
+        private bool exporting;
+        private int loadVersion;
+        public FrmGenBan() { InitializeComponent(); }
+        public FrmGenBan(string xtitulo, string args) : this() { Titulo = xtitulo; }
 
-        private void btnGenera_Click(object sender, EventArgs e)
+        private async void btnGenera_Click(object sender, EventArgs e) { try { await GenerarArchivo(); } catch (Exception ex) { if (!IsDisposed) MessageBox.Show(ex.Message); } }
+        private async Task GenerarArchivo()
         {
-            generarArchivo();
-        }
-        private void generarArchivo(){
-            if (dgvRoles.SelectedRows.Count == 0) { return; }
-            if (dgvRoles.SelectedRows.Count > 1) { if (MessageBox.Show("Mas de un rol escojido. Desea continuar?", "Confirmacion", MessageBoxButtons.YesNo) == DialogResult.No) { return; } }
-            
-            //escoger la ruta de guardado 
-            string fileName = "";
-            SaveFileDialog sf = new SaveFileDialog();
-            sf.Filter = "Texto Plano|*.txt";
-            if (sf.ShowDialog() != DialogResult.OK)
+            if (exporting || loading || dgvRoles.SelectedRows.Count == 0) return;
+            var bank = cmbBanco.SelectedItem as DataRowView;
+            if (bank == null) { MessageBox.Show("Seleccione un banco."); return; }
+            if (dgvRoles.SelectedRows.Count > 1 && MessageBox.Show("¿Exportar los roles seleccionados?", "Confirmación", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            var roles = dgvRoles.SelectedRows.Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow).Select(row => new {
+                    Name = Convert.ToString(row.Cells["cTipo"].Value),
+                    From = Convert.ToDateTime(row.Cells["cFecDesde"].Value),
+                    To = Convert.ToDateTime(row.Cells["cFecHasta"].Value)
+                }).ToList();
+            string query = Convert.ToString(bank.Row["consulta"]).Trim();
+            string format = Convert.ToString(bank.Row["tipgen"]).Trim();
+            string bankCode = Convert.ToString(cmbBanco.SelectedValue).Trim();
+            if (format != "T" && format.Length != 0) { MessageBox.Show("Formato de banco no reconocido."); return; }
+            using (var dialog = new SaveFileDialog { Filter = "Texto Plano|*.txt" })
             {
-                return;
-            }
-            string Ruta = Path.GetDirectoryName(sf.FileName);
-            //EXTRAER TIPO, Y FECHAS 
-            for (int i = 0; i < dgvRoles.SelectedRows.Count; i++)
-            {
-                //string cTipo = ((DataRowView)dgvRoles.SelectedRows[i].DataBoundItem).Row[0].ToString();
-                string cnomrep = dgvRoles.SelectedRows[i].Cells[1].Value.ToString();
-                string cfecdesde = dgvRoles.SelectedRows[i].Cells[2].Value.ToString();
-                string cfechasta = dgvRoles.SelectedRows[i].Cells[3].Value.ToString();
-                string cbanco = cmbBanco.SelectedValue.ToString().Trim();
-
-                List<SqlParameter> myList = new List<SqlParameter>();
-                myList.Add(new SqlParameter("@desde", cfecdesde));
-                myList.Add(new SqlParameter("@hasta", cfechasta));
-                myList.Add(new SqlParameter("@bcodesde", cbanco));
-                string consulta = ((DataRowView)cmbBanco.SelectedItem).Row["consulta"].ToString().Trim();
-                string tipgen = ((DataRowView)cmbBanco.SelectedItem).Row["tipgen"].ToString().Trim();
-                DataTable Generado = DLIB.Globales.Parametros.connSql.TraerTabla(consulta, myList);
-                if (Generado == null)
-                {
-                    continue;
-                }
-                if (Generado.Rows.Count == 0) {
-                    MessageBox.Show("No existen registros para exportar ", "Error", MessageBoxButtons.OK);
-                    continue;
-                }
-                fileName = DLIB.DFUNC.GetSafeFilename(Path.GetFileNameWithoutExtension(sf.FileName) + "_" + cnomrep + "_" +  cfecdesde + "-" + cfechasta + "-" + i.ToString() );
-                //Recorrer lo generado y poner en el archivo correcto 
+                if (dialog.ShowDialog() != DialogResult.OK) return;
+                exporting = true;
+                btnGenera.Enabled = false;
+                string directory = Path.GetDirectoryName(dialog.FileName);
+                int success = 0;
                 try
                 {
-                    if (String.Equals(tipgen, "T"))
+                    for (int i = 0; i < roles.Count; i++)
                     {
-                        var builder = new StringBuilder();
-                        foreach (DataRow row in Generado.Rows)
+                        var role = roles[i];
+                        var parameters = new List<SqlParameter> {
+                            new SqlParameter("@desde", SqlDbType.DateTime) { Value = role.From },
+                            new SqlParameter("@hasta", SqlDbType.DateTime) { Value = role.To },
+                            new SqlParameter("@bcodesde", bankCode)
+                        };
+                        DataTable data = await Task.Run(() => DLIB.Globales.Parametros.connSql.TraerTabla(query, parameters));
+                        if (IsDisposed) return;
+                        if (data == null || data.Rows.Count == 0) continue;
+                        string name = DLIB.DFUNC.GetSafeFilename(Path.GetFileNameWithoutExtension(dialog.FileName) + "_" + role.Name + "_" + role.From.ToString("yyyyMMdd") + "-" + role.To.ToString("yyyyMMdd") + "-" + i);
+                        var files = new Dictionary<string, string[]>();
+                        if (format == "T")
+                            files.Add(Path.Combine(directory, name + ".txt"), data.Rows.Cast<DataRow>().Select(row => string.Join("\t", row.ItemArray.Select(Convert.ToString))).ToArray());
+                        else
                         {
-                            foreach (var cell in row.ItemArray)
-                            {
-                                builder.Append(cell.ToString());
-                                if (cell != row.ItemArray[((Array)row.ItemArray).Length - 1])
-                                    builder.Append("\t");
-                            }
-                            builder.Append(Environment.NewLine);
+                            if (!data.Columns.Contains("TIPO") || !data.Columns.Contains("RES")) throw new InvalidOperationException("La consulta bancaria debe devolver TIPO y RES.");
+                            foreach (var group in data.Rows.Cast<DataRow>().GroupBy(row => Convert.ToString(row["TIPO"]) == "EX"))
+                                files.Add(Path.Combine(directory, name + (group.Key ? "EXTERNOS" : "") + ".txt"), group.Select(row => Convert.ToString(row["RES"])).ToArray());
                         }
-
-                        var file = new FileStream(Ruta + "\\" + fileName + ".txt", FileMode.Create);
-                        var writer = new StreamWriter(file);
-                        writer.Write(builder.ToString());
-                        writer.Flush();
-                        writer.Close();
-                    }
-                    else { 
-                        if(String.IsNullOrEmpty(tipgen))
-                        {
-                            //Pass the filepath and filename to the StreamWriter Constructor
-                            StreamWriter sw = null;
-                            StreamWriter sw2 = null;
-                            foreach (DataRow dgen in Generado.Rows)
+                        if (files.Keys.Any(File.Exists) && MessageBox.Show("Ya existen archivos para " + role.Name + ". ¿Reemplazarlos?", "Confirmación", MessageBoxButtons.YesNo) != DialogResult.Yes) continue;
+                        await Task.Run(() => {
+                            foreach (var file in files)
                             {
-                                if (String.Equals(dgen["TIPO"], "EX"))
+                                string temporary = file.Key + "." + Guid.NewGuid().ToString("N") + ".tmp";
+                                try
                                 {
-                                    if (sw2 == null)
-                                    {
-                                        sw2 = new StreamWriter(Ruta + "\\" + fileName + "EXTERNOS.txt", false);
-                                    }
-                                    sw2.WriteLine(dgen["RES"]);
+                                    File.WriteAllLines(temporary, file.Value, new System.Text.UTF8Encoding(false));
+                                    if (File.Exists(file.Key)) File.Replace(temporary, file.Key, null);
+                                    else File.Move(temporary, file.Key);
                                 }
-                                else
-                                {
-                                    if (sw == null)
-                                    {
-                                        sw = new StreamWriter(Ruta + "\\" + fileName + ".txt", false);
-                                    }
-                                    sw.WriteLine(dgen["RES"]);
-                                }
+                                finally { if (File.Exists(temporary)) File.Delete(temporary); }
                             }
-                            //Close the file
-                            if (sw2 != null) { sw2.Close(); }
-                            if (sw != null) { sw.Close(); }
-                        }
+                        });
+                        success++;
                     }
+                    if (!IsDisposed) MessageBox.Show("Roles exportados: " + success + " de " + roles.Count + ".");
                 }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Exception: " + e.Message);
-                    continue;
-                }
-                finally
-                {
-                  
-
-                }
+                catch (Exception ex) { if (!IsDisposed) MessageBox.Show("No se completó la exportación: " + ex.Message); }
+                finally { exporting = false; if (!IsDisposed) btnGenera.Enabled = true; }
             }
-            MessageBox.Show("El proceso ha finalizado");
         }
-        private void cargaGrid()
+
+        private async Task CargaGrid()
         {
-            List<SqlParameter> myList = new List<SqlParameter>();
-            myList.Add(new SqlParameter("@fecini", fechaini.Value));
-            myList.Add(new SqlParameter("@fecfin", fechahasta.Value));
-            Roles = DLIB.Globales.Parametros.connSql.TraerTabla("FRMGENBAN_001", myList);
-            if (Roles == null)
+            int version = ++loadVersion;
+            DateTime from = fechaini.Value.Date, to = fechahasta.Value.Date;
+            if (from > to) { dgvRoles.DataSource = null; return; }
+            var parameters = new List<SqlParameter> { new SqlParameter("@fecini", from), new SqlParameter("@fecfin", to) };
+            var roles = await Task.Run(() => DLIB.Globales.Parametros.connSql.TraerTabla("FRMGENBAN_001", parameters));
+            if (!IsDisposed && version == loadVersion) dgvRoles.DataSource = roles;
+        }
+
+        private async void FrmGenBan_Load(object sender, EventArgs e)
+        {
+            loading = true;
+            btnGenera.Enabled = false;
+            try
             {
-                MessageBox.Show("Error al traer los datos", "Error", MessageBoxButtons.OK);
+                DateTime first = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                fechaini.Value = first;
+                fechahasta.Value = first.AddMonths(1).AddDays(-1);
+                var banks = await Task.Run(() => DLIB.Globales.Parametros.connSql.TraerTabla("FRMGENBAN_002"));
+                if (IsDisposed) return;
+                cmbBanco.ValueMember = "codigo";
+                cmbBanco.DisplayMember = "Nombre";
+                cmbBanco.DataSource = banks;
+                await CargaGrid();
             }
-            dgvRoles.DataSource = Roles;
-            dgvRoles.Update();
+            catch (Exception ex) { if (!IsDisposed) MessageBox.Show("No se pudieron cargar los datos: " + ex.Message); }
+            finally { loading = false; if (!IsDisposed) btnGenera.Enabled = true; }
         }
-
-        private void cargaCMB() {
-            
-            Bancos = DLIB.Globales.Parametros.connSql.TraerTabla("FRMGENBAN_002");
-            if (Bancos == null)
-            {
-                MessageBox.Show("Error al traer los datos", "Error", MessageBoxButtons.OK);
-            }
-            cmbBanco.DataSource = Bancos;
-            cmbBanco.ValueMember = "codigo";
-            cmbBanco.DisplayMember = "Nombre";
-            cmbBanco.SelectedIndex = 0;
-            cmbBanco.Update();
-            
-        }
-
-        private void FrmGenBan_Load(object sender, EventArgs e)
+        private async void fechahasta_ValueChanged(object sender, EventArgs e)
         {
-            cargaCMB();
-            cargaGrid();
-            int var_mesActual = DateTime.Now.Month; // obtengo el mes actual
-            int var_anio = DateTime.Now.Year; // obtengo el año actual
-            int var_mesSiguiente = DateTime.Now.Month + 1; // obtengo el mes siguiente
-            fechaini.Value = Convert.ToDateTime("01/" + var_mesActual + "/" + var_anio);// pongo el 1 porque siempre es el primer día obvio
-            fechahasta.Value = Convert.ToDateTime("01/" + var_mesSiguiente + "/" + var_anio).AddDays(-1); //resto un día al mes y con esto obtengo el ultimo día
-                                                                                                                   //fin
-
+            if (loading || exporting) return;
+            try { await CargaGrid(); }
+            catch (Exception ex) { if (!IsDisposed) MessageBox.Show(ex.Message); }
         }
-
-        private void fechahasta_ValueChanged(object sender, EventArgs e)
-        {
-            cargaGrid();
-        }
-
         private void dgvRoles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            generarArchivo();
+            if (e.RowIndex >= 0) btnGenera_Click(sender, EventArgs.Empty);
         }
     }
 }

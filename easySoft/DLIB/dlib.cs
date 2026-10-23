@@ -175,7 +175,7 @@ namespace DLIB
                         {
                             foreach (SqlParameter p in xpar)
                             {
-                                command.Parameters.Add(new SqlParameter( p.ParameterName,p.Value));
+                                command.Parameters.Add((SqlParameter)((ICloneable)p).Clone());
                             }
                         }
                         cn.Open();
@@ -255,7 +255,7 @@ namespace DLIB
             get { return _EnableExternalImages; }
             //  set { _EnableExternalImages = value; }
         }
-        private string query;
+
         private List<SqlParameter> xpar = null;
         public DataSet db = new DataSet();
         public RepoMan(string _nR, List<SqlParameter> _xpar = null)
@@ -279,21 +279,20 @@ namespace DLIB
                 cn.Close();
                 if (dtt.Rows.Count != 1)
                 {
-                    Interaction.MsgBox("mas de una fila para definicion de reporte");
-                    db = null;
-                    return;
+
+                    throw new InvalidOperationException("El reporte no existe o está duplicado.");
                 }
                 this._Comentario = (dtt.Rows[0]["COMENTARIO"] == DBNull.Value ? "" : (string)dtt.Rows[0]["COMENTARIO"]);
                 this._EnableExternalImages = (dtt.Rows[0]["EnableExternalImages"] == DBNull.Value ? false : (bool)dtt.Rows[0]["EnableExternalImages"]);
                 string  query = (dtt.Rows[0]["Sentencia"] == DBNull.Value ? "" : (string)dtt.Rows[0]["Sentencia"]); 
                 command = new SqlCommand(query, cn);
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 60;
                 //Agrego parametros de la consulta
                 if (xpar != null)
                 {
                     foreach (SqlParameter p in xpar)
                     {
-                        command.Parameters.Add(new SqlParameter(p.ParameterName, p.Value));
+                        command.Parameters.Add((SqlParameter)((ICloneable)p).Clone());
                     }
                 }
                 cn.Open();
@@ -305,12 +304,17 @@ namespace DLIB
             // Aqui necesito los nombres de las tablas para poder hacer match con el origen de datos 
             // que se pone en la definición del reporte. Para ello la primera tabla de todo conjunto de datos
             // deberá ser una que especifique dichos nombres
+            if (db.Tables.Count < 2) throw new InvalidOperationException("El reporte no devolvió tablas de datos.");
             for (var j = 0; j <= db.Tables.Count - 1; j++)
             {
                 if (j == 0)
                     continue;
                 DataTable table = db.Tables[j];
-                string nT = db.Tables[0].Rows[0]["N" + j.ToString().Trim()].ToString();
+                                string column = "N" + j;
+                if (db.Tables[0].Rows.Count != 1 || !db.Tables[0].Columns.Contains(column))
+                    throw new InvalidOperationException("La definición de tablas del reporte es inválida.");
+                string nT = Convert.ToString(db.Tables[0].Rows[0][column]);
+                if (string.IsNullOrWhiteSpace(nT)) throw new InvalidOperationException("Falta el nombre de una tabla del reporte.");
                 table.TableName = nT;
             }
         }
@@ -385,64 +389,45 @@ namespace DLIB
         /// <param name="pwdx">clave</param>
         /// <param name="ciax">codigo de empresa</param>
         /// <returns></returns>
-        public bool Inicia_Sesion(string cnRoot,string usrx, string pwdx,int ciax)
+        public bool Inicia_Sesion(string cnRoot, string usrx, string pwdx, int ciax)
         {
-            _CadenaConexionRoot = cnRoot; 
-            try
+            // Publish a new session only after credentials, permissions and the
+            // company connection have all been validated. A cancelled user switch
+            // leaves the previous session intact.
+            if (string.IsNullOrWhiteSpace(usrx) || usrx.Length > 100 || string.IsNullOrEmpty(pwdx) || ciax < 0) return false;
+            using (var cn = new SqlConnection(cnRoot))
+            using (var command = new SqlCommand(@"SELECT a.connstring, u.Nombre, u.codigo, u.userpwdhash
+                FROM empresas a INNER JOIN Permisos p ON p.codcia = a.codcia AND p.tipo = 'E'
+                INNER JOIN usuarios u ON u.codigo = p.usercod
+                WHERE a.codcia = @codcia AND CAST(u.usernom AS varbinary(max)) = CAST(@nomuser AS varbinary(max))", cn))
             {
-                using (SqlConnection cn = DAO.Conexion.Conectar(true))
-                {
-                    //traer la cadena de conexion de la cia indicada si es exitosa 
-                    string sql = @"SELECT  a.connstring, c.Nombre, c.codigo FROM empresas A 
-                                left join (
-	                                select usernom, userpwd , codigo,Nombre from usuarios
-                                 )C on CAST(usernom as varbinary(100)) = CAST(@nomuser as varbinary) 
-                                AND CAST(userpwd as varbinary(100)) = CAST(@pwd as varbinary(100))
-                                inner join
-                                (
-                                select usercod, codcia from Permisos where tipo='E'   
-                                 ) B on a.codcia=B.codcia and b.usercod= isnull(c.codigo,0)
-                                where A.codcia = @codcia";
-                    SqlCommand command = new SqlCommand(sql, cn);
-                    command.Parameters.Add("@codcia", SqlDbType.Int );
-                    command.Parameters["@codcia"].Value = ciax;
-                    command.Parameters.Add("@nomuser", SqlDbType.VarChar);
-                    command.Parameters["@nomuser"].Value = usrx;
-                    command.Parameters.Add("@pwd", SqlDbType.VarChar);
-                    command.Parameters["@pwd"].Value = pwdx;
-                    cn.Open();
-                    SqlDataAdapter da = new SqlDataAdapter(command);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    cn.Close();
-                    if (dt.Rows.Count != 1)
-                    {
-                        return false;
-                    }
-                    _CadenaConexion = dt.Rows[0][0].ToString();
-                    using (SqlConnection cn2 = DAO.Conexion.Conectar())
-                    {
-                        cn2.Open();
-                        cn2.Close();
-                    }
-                    //si llego hasta este punto es porque si existe y si vale la segunda cadena de conexion
-                    _UsrNom = dt.Rows[0][1].ToString();
-                    _UsrId = usrx;
-                    _CodUser = (int)dt.Rows[0][2];
-                    _CodCia = ciax;
-                   DFUNC.UsrWinReg(true);
-                }
+                command.Parameters.Add("@codcia", SqlDbType.Int).Value = ciax;
+                command.Parameters.Add("@nomuser", SqlDbType.VarChar, 100).Value = usrx;
+                cn.Open();
+                var table = new DataTable();
+                using (var adapter = new SqlDataAdapter(command)) adapter.Fill(table);
+                if (table.Rows.Count != 1 || !PasswordSecurity.Verify(pwdx, Convert.ToString(table.Rows[0]["userpwdhash"]))) return false;
+                var builder = new SqlConnectionStringBuilder(Convert.ToString(table.Rows[0]["connstring"]));
+                if (!builder.IntegratedSecurity && string.Equals(builder.UserID, "sa", StringComparison.OrdinalIgnoreCase))
+                    throw new ConfigurationErrorsException("La conexión de empresa debe utilizar una cuenta distinta de sa.");
+                builder.Encrypt = true;
+                builder.TrustServerCertificate = false;
+                builder.PersistSecurityInfo = false;
+                builder.ConnectTimeout = 30;
+                using (var company = new SqlConnection(builder.ConnectionString)) company.Open();
+                string name = Convert.ToString(table.Rows[0]["Nombre"]);
+                int user = Convert.ToInt32(table.Rows[0]["codigo"]);
+                _CadenaConexionRoot = cnRoot;
+                _CadenaConexion = builder.ConnectionString;
+                _UsrNom = name;
+                _UsrId = usrx;
+                _CodUser = user;
+                _CodCia = ciax;
+                try { DFUNC.UsrWinReg(true); }
+                catch (System.Security.SecurityException) { }
+                catch (UnauthorizedAccessException) { }
+                return true;
             }
-            catch (SqlException ex)
-            {
-                _CadenaConexionRoot = "";
-                _CadenaConexion = "";
-                _UsrNom = "";
-                throw ex;
-            }
-            
-            bool ret = true;
-            return ret;
         }
     }
 }

@@ -32,10 +32,25 @@ namespace GUI
         Point cursori = new Point(0, 0);
         bool mouseD = false;
 
-
-        private void FrmSesion_Load(object sender, EventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            ctlSesion1.loader();
+            // Do not let a pending authentication publish a session after the
+            // modal dialog has been cancelled.
+            if (!ctlSesion1.Enabled && !_Resultado) e.Cancel = true;
+            base.OnFormClosing(e);
+        }
+
+
+        private async void FrmSesion_Load(object sender, EventArgs e)
+        {
+            try { await ctlSesion1.loader(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo iniciar la sesión: " + ex.Message);
+                _Resultado = false;
+                Close();
+                return;
+            }
             this.barraTitulo.Visible = false;
             this.ctlSesion1.Location = new Point(0, 0);
             this.Height = this.Height - 38;
@@ -65,7 +80,7 @@ namespace GUI
         private void FrmSesion_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) {
-                Environment.Exit(-1);
+                Close();
             }
         }
 

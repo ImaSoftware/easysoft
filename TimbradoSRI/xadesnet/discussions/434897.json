@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "1008323",
+    "ThreadId": "434897",
+    "Html": "Hola, al ejecutar el método Sign con un XmlDocument como parámetro, recivo un error de que el documento no puede estar null. En concreto este: Document to sign cannot be null<br />\n<br />\nEl XmlDocument que paso como parámetro no está nulo y ha cargado el fichero especificado en el path correctamente.<br />\n<br />\nAdjunto el código a ver si me podéis ayudar.<br />\n<br />\nGracias.<br />\n<pre><code>X509Certificate2 certificate = LoadCertificate(System.Configuration.ConfigurationManager.AppSettings[&quot;CertificatePath&quot;], System.Configuration.ConfigurationManager.AppSettings[&quot;CertificatePassword&quot;]);\nXmlDocument xDoc = new XmlDocument();\n                    xDoc.Load(&quot;E:\\\\Ports\\\\Temp\\\\testInput.xml&quot;);\n                    \n                    string sPath = System.Configuration.ConfigurationManager.AppSettings[&quot;TempPath&quot;];\n                    string fileTempName = Guid.NewGuid().ToString() + &quot;.temp&quot;;\n                    sPath = Path.Combine(sPath, fileTempName);\n\n                    XmlDsigHelper.Sign(xDoc).UsingFormat(XadesNetLib.XmlDsig.Common.XmlDsigSignatureFormat.Enveloped).Using(certificate).SignToFile(sPath);\n\n                    XmlDocument xDocResult = new XmlDocument();\n                    xDocResult.Load(sPath);\n\n                    return xDocResult.OuterXml;</code></pre>\n\n",
+    "PostedDate": "2013-02-28T09:27:30.213-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1008329",
+    "ThreadId": "434897",
+    "Html": "He probado modificando el código y cambiando el parámetro del Sign por una ruta y el error que retorna es &quot;An XmlDocument context is required for enveloped transforms.&quot;<br />\n",
+    "PostedDate": "2013-02-28T09:37:08.677-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1348573",
+    "ThreadId": "579344",
+    "Html": "I am trying to validate mi signed XML to present Factura-e (Spain)\r<br />\n<br />\nI have the following error: \r<br />\n<br />\nFacturaE 3.0,cvc-complex-type.4: Attribute 'Algorithm' must appear on element 'DigestMethod'\r<br />\n<br />\nThe web site to validate is : <a href=\"http://sedeaplicaciones2.minetur.gob.es/FacturaE/\" rel=\"nofollow\">http://sedeaplicaciones2.minetur.gob.es/FacturaE/</a> \r<br />\n<br />\nI use VB.NET :\r<br />\n<br />\nDim howToSign = XadesHelper.Sign(sFicheroXML).Using(oCertificado).IncludingCertificateInSignature()\r<br />\nhowToSign.SignToFile(sFicheroXML)\r<br />\n<br />\nHelp, please !!!!<br />\n",
+    "PostedDate": "2015-02-03T03:30:13.4-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

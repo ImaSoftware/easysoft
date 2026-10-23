@@ -23,13 +23,18 @@ namespace GUI.Interfaz.Reportes
             InitializeComponent();
             this.Titulo=xtitulo;
         }
-        private void btnGenera_Click(object sender, EventArgs e)
+        private async void btnGenera_Click(object sender, EventArgs e)
         {
+            if (loadingReport) return;
+            loadingReport = true;
             Cursor = Cursors.WaitCursor;
-            CreaRepo();
-            Cursor = Cursors.Default;
+            try {
+            await CreaRepo();
+            } catch (Exception ex) { MessageBox.Show("No se pudo generar el reporte: " + ex.Message); }
+            finally { loadingReport = false; if (!IsDisposed) Cursor = Cursors.Default; }
         }
-        private void CreaRepo() {
+        private bool loadingReport;
+        private async Task CreaRepo() {
             string namereport = "";
             if (this.rbDet.Checked)
                 namereport = "R_07001D";
@@ -50,15 +55,17 @@ namespace GUI.Interfaz.Reportes
                 if(pm.tip != DLIB.Parametro.tipo.SoloRepo )
                     prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
             }
+            string reportPath = DLIB.RuntimeConfig.ReportPath(namereport);
             DLIB.RepoMan repo = new DLIB.RepoMan(namereport, prmtr);
-            repo.load();
+            await Task.Run(() => repo.load());
+            if (IsDisposed || Disposing) return;
             this.visor.SetDisplayMode(DisplayMode.Normal);
             //this.Titulo = repo.Comentario;
 
             if (String.IsNullOrEmpty(visor.LocalReport.ReportPath)||
-                !this.visor.LocalReport.ReportPath.Equals(System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\" + namereport + ".rdlc"))
+                !this.visor.LocalReport.ReportPath.Equals(reportPath))
             {
-                this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\" + namereport + ".rdlc";
+                this.visor.LocalReport.ReportPath = reportPath;
             }
             
             //this.WindowState = FormWindowState.Maximized;
@@ -76,7 +83,7 @@ namespace GUI.Interfaz.Reportes
             }
             catch (Exception ex)
             {
-                MessageBox.Show("opps: " + ex.Message);
+                throw new InvalidOperationException("No se pudo preparar el reporte.", ex);
             }
             this.visor.LocalReport.EnableExternalImages = repo.EnableExternalImages;
             if (lo != null)
@@ -98,7 +105,7 @@ namespace GUI.Interfaz.Reportes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("opps: " + ex.Message);
+                    throw new InvalidOperationException("No se pudo preparar el reporte.", ex);
                 }
             }
             this.visor.RefreshReport();
@@ -169,13 +176,15 @@ namespace GUI.Interfaz.Reportes
 
         private void txtprov_KeyUp(object sender, KeyEventArgs e)
         {
-            easySearch repoSearch = new easySearch("E_TB06A110", "Codigo",null);
+
             switch (e.KeyCode)
             {
                 case DLIB.Globales.keyhelp:
-                        DialogResult x = repoSearch.ShowDialog();
+                    using (var repoSearch = new easySearch("E_TB06A110", "Codigo", null)) {
+                    DialogResult x = repoSearch.ShowDialog();
                     if (x == DialogResult.OK && repoSearch.Resultado!=null) {
                         txtprov.Text = repoSearch.Resultado.ToString();
+                    }
                     }
                     break;
             }
@@ -227,14 +236,16 @@ namespace GUI.Interfaz.Reportes
         private void txtvende_KeyUp(object sender, KeyEventArgs e)
         {
             List<SqlParameter> p = new List<SqlParameter>();p.Add(new SqlParameter("@nomtag", "I_COMPRA"));
-            easySearch repoSearch = new easySearch("ALPTABLA", "Codigo", p);
+
             switch (e.KeyCode)
             {
                 case DLIB.Globales.keyhelp:
+                    using (var repoSearch = new easySearch("ALPTABLA", "Codigo", p)) {
                     DialogResult x = repoSearch.ShowDialog();
                     if (x == DialogResult.OK && repoSearch.Resultado != null)
                     {
                         txtcompra.Text = repoSearch.Resultado.ToString();
+                    }
                     }
                     break;
             }

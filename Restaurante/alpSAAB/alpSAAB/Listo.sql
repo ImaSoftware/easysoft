@@ -1,0 +1,1 @@
+ Update SD_CuentasDetalle Set Estado = 2 where IdCabecera= (Select isnull(Max(Id),0) from SD_CuentasCabecera)  AND Estado <> 0

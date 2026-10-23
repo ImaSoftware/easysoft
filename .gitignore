@@ -259,3 +259,35 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# Entrega de fuentes: dependencias, certificados y datos se obtienen por separado.
+*.dll
+*.exe
+*.pdb
+*.zip
+*.rar
+*.7z
+*.bak
+*.p12
+*.pfx
+*.snk
+*.key
+*.pem
+*.sqlite
+*.db
+*.env
+.env
+.env.*
+!*.env.example
+**/certpass.txt
+**/cadenasConexion.txt
+/06112018/
+/foxpro-encontrado/
+/revision-profunda-foxpro.txt
+/revisar-comprimidos-foxpro.ps1
+/TimbradoSRI/xadesnet/wiki/
+/TimbradoSRI/xadesnet/issues/
+*.dep
+*.pdn
+.hg/
+.svn/

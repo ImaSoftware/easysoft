@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "1184976",
+    "ThreadId": "515020",
+    "Html": "Hi \r<br />\nI am trying to add a new reference element but I cant. At the moment I have 2 references but I need to add one more. I actually add id attribute to KeyInfo. Maybe someone can help me with that. <br />\n",
+    "PostedDate": "2014-01-20T09:59:02.433-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1193514",
+    "ThreadId": "515020",
+    "Html": "<strong>tibyj wrote:</strong><br />\n<blockquote>\nHi <br />\nI am trying to add a new reference element but I cant. At the moment I have 2 references but I need to add one more. I actually add id attribute to KeyInfo. Maybe someone can help me with that.<br />\n</blockquote>\nHola\r<br />\nEstoy tratando de añadir una referencia a keyInfo, ya le añadi el atributo id en keyinfo para poder referenciarlo pero no me permite hacerlo\r<br />\nAlguien sabe como realizar esta referencia??\r<br />\nGracias de antemano<br />\n",
+    "PostedDate": "2014-01-23T12:31:29.383-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1343927",
+    "ThreadId": "515020",
+    "Html": "Buenas tardes \r<br />\n<br />\nQuisiera saber si alguien pudo agregar este nodo a la firma ya que por mas que intento me sale firma invalida.\r<br />\n<br />\nQuedo atento a sus comentarios\r<br />\n<br />\nCordial Saludo<br />\n<h1>Edward Martinez</h1>\ngood afternoon\r<br />\n<br />\nI wonder if anyone could add this node to the firm and that I try I get more invalid signature.\r<br />\n<br />\nStay tuned to your comments\r<br />\n<br />\nBest Regard\r<br />\n<br />\nEdward Martinez<br />\n",
+    "PostedDate": "2015-01-21T13:36:51.483-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1346383",
+    "ThreadId": "515020",
+    "Html": "\r\n<div dir=\"ltr\">Buenas tardes\r\n<div><br>\r\n</div>\r\n<div>Sabes que yo no logré hacer esto, se me complico mucho. Me todo incluso cambiar de lenguaje de programación para poder tener una firma valida</div>\r\n<div><br>\r\n</div>\r\n<div>Saludos</div>\r\n<div><br>\r\n</div>\r\n<div>Esteban Ortega<br>\r\n<br>\r\n<div>\r\n<hr id=\"stopSpelling\">\r\n</div>\r\n</div>\r\n</div>\r\n",
+    "PostedDate": "2015-01-27T10:36:00.087-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,7 @@
+data/
+secrets/
+artifacts/
+Schemas/original/
+Schemas/*.zip
+*.p12
+*.pfx

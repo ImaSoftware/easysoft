@@ -29,9 +29,10 @@ namespace GUI
 
         private void Lobby_Load(object sender, EventArgs e)
         {
-            easyMenu1.LLena_Menu();
+            try { easyMenu1.LLena_Menu(); }
+            catch (Exception ex) { MessageBox.Show("No se pudo cargar el menú: " + ex.Message); Close(); }
         }
-        private void OpenForm(DLIB.MenuInfo myInfo)
+        private async Task OpenForm(DLIB.MenuInfo myInfo)
         {
             if (myInfo.Err)
             {
@@ -44,9 +45,11 @@ namespace GUI
                     //page.Name = "Panel" + myInfo.codigo.ToString()
                     VentanaMain.TabPages.Add(page);
                     VentanaMain.SelectedTab = page;
-                    string ruta = "\\\\192.168.100.20\\alpwinsql\\reprueba.exe ";
+                    string ruta = System.Configuration.ConfigurationManager.AppSettings["ExternalApplicationPath"];
                     //ruta: Direccion donde se encuetra la aplicacion.
                     //"": Parametro en caso de que tu aplicacion este esperando un valor
+                    if (string.IsNullOrWhiteSpace(ruta) || !System.IO.Path.IsPathRooted(ruta) || !System.IO.File.Exists(ruta))
+                    { VentanaMain.TabPages.Remove(page); page.Dispose(); throw new InvalidOperationException("Configure una ruta válida en ExternalApplicationPath."); }
                     ProcessStartInfo info = new ProcessStartInfo(ruta, "");
                     Process proc1 = null;
                     try
@@ -55,11 +58,25 @@ namespace GUI
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("No se encontro el archivo");
+                        VentanaMain.TabPages.Remove(page); page.Dispose();
+                        MessageBox.Show("No se pudo abrir la aplicación externa: " + ex.Message);
+                        return;
                     }
-                    proc1.WaitForInputIdle();
+                    if (proc1 == null) { VentanaMain.TabPages.Remove(page); page.Dispose(); return; }
+                    try
+                    {
+                        if (!await Task.Run(() => proc1.WaitForInputIdle(10000)) || proc1.HasExited || proc1.MainWindowHandle == IntPtr.Zero)
+                            throw new InvalidOperationException("La aplicación externa no abrió una ventana a tiempo.");
+                    if (page.IsDisposed || IsDisposed) return;
                     SetParent(proc1.MainWindowHandle, page.Handle);
-                    SendMessage(proc1.MainWindowHandle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+                        SendMessage(proc1.MainWindowHandle, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+                    }
+                    catch (Exception ex)
+                    {
+                        VentanaMain.TabPages.Remove(page); page.Dispose();
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally { proc1.Dispose(); }
                 }
                 else {
                     //crear instancia
@@ -75,7 +92,7 @@ namespace GUI
                         {
                             if (!myInfo.Inform)
                             {
-                                ((baseClass.easyForm)obj).Show();
+                                ((baseClass.easyForm)obj).Show(this);
                                 ((baseClass.easyForm)obj).BringToFront();
                             }
                             else {
@@ -107,9 +124,11 @@ namespace GUI
                 }
             }
         }
-        private void easyMenu1_AbrirPrograma(object sender, EventArgs e)
+        private async void easyMenu1_AbrirPrograma(object sender, EventArgs e)
         {
-            OpenForm(((Controles.easymenubutton)sender).myInfo);
+            try { await OpenForm(((Controles.easymenubutton)sender).myInfo); }
+            catch (Exception ex) { MessageBox.Show("No se pudo abrir el formulario: " + ex.Message); }
+            if (IsDisposed || Disposing) return;
             this.mainsplit.SplitterDistance = easyMenu1.cambiaWidth();
             this.easyMenu1.soloModulo();
         }
@@ -121,7 +140,7 @@ namespace GUI
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (VentanaMain.SelectedTab != null) { this.VentanaMain.TabPages.Remove(VentanaMain.SelectedTab); }
+            if (VentanaMain.SelectedTab != null) { var page = VentanaMain.SelectedTab; VentanaMain.TabPages.Remove(page); page.Dispose(); }
         }
 
         private void easyMenu1_MouseLeave(object sender, EventArgs e)

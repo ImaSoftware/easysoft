@@ -1,0 +1,25 @@
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <RootNamespace>Regression</RootNamespace>
+    <StartupObject>Regression.Program</StartupObject>
+    <OutputPath>bin\</OutputPath>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" /><Reference Include="System.Core" />
+    <Reference Include="System.Data" /><Reference Include="System.Xml" />
+    <Reference Include="System.Transactions" /><Reference Include="System.ServiceProcess" />
+    <Import Include="System" /><Import Include="System.Data" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Compile Include="..\Shared\Database.vb" />
+    <Compile Include="..\Shared\AdminSecurity.vb" />
+    <Compile Include="..\Impresion SAAB\SAAB_IMP.vb" />
+    <Compile Include="Program.vb" />
+    <Compile Include="FlowTests.vb" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

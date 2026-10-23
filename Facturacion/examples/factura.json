@@ -1,0 +1,9 @@
+{
+  "fechaEmision": "REEMPLAZAR_FECHA_YYYY-MM-DD",
+  "referencia": "PRUEBA-001",
+  "comprador": {"tipoIdentificacion":"07","identificacion":"9999999999999","razonSocial":"CONSUMIDOR FINAL","direccion":null},
+  "detalles": [{"codigo":"PRUEBA-1","descripcion":"Servicio de prueba","cantidad":1,"precioUnitario":1.00,"descuento":0.00,"codigoIva":"4","tarifaIva":15}],
+  "pagos": [{"formaPago":"01","total":1.15}],
+  "propina": 0.00,
+  "informacionAdicional": []
+}

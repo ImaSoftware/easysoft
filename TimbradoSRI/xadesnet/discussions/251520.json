@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "587727",
+    "ThreadId": "251520",
+    "Html": "\r\n<p>Hola a todos. Estoy intentando firmar un xml con xadesnet. Me he leido todo lo que he encontrado de xades y los dem&aacute;s posts de discusi&oacute;n. Parece ser que para validar con facturae necesito XAdES-EPES, y xadesnet solo firma con XAdES-BES. Hasta\r\n aqu&iacute; lo entiendo. Mi problema es que ni siquiera soy capaz de firmar con XAdES-BES. Genero un xml y uso este c&oacute;digo:</p>\r\n<p>&nbsp;</p>\r\n<p>XadesNetLib.XmlDsig.XmlDsigHelper.Sign(<span style=\"color:#a31515; font-size:x-small\"><span style=\"color:#a31515; font-size:x-small\">&quot;D:\\MiFactura.xml&quot;</span></span><span style=\"font-size:x-small\">).Using(oCert).SignToFile(</span><span style=\"color:#a31515; font-size:x-small\"><span style=\"color:#a31515; font-size:x-small\">&quot;D:\\MiFacturaFirmada.xml&quot;</span></span><span style=\"font-size:x-small\">)</span></p>\r\n<p>&nbsp;</p>\r\n<p>Previamente recorro mis certificados con un X509Store y almaceno el que me interesa en oCert.</p>\r\n<p>&nbsp;</p>\r\n<p>Despu&eacute;s, intento validarla factura en efactura y me dice que no est&aacute; firmada. Al menos deber&iacute;a decirme que est&aacute; con xades-bes. Me pod&eacute;is echar una mano para firmarla al menos con bes?&nbsp;Y cuando saqu&eacute;is la nueva\r\n versi&oacute;n ya lo cambiar&eacute;.</p>\r\n<p>&nbsp;</p>\r\n<p>Gracias.</p>\r\n<p></p>\r\n<div><span style=\"font-size:x-small\"><span style=\"font-size:x-small\">\r\n<p>&nbsp;</p>\r\n</span></span><span style=\"font-size:x-small\"><span style=\"font-size:x-small\"></span></span></div>\r\n<p></p>\r\n&nbsp;",
+    "PostedDate": "2011-03-28T10:42:55.76-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

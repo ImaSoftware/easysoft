@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1339638",
+    "ThreadId": "577046",
+    "Html": "Hi,\r<br />\n<br />\nWhen I am trying to sign xml with your test project, I am getting error that Signature is not valid. Do you have any suggestion what could be wrong?!\r<br />\n<br />\n<img src=\"https://www.dropbox.com/s/q0ynqbj7hnwfudh/signature_not_valid.jpg?dl=0\" alt=\"Image\" />\r<br />\n<br />\nwhen I try XAdES signature I got error: CryptographicException: The specified network password is not correct. There is nowhere to add password of private key.\r<br />\n<br />\nThank you for help.<br />\n",
+    "PostedDate": "2015-01-07T00:38:01.563-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

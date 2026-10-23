@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SAAB", "alpSAAB\SAAB.vbproj", "{919D2369-6B37-4B04-AC0C-AF4B7840CDB8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Impresion SAAB", "Impresion SAAB\Impresion SAAB.vbproj", "{E4B4A597-EBB1-45FA-A152-5FCF62A211B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{919D2369-6B37-4B04-AC0C-AF4B7840CDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{919D2369-6B37-4B04-AC0C-AF4B7840CDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{919D2369-6B37-4B04-AC0C-AF4B7840CDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{919D2369-6B37-4B04-AC0C-AF4B7840CDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4B4A597-EBB1-45FA-A152-5FCF62A211B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B4A597-EBB1-45FA-A152-5FCF62A211B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B4A597-EBB1-45FA-A152-5FCF62A211B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B4A597-EBB1-45FA-A152-5FCF62A211B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

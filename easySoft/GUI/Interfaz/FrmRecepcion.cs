@@ -17,20 +17,28 @@ namespace GUI.Interfaz
             InitializeComponent();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        public FrmRecepcion(string titulo, string args) : this()
+        {
+            Titulo = titulo;
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
         {
             try
             {
-                miPuerto.Open();
-                textBox1.Text = miPuerto.ReadLine();
-                miPuerto.Close();
+                button4.Enabled = false;
+                miPuerto.ReadTimeout = 5000;
+                textBox1.Text = await Task.Run(() =>
+                {
+                    try { miPuerto.Open(); return miPuerto.ReadLine(); }
+                    finally { if (miPuerto.IsOpen) miPuerto.Close(); }
+                });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-          
-
+            finally { if (!IsDisposed) button4.Enabled = true; }
         }
     }
 }

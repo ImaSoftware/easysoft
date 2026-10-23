@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "842102",
+    "ThreadId": "357504",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I generated XADES-BES&nbsp; xml file , but I need &lt;RSAKeyValue&gt; elements in outxml for validating.</p>\r\n<p>But it isnt generated.</p>\r\n<p>Is there any way to get xades-bes xml with RSAKeyValue ??</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks any advance.</p>\r\n",
+    "PostedDate": "2012-05-29T08:15:26.553-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

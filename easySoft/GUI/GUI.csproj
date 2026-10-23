@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>GUI</RootNamespace>
     <AssemblyName>GUI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -300,9 +300,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -318,16 +318,16 @@
     <Content Include="facil.ico" />
     <None Include="Resources\geninf.png" />
     <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+    <Content Include="..\packages\Microsoft.SqlServer.Types.14.0.314.76\nativeBinaries\x64\msvcr120.dll"><Link>SqlServerTypes\x64\msvcr120.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+    <Content Include="..\packages\Microsoft.SqlServer.Types.14.0.314.76\nativeBinaries\x64\SqlServerSpatial140.dll"><Link>SqlServerTypes\x64\SqlServerSpatial140.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+    <Content Include="..\packages\Microsoft.SqlServer.Types.14.0.314.76\nativeBinaries\x86\msvcr120.dll"><Link>SqlServerTypes\x86\msvcr120.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+    <Content Include="..\packages\Microsoft.SqlServer.Types.14.0.314.76\nativeBinaries\x86\SqlServerSpatial140.dll"><Link>SqlServerTypes\x86\SqlServerSpatial140.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\llave.png" />
@@ -354,8 +354,9 @@
     <None Include="Resources\INGRESO.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\Reportes\" />
+    <Folder Include="Reportes\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
+  <ItemGroup><Content Include="Reportes\**\*.rdlc"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

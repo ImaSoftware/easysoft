@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1409920",
+    "ThreadId": "626657",
+    "Html": "I don't have an idea about how to get SignatureTimeStamp (in UnsignedProperties, XAdES-A) from a trusted timestamp service. Could someone please give me a tip on how to send an online request to a timestamp service in NET (C# or C++/CLI)?<br />\n",
+    "PostedDate": "2015-04-13T09:44:35.83-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -5645,8 +5645,7 @@ namespace GUI.davmerCorpDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;Us" +
-                "er ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.Globales.Parametros.CadenaConexion;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5862,8 +5861,7 @@ namespace GUI.davmerCorpDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;Us" +
-                "er ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.Globales.Parametros.CadenaConexion;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6091,8 +6089,7 @@ namespace GUI.davmerCorpDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;Us" +
-                "er ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.Globales.Parametros.CadenaConexion;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6565,8 +6562,7 @@ namespace GUI.davmerCorpDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;Us" +
-                "er ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.Globales.Parametros.CadenaConexion;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6970,8 +6966,7 @@ namespace GUI.davmerCorpDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;Us" +
-                "er ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.Globales.Parametros.CadenaConexion;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7172,8 +7167,7 @@ namespace GUI.davmerCorpDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=192.168.100.20\\sqlexpress;Initial Catalog=davmercorp;Persist Security" +
-                " Info=True;User ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = DLIB.Globales.Parametros.CadenaConexion;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

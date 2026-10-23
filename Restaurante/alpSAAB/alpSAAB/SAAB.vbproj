@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{919D2369-6B37-4B04-AC0C-AF4B7840CDB8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SAAB.My.MyApplication</StartupObject>
+    <RootNamespace>SAAB</RootNamespace>
+    <AssemblyName>SAAB</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SAAB.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SAAB.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>saabIco.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="alpSeguridad, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca2d2fa1e4f56a4c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\alpSeguridad.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>..\lib\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common"><HintPath>..\lib\Microsoft.ReportViewer.Common.dll</HintPath></Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms"><HintPath>..\lib\Microsoft.ReportViewer.WinForms.dll</HintPath></Reference>
+    <Reference Include="Spire.Barcode, Version=1.2.5.21040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Spire.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="System" /><Reference Include="System.Transactions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="ClasesBase\Global.vb" />
+    <Compile Include="ClasesBase\Impresion.vb" />
+    <Compile Include="ClasesBase\Tema.vb" />
+    <Compile Include="ControlesUsuario\Area.Designer.vb">
+      <DependentUpon>Area.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\Area.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\BarraNavegacionProducto.Designer.vb">
+      <DependentUpon>BarraNavegacionProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\BarraNavegacionProducto.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\busqueda.Designer.vb">
+      <DependentUpon>busqueda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\busqueda.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\Consumo.Designer.vb">
+      <DependentUpon>Consumo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\Consumo.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\dolfinBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\ItemLeyenda.Designer.vb">
+      <DependentUpon>ItemLeyenda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\ItemLeyenda.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\miniOrden.Designer.vb">
+      <DependentUpon>miniOrden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\miniOrden.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\MyCheckBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\Orden.Designer.vb">
+      <DependentUpon>Orden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\Orden.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\BusquedaS.Designer.vb">
+      <DependentUpon>BusquedaS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\BusquedaS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\CmdConfig.Designer.vb">
+      <DependentUpon>CmdConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\CmdConfig.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programas\Inicio.Designer.vb">
+      <DependentUpon>Inicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Inicio.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\AbrirMesa.Designer.vb">
+      <DependentUpon>AbrirMesa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\AbrirMesa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\AgregarMesa.Designer.vb">
+      <DependentUpon>AgregarMesa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\AgregarMesa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\Grafico.Designer.vb">
+      <DependentUpon>Grafico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\Grafico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\vReport.Designer.vb">
+      <DependentUpon>vReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\vReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\AreaDialog.Designer.vb">
+      <DependentUpon>AreaDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\AreaDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\BotonCinta.Designer.vb">
+      <DependentUpon>BotonCinta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\BotonCinta.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\botonpunto.Designer.vb">
+      <DependentUpon>botonpunto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\botonpunto.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\CtlMod_Data.Designer.vb">
+      <DependentUpon>CtlMod_Data.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\CtlMod_Data.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClasesBase\DolphinButton.Designer.vb">
+      <DependentUpon>DolphinButton.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClasesBase\DolphinButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\GridTouch.Designer.vb">
+      <DependentUpon>GridTouch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\GridTouch.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\ItemInventario.Designer.vb">
+      <DependentUpon>ItemInventario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\ItemInventario.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\MenuEstados.Designer.vb">
+      <DependentUpon>MenuEstados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\MenuEstados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\MesaDialog.Designer.vb">
+      <DependentUpon>MesaDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\MesaDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\Mesas.Designer.vb">
+      <DependentUpon>Mesas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\Mesas.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programas\ModificaData.Designer.vb">
+      <DependentUpon>ModificaData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\ModificaData.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\NumericaPad.Designer.vb">
+      <DependentUpon>NumericaPad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\NumericaPad.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\TemaDialog.Designer.vb">
+      <DependentUpon>TemaDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\TemaDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\Pedido.Designer.vb">
+      <DependentUpon>Pedido.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\Pedido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\About.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClasesBase\DolphinCtl.Designer.vb">
+      <DependentUpon>DolphinCtl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClasesBase\DolphinCtl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesUsuario\labelBuffer.Designer.vb">
+      <DependentUpon>labelBuffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesUsuario\labelBuffer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClasesBase\DolphinForm.Designer.vb">
+      <DependentUpon>DolphinForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClasesBase\DolphinForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClasesBase\FUGSD.vb" />
+    <Compile Include="Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\Comandas.Designer.vb">
+      <DependentUpon>Comandas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Comandas.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\EscogerConsumo.Designer.vb">
+      <DependentUpon>EscogerConsumo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\EscogerConsumo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\Esquematizador.Designer.vb">
+      <DependentUpon>Esquematizador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Esquematizador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\InputClave.Designer.vb">
+      <DependentUpon>InputClave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas Auxiliares\InputClave.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programas\SysParam.Designer.vb">
+      <DependentUpon>SysParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\SysParam.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\Restaurante.Designer.vb">
+      <DependentUpon>Restaurante.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\Restaurante.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\SplitCuenta.Designer.vb">
+      <DependentUpon>SplitCuenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Programas\Mi Restaurante\SplitCuenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClasesBase\SDParameters.vb" />
+    <Compile Include="Splash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.vb">
+      <DependentUpon>Splash.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ClasesBase\Usuario.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ControlesUsuario\Area.resx">
+      <DependentUpon>Area.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\BarraNavegacionProducto.resx">
+      <DependentUpon>BarraNavegacionProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\busqueda.resx">
+      <DependentUpon>busqueda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\Consumo.resx">
+      <DependentUpon>Consumo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\ItemLeyenda.resx">
+      <DependentUpon>ItemLeyenda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\miniOrden.resx">
+      <DependentUpon>miniOrden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\Orden.resx">
+      <DependentUpon>Orden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\BusquedaS.resx">
+      <DependentUpon>BusquedaS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\CmdConfig.resx">
+      <DependentUpon>CmdConfig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Inicio.resx">
+      <DependentUpon>Inicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\AbrirMesa.resx">
+      <DependentUpon>AbrirMesa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\AgregarMesa.resx">
+      <DependentUpon>AgregarMesa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\Grafico.resx">
+      <DependentUpon>Grafico.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\vReport.resx">
+      <DependentUpon>vReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Rep\Comanda.rdlc"><Link>Reportes\Comanda.rdlc</Link><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
+    <Content Include="Rep\Prefactura.rdlc"><Link>Reportes\Prefactura.rdlc</Link><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
+    <Content Include="Rep\qRIden.rdlc"><Link>Reportes\qRIden.rdlc</Link><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
+    <EmbeddedResource Include="Ventanas Auxiliares\AreaDialog.resx">
+      <DependentUpon>AreaDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\BotonCinta.resx">
+      <DependentUpon>BotonCinta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\botonpunto.resx">
+      <DependentUpon>botonpunto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\CtlMod_Data.resx">
+      <DependentUpon>CtlMod_Data.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\GridTouch.resx">
+      <DependentUpon>GridTouch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\ItemInventario.resx">
+      <DependentUpon>ItemInventario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\labelBuffer.resx">
+      <DependentUpon>labelBuffer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventanas Auxiliares\MenuEstados.resx">
+      <DependentUpon>MenuEstados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventanas Auxiliares\MesaDialog.resx">
+      <DependentUpon>MesaDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\Mesas.resx">
+      <DependentUpon>Mesas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\ModificaData.resx">
+      <DependentUpon>ModificaData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesUsuario\NumericaPad.resx">
+      <DependentUpon>NumericaPad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventanas Auxiliares\TemaDialog.resx">
+      <DependentUpon>TemaDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\Pedido.resx">
+      <DependentUpon>Pedido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClasesBase\DolphinForm.resx">
+      <DependentUpon>DolphinForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\About.resx">
+      <DependentUpon>About.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Comandas.resx">
+      <DependentUpon>Comandas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClasesBase\DolphinCtl.resx">
+      <DependentUpon>DolphinCtl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\EscogerConsumo.resx">
+      <DependentUpon>EscogerConsumo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Esquematizador.resx">
+      <DependentUpon>Esquematizador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventanas Auxiliares\InputClave.resx">
+      <DependentUpon>InputClave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\SysParam.resx">
+      <DependentUpon>SysParam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\Restaurante.resx">
+      <DependentUpon>Restaurante.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programas\Mi Restaurante\SplitCuenta.resx">
+      <DependentUpon>SplitCuenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmartDolphin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\syscompsa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmartDolphin1.png" />
+    <None Include="Resources\SmartDolphin11.png" />
+    <None Include="Resources\SmartDolphin12.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\User.png" />
+    <None Include="Resources\fondo.png" />
+    <None Include="Resources\1uparrow.gif" />
+    <None Include="Resources\1downarrow.gif" />
+    <None Include="Resources\logo2.jpg" />
+    <None Include="Resources\back1.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\pictureEj.png" />
+    <None Include="Resources\table.png" />
+    <None Include="Resources\font.png" />
+    <None Include="Resources\fondo_opt.png" />
+    <None Include="Resources\piso5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saab_icon.ico" />
+    <None Include="Resources\saab.png" />
+    <Content Include="Resources\saab_kmG_icon.ico" />
+    <Content Include="saabIco.ico" />
+    <None Include="s_search.png" />
+    <None Include="ALP-SARC.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Resources\check.png" />
+    <None Include="Resources\SARC.png" />
+    <None Include="Resources\hide.png" />
+    <None Include="Resources\design.png" />
+    <Content Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><Compile Include="..\Shared\AdminSecurity.vb"><Link>AdminSecurity.vb</Link></Compile>
+    <Compile Include="..\Shared\Database.vb"><Link>Database.vb</Link></Compile></ItemGroup></Project>
+
+
+

@@ -52,52 +52,57 @@ namespace GUI
 
             GV_Consulta.KeyDown += ctlSearch_KeyDown;
             ctlSearch.KeyDown += ctlSearch_KeyDown;
-            SetHelpGen();
+
 
 
         }
-        protected void SetHelpGen()
+        protected async Task SetHelpGen()
         {
 
             try
             {
                 List<SqlParameter> miPar = new List<SqlParameter>();
                 miPar.Add(new SqlParameter("@cLLave", codForm));
-                DataTable dttConf = DLIB.Globales.Parametros.connSql.TraerTabla("SEARCH_001", miPar);
+                DataTable dttConf = await Task.Run(() => DLIB.Globales.Parametros.connSql.TraerTabla("SEARCH_001", miPar));
+                if (IsDisposed) return;
                 if (dttConf == null)
                 {
-                    this.DialogResult = DialogResult.Cancel;
+                    connErr = true; this.DialogResult = DialogResult.Cancel;
                     MessageBox.Show("Error al configurar la ayuda automática... Verifique ");
                     return;
                 }
                 if (dttConf.Rows.Count != 1)
                 {
-                    this.DialogResult = DialogResult.Cancel;
+                    connErr = true; this.DialogResult = DialogResult.Cancel;
                     MessageBox.Show("El conjunto de resultados vino vacío o el codigo está repetido... Verifique ");
                     return;
                 }
                 //Aqui ya se que la configuracion es unica
-                Sentencia = (dttConf.Rows[0]["sentencia"] == null ? "" : (string)dttConf.Rows[0]["sentencia"]);
+                Sentencia = (dttConf.Rows[0]["sentencia"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["sentencia"]);
 
                 ///Capturar titulo. Si es ALPTABLA recoger desde el nomtag. Asumo que el primer parámetro es el nomtag 
                 if (codForm.ToUpper().Trim() == "ALPTABLA")
                 {
-                    string sql = "select nombre from alptabla where nomtag = @nomtag";
+
                     List<SqlParameter> pp = new List<SqlParameter>();
+                    if (sqlPar == null || sqlPar.Count == 0) throw new InvalidOperationException("Falta el parámetro de búsqueda.");
                     pp.Add(sqlPar[0]);
-                    Titulo = DLIB.Globales.Parametros.connSql.TraerTabla("SEARCH_002", pp).Rows[0]["Nombre"].ToString().Trim();
+                    var title = await Task.Run(() => DLIB.Globales.Parametros.connSql.TraerTabla("SEARCH_002", pp));
+                    if (IsDisposed) return;
+                    if (title == null || title.Rows.Count != 1) throw new InvalidOperationException("No se encontró la configuración de búsqueda.");
+                    Titulo = Convert.ToString(title.Rows[0]["Nombre"]).Trim();
                 }
                 else
                 {
                     //El titulo especificado en la tabla
-                    this.Titulo = (dttConf.Rows[0]["titulo"] == null ? "" : (string)dttConf.Rows[0]["titulo"]);
+                    this.Titulo = (dttConf.Rows[0]["titulo"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["titulo"]);
                  }
-                Orden = (dttConf.Rows[0]["orden"] == null  ? 1 : Convert.ToInt32(dttConf.Rows[0]["orden"]));
+                Orden = (dttConf.Rows[0]["orden"] == DBNull.Value  ? 1 : Convert.ToInt32(dttConf.Rows[0]["orden"]));
 
-                FocusedBackColor = Color.FromArgb((Convert.ToInt32((dttConf.Rows[0]["colbfoco"] == null ? 0: (decimal)dttConf.Rows[0]["colbfoco"]))));
-                FocusedFontColor = Color.FromArgb(Convert.ToInt32((dttConf.Rows[0]["colffoco"] == null ? 0 : (decimal)dttConf.Rows[0]["colffoco"])));
-                NormalBackColor = Color.FromArgb(Convert.ToInt32((dttConf.Rows[0]["colbstd"] == null ? 0 : (decimal)dttConf.Rows[0]["colffoco"])));
-                NormalFontColor = Color.FromArgb(Convert.ToInt32((dttConf.Rows[0]["colfstd"] == null ? 0 : (decimal)dttConf.Rows[0]["colffoco"])));
+                FocusedBackColor = Color.FromArgb((Convert.ToInt32((dttConf.Rows[0]["colbfoco"] == DBNull.Value ? 0: (decimal)dttConf.Rows[0]["colbfoco"]))));
+                FocusedFontColor = Color.FromArgb(Convert.ToInt32((dttConf.Rows[0]["colffoco"] == DBNull.Value ? 0 : (decimal)dttConf.Rows[0]["colffoco"])));
+                NormalBackColor = Color.FromArgb(Convert.ToInt32((dttConf.Rows[0]["colbstd"] == DBNull.Value ? 0 : (decimal)dttConf.Rows[0]["colbstd"])));
+                NormalFontColor = Color.FromArgb(Convert.ToInt32((dttConf.Rows[0]["colfstd"] == DBNull.Value ? 0 : (decimal)dttConf.Rows[0]["colfstd"])));
                 Object[] x = (dttConf.Rows[0]["hgSize"]).ToString().Split(',');
                 if (x.Length != 2)
                 {
@@ -105,7 +110,7 @@ namespace GUI
                     connErr = true; this.DialogResult = DialogResult.Cancel; return;
                 }
                 this.mySize = new Size(Convert.ToInt32(x[0]), Convert.ToInt32(x[1]));
-                x = new object[0]; x = (dttConf.Rows[0]["titulo_col"] == null ? "" : (string)dttConf.Rows[0]["titulo_col"]).ToString().Trim().Split('-');
+                x = new object[0]; x = (dttConf.Rows[0]["titulo_col"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["titulo_col"]).ToString().Trim().Split('-');
                 if (String.IsNullOrEmpty(x[0].ToString()))
                 {
                     string aa = "CODIGO-NOMBRE";
@@ -113,23 +118,23 @@ namespace GUI
                 }
                 Array.Resize<string>(ref tituloCol, x.Length);
                 Array.Copy(x, tituloCol, x.Length);
-                if (String.IsNullOrEmpty((dttConf.Rows[0]["HideFields"] == null ? "" : (string)dttConf.Rows[0]["HideFields"]).ToString().Trim()))
+                if (String.IsNullOrEmpty((dttConf.Rows[0]["HideFields"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["HideFields"]).ToString().Trim()))
                 {
                     HideFields = new string[0];
 
                 }
                 else
                 {
-                    x = new object[0]; x = (dttConf.Rows[0]["HideFields"] == null ? "" : (string)dttConf.Rows[0]["HideFields"]).ToString().Trim().Split(',');
+                    x = new object[0]; x = (dttConf.Rows[0]["HideFields"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["HideFields"]).ToString().Trim().Split(',');
                     Array.Resize<string>(ref HideFields, x.Length);
                     Array.Copy(x, HideFields, x.Length);
                 }
 
 
-                x = new object[0]; x = (dttConf.Rows[0]["s_col_din"] == null ? "" : (string)dttConf.Rows[0]["s_col_din"]).ToString().Trim().Split(';');
+                x = new object[0]; x = (dttConf.Rows[0]["s_col_din"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["s_col_din"]).ToString().Trim().Split(';');
                 Array.Resize<string>(ref sent_col_din, x.Length);
                 Array.Copy(x, sent_col_din, x.Length);
-                x = new object[0]; x = (dttConf.Rows[0]["autosize_col"] == null ? "" : (string)dttConf.Rows[0]["autosize_col"]).ToString().Trim().Split(',');
+                x = new object[0]; x = (dttConf.Rows[0]["autosize_col"] == DBNull.Value ? "" : (string)dttConf.Rows[0]["autosize_col"]).ToString().Trim().Split(',');
                 Array.Resize<DataGridViewAutoSizeColumnMode>(ref auto_col, x.Length);
                 for (int i = 0; i < auto_col.Length; i++)
                 {
@@ -150,15 +155,18 @@ namespace GUI
                     if (sqlPar != null) {
                         foreach (SqlParameter xp in sqlPar)
                         {
-                            command.Parameters.Add(new SqlParameter(xp.ParameterName, xp.Value));
+                            command.Parameters.Add((SqlParameter)((ICloneable)xp).Clone());
                         }
                     }
                    
-                    cn.Open();
-                    SqlDataAdapter da = new SqlDataAdapter(command);
-                    tbl_Prin = new DataTable();
-                    da.Fill(tbl_Prin);
-                    cn.Close();
+                    tbl_Prin = await Task.Run(() => {
+                        using (var adapter = new SqlDataAdapter(command)) {
+                            var result = new DataTable();
+                            cn.Open(); adapter.Fill(result); cn.Close();
+                            return result;
+                        }
+                    });
+                    if (IsDisposed) return;
                     if (tbl_Prin == null)
                     {
                         MessageBox.Show("Error al traer el conjunto de resultados");
@@ -197,26 +205,7 @@ namespace GUI
         private void Consultar()
         {
 
-            using (SqlConnection cn = DAO.Conexion.Conectar())
-            {
-                SqlCommand command = new SqlCommand(Sentencia, cn);
-                if (sqlPar != null) {
-                    foreach (SqlParameter xp in sqlPar)
-                    {
-                        command.Parameters.Add(new SqlParameter(xp.ParameterName, xp.Value));
-                    }
-                }
-                cn.Open();
-                SqlDataAdapter da = new SqlDataAdapter(command);
-                tbl_Prin = new DataTable();
-                da.Fill(tbl_Prin);
-                cn.Close();
-                if (tbl_Prin == null)
-                {
-                    MessageBox.Show("Error al cargar la consulta especificada en Sentencia");
-                    connErr = true; this.DialogResult = DialogResult.Cancel; return;
-                }
-            }
+            if (tbl_Prin == null) return;
             // colSearch = tbl_Prin.Columns[0].ColumnName;
             GV_Consulta.AutoGenerateColumns = true;
             GV_Consulta.DataSource = tbl_Prin;
@@ -259,7 +248,7 @@ namespace GUI
             DataGridViewCell activa = GV_Consulta.CurrentCell;
             if (opt == 1)
             {
-                if (GV_Consulta.Rows.Count > 0)
+                if (GV_Consulta.Rows.Count > 0 && activa != null)
                 {
                     if (valRet.ToUpper().Trim() != "TODOS")
                     {
@@ -273,7 +262,7 @@ namespace GUI
             }
             else { this.Resultado = null; }
             //aqui hacer raise event
-            this.DialogResult = DialogResult.OK;
+            this.DialogResult = opt == 1 ? DialogResult.OK : DialogResult.Cancel;
         }
 
         private void btnMode_Click(object sender, EventArgs e)
@@ -296,72 +285,14 @@ namespace GUI
         private void FiltraDtt(int opt)
         {
             errP.SetError(ctlSearch, "");
-            if (opt == 0)
+            if (tbl_Prin == null) return;
+            try
             {
-                //Formula
-                try
-                {
-                    tbl_Prin.DefaultView.RowFilter = ctlSearch.Text;
-                }
-                catch (Exception ex)
-                {
-                    errP.SetError(ctlSearch, ex.Message);
-                }
-
+                tbl_Prin.DefaultView.RowFilter = opt == 0 ? ctlSearch.Text : SearchFilter.Build(tbl_Prin, ctlSearch.Text, colSearch);
             }
-            else
-            {
-                //Normal
-                //Que columna has seleccionado 
-                try
-                {
-                    if (String.IsNullOrEmpty(ctlSearch.Text))
-                    {
-                        tbl_Prin.DefaultView.RowFilter = "";
-                    }
-                    else
-                    {
-                        if (String.IsNullOrEmpty(colSearch))
-                        {
-                            string filterStr = "";
-                            foreach (DataColumn dc in tbl_Prin.Columns)
-                            {
-                                if (dc.DataType == typeof(string))
-                                {
-                                    filterStr = filterStr + (dc.Ordinal == 0 ? "" : " OR ") + dc.ColumnName + " like '%" + ctlSearch.Text.Trim() + "%'";
-                                }
-                                else
-                                {
-                                    int result;
-                                    if (int.TryParse(ctlSearch.Text.Trim(), out result))
-                                    {
-                                        filterStr = filterStr + (dc.Ordinal == 0 || String.IsNullOrEmpty(filterStr) ? "" : " OR ") + dc.ColumnName + " = " + ctlSearch.Text.Trim();
-                                    }
-                                }
-                            }
-                            tbl_Prin.DefaultView.RowFilter = filterStr;
-                        }
-                        else
-                        {
-                            if (tbl_Prin.Columns[colSearch].DataType == typeof(string))
-                            {
-                                tbl_Prin.DefaultView.RowFilter = colSearch + " like '%" + ctlSearch.Text.Trim() + "%'";
-                            }
-                            else
-                            {
-                                tbl_Prin.DefaultView.RowFilter = colSearch + " = " + ctlSearch.Text.Trim();
-                            }
-                        }
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    errP.SetError(ctlSearch, ex.Message);
-                }
-            }
+            catch (EvaluateException ex) { errP.SetError(ctlSearch, ex.Message); }
+            catch (SyntaxErrorException ex) { errP.SetError(ctlSearch, ex.Message); }
         }
-
         private void ctlSearch_Leave(object sender, EventArgs e)
         {
             if (L_Modo) { FiltraDtt(0); } else { FiltraDtt(1); }
@@ -369,7 +300,8 @@ namespace GUI
 
         private void GV_Consulta_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            colSearch = tbl_Prin.Columns[e.ColumnIndex].ColumnName;
+            if (e.ColumnIndex < 0 || tbl_Prin == null) return;
+            colSearch = GV_Consulta.Columns[e.ColumnIndex].DataPropertyName;
             if (L_Modo)
             {
                 ctlSearch.Text = ctlSearch.Text + " " + colSearch;
@@ -382,9 +314,14 @@ namespace GUI
             if (GV_Consulta.Rows.Count > 0) { Retornar(1); }
         }
 
-        private void easySearch_Load(object sender, EventArgs e)
+        private async void easySearch_Load(object sender, EventArgs e)
         {
-            Consultar();
+            Enabled = false;
+            try { await SetHelpGen(); if (!connErr && !IsDisposed) Consultar(); }
+            catch (Exception ex) { connErr = true; if (!IsDisposed) MessageBox.Show("No se pudo cargar la búsqueda: " + ex.Message); }
+            finally { if (!IsDisposed) Enabled = true; }
+            if (IsDisposed) return;
+            if (connErr) { DialogResult = DialogResult.Cancel; Close(); return; }
         }
 
         private void easySearch_FormClosing(object sender, FormClosingEventArgs e)

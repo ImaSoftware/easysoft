@@ -1,0 +1,15 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AssemblyName>Regression</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" /><Reference Include="System.Core" /><Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
+    <Compile Include="Regression.cs" />
+    <ProjectReference Include="..\easySoft\DLIB\DLIB.csproj"><Name>DLIB</Name><Project>{69F635CC-77E9-4E19-9267-6C0D5F874948}</Project></ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

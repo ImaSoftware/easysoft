@@ -1672,8 +1672,7 @@ namespace proof.davmerCorpDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;Us" +
-                "er ID=sa;Password=Rootpass1";
+            this._connection.ConnectionString = (System.Environment.GetEnvironmentVariable("EASYSOFT_COMPANY_CONNECTION") ?? "");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

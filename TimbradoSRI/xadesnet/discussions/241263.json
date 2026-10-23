@@ -1,0 +1,66 @@
+[
+  {
+    "Id": "547175",
+    "ThreadId": "241263",
+    "Html": "\r\n<p>Estoy intentando firmar un documento XML con formato &quot;facturae&quot; utilizando la librer&iacute;a xadesnet. El problema es que no consigo incluir el prefijo &quot;ds&quot; en el resultado de la firma. Consigo &lt;signature&gt; pero no consigo &lt;ds:signature&gt;. Es\r\n un problema habitual en algunas librerias .NET que he probado. &iquest;Es posible con esta librer&iacute;a incluir el prefijo &quot;ds&quot; necesario para facturae?</p>\r\n<p>&nbsp;</p>\r\n<p>Muchas gracias.</p>\r\n<p>Marcos Alonso</p>\r\n",
+    "PostedDate": "2011-01-11T01:53:16.95-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558158",
+    "ThreadId": "241263",
+    "Html": "\r\n<p>Hola Marcos,</p>\r\n<p>Actualmente no se crean los prefijos de los namespaces en las tags.&nbsp;Vamos a mirar lo que nos comentas y modificamos la librer&iacute;a para&nbsp;incluir una opci&oacute;n que permita que se generen los prefijos de namespaces al fichero resultante.</p>\r\n<p>Un saludo,</p>\r\n<p>Luis</p>\r\n",
+    "PostedDate": "2011-01-31T08:32:20.477-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558170",
+    "ThreadId": "241263",
+    "Html": "\r\n<p>Creada la tarea:&nbsp;http://xadesnet.codeplex.com/workitem/37</p>\r\n<p>Por cierto, sentimos la tardanza, pero no recibimos correo avisando de que se hab&iacute;a creado una nueva discusi&oacute;n :-S</p>\r\n<p>Un saludo.</p>\r\n",
+    "PostedDate": "2011-01-31T08:58:08.657-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560581",
+    "ThreadId": "241263",
+    "Html": "\r\n<p>Tengo un XML con formato Facturae firmado con otra librer&iacute;a, que me valida perfectamente en la web\r\n<a href=\"http://www11.mityc.es/FacturaE/\">http://www11.mityc.es/FacturaE/</a>, y no veo por ning&uacute;n sitio el tag ds:signature. Realmente es necesario?</p>\r\n<p>Lo que s&iacute; observo es que con esta librer&iacute;a xadesnet, el XML firmado resultante no se valida correctamente en la web, por lo tanto, no es una facturae v&aacute;lida. Puede ser porque el componente est&eacute; a&uacute;n en desarrollo beta?</p>\r\n<p>Saludos,</p>\r\n<p>Josep</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-02-04T00:05:40.543-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560633",
+    "ThreadId": "241263",
+    "Html": "\r\n<p>Hola Josep</p>\r\n<p>Uno de los problemas es que la librer&iacute;a tal cual est&aacute; ahora s&oacute;lo soporta XAdES-BES y facturae se firma con XAdES-EPES. Por desgracia, no tenemos planes de sacar nuevos formatos XAdes hasta la versi&oacute;n 2.0, hasta que no tengamos\r\n resueltos asuntos como la validaci&oacute;n de esquemas o inclusi&oacute;n de namespaces.</p>\r\n<p>Un saludo.</p>\r\n",
+    "PostedDate": "2011-02-04T01:47:44.52-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "947183",
+    "ThreadId": "241263",
+    "Html": "\r\n<p>Hola,</p>\r\n<p>hace unos días me descargue la librería XADES, pero veo q la firma no incluye el prefijo ds: y los prefijos etsi:, &nbsp;el esquema del formato q e visto para XADES-BES incluye estos dos prefijos, hay algo que se deba hacer para poner los prefijos porque e revisado\r\n q dicha librería incluye los esquemas de firma pero no se como ocuparlos, porque pienso que talvez exista algún parámetro el cual indica el tipo de firma que intento,&nbsp;alguien&nbsp;podrá ayudarme con este problema???</p>\r\n",
+    "PostedDate": "2012-11-26T11:06:41.077-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1123129",
+    "ThreadId": "241263",
+    "Html": "Como se crea el prefijo ds\r<br />\nGracias<br />\n",
+    "PostedDate": "2013-11-13T13:09:50.377-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1336743",
+    "ThreadId": "241263",
+    "Html": "Existe ya el parche para la inclusión del prefijo ds:?<br />\n",
+    "PostedDate": "2014-12-23T04:31:27.843-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

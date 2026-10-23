@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{041B6B99-B4AF-4A68-918F-03FCC9999FCD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XadesNetLib</RootNamespace>
+    <AssemblyName>XadesNetLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utils\Certificates\CertificatesHelper.cs" />
+    <Compile Include="Utils\Certificates\Exceptions\CertificateStoreAccessDeniedException.cs" />
+    <Compile Include="Utils\Cryptography\CryptoHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Schemas\SignatureSchemas.cs" />
+    <Compile Include="Utils\ArrayHelper.cs" />
+    <Compile Include="Xades\Dsl\XadesSignDsl.cs" />
+    <Compile Include="Xades\Dsl\XadesVerifyDsl.cs" />
+    <Compile Include="Xades\Operations\XadesSignOperation.cs" />
+    <Compile Include="Xades\Operations\XadesVerifyOperation.cs" />
+    <Compile Include="Xades\XadesHelper.cs" />
+    <Compile Include="Xades\Common\XadesSignParameters.cs" />
+    <Compile Include="XmlDsig\Common\VerificationResults.cs" />
+    <Compile Include="XmlDsig\Dsl\BatchSignDSL.cs" />
+    <Compile Include="XmlDsig\Dsl\SignDSL.cs" />
+    <Compile Include="XmlDsig\Dsl\VerificationDSL.cs" />
+    <Compile Include="Common\Exceptions\InvalidParameterException.cs" />
+    <Compile Include="Common\Exceptions\InvalidSignedDocumentException.cs" />
+    <Compile Include="Common\Exceptions\InvalidDocumentException.cs" />
+    <Compile Include="XmlDsig\Operations\Signers\XmlDsigDetachedSignOperation.cs" />
+    <Compile Include="XmlDsig\Operations\Signers\XmlDsigEnvelopedSignOperation.cs" />
+    <Compile Include="XmlDsig\Operations\Signers\XmlDsigEnvelopingSignOperation.cs" />
+    <Compile Include="XmlDsig\Operations\XmlDsigSignOperation.cs" />
+    <Compile Include="Common\ExtendedSignedXml.cs" />
+    <Compile Include="Common\XmlPropertyDescriptor.cs" />
+    <Compile Include="XmlDsig\Operations\XmlDsigVerifyOperation.cs" />
+    <Compile Include="XmlDsig\XmlDsigHelper.cs" />
+    <Compile Include="XmlDsig\Common\XmlDsigSignatureFormat.cs" />
+    <Compile Include="XmlDsig\Common\XmlDsigSignParameters.cs" />
+    <Compile Include="Common\VerificationParameters.cs" />
+    <Compile Include="XmlDsig\Helpers\XmlDsigNodesHelper.cs" />
+    <Compile Include="Utils\Xml\XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\XAdES.xsd" />
+    <None Include="Data\xades_zep.v1.0.xsd" />
+    <None Include="Data\xmldsig-core-schema.xsd" />
+    <None Include="Schemas\XAdES_1_3_2.xsd" />
+    <None Include="Schemas\xmldsig-core-schema.xsd" />
+    <None Include="Schemas\XMLSchema.dtd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\xades_zep-epes%28PSCA%29%28Pdf%29.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="XmlDsig\Exceptions\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

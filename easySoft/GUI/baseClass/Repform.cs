@@ -76,9 +76,11 @@ namespace GUI.baseClass
         /// </summary>
         public virtual void RecogeParametros() {
         }
-        private void CreaRepo()
+        private bool loadingReport;
+        private async Task CreaRepo()
         {
-            if (String.IsNullOrEmpty(nameReport.Trim())) { MessageBox.Show("Nombre de Reporte no está definido. Verifique"); }
+            if (String.IsNullOrWhiteSpace(nameReport)) throw new InvalidOperationException("Nombre de reporte no definido.");
+            string reportPath = DLIB.RuntimeConfig.ReportPath(nameReport);
             List<SqlParameter> prmtr = new List<SqlParameter>();
             foreach (DLIB.Parametro pm in Paramis)
             {
@@ -86,13 +88,14 @@ namespace GUI.baseClass
                     prmtr.Add(new SqlParameter(pm.Nombre, pm.value));
             }
             DLIB.RepoMan repo = new DLIB.RepoMan(nameReport, prmtr);
-            repo.load();
+            await Task.Run(() => repo.load());
             this.ActDb = repo.db;
+            if (IsDisposed || Disposing) return;
             this.visor.SetDisplayMode(DisplayMode.Normal);
             //this.Titulo = repo.Comentario;
             if (String.IsNullOrEmpty(visor.LocalReport.ReportPath))
             {
-                this.visor.LocalReport.ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reportes\\"+ nameReport+ ".rdlc";
+                this.visor.LocalReport.ReportPath = reportPath;
             }
             //this.WindowState = FormWindowState.Maximized;
             this.visor.ProcessingMode = ProcessingMode.Local;
@@ -109,7 +112,7 @@ namespace GUI.baseClass
             }
             catch (Exception ex)
             {
-                MessageBox.Show("opps: " + ex.Message);
+                throw new InvalidOperationException("No se pudo preparar el reporte.", ex);
             }
             this.visor.LocalReport.EnableExternalImages = repo.EnableExternalImages;
             if (Paramis != null)
@@ -131,22 +134,27 @@ namespace GUI.baseClass
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("opps: " + ex.Message);
+                    throw new InvalidOperationException("No se pudo preparar el reporte.", ex);
                 }
             }
             this.visor.RefreshReport();
         }
 
-        private void btnGenera_Click(object sender, EventArgs e)
+        private async void btnGenera_Click(object sender, EventArgs e)
         {
+            if (loadingReport) return;
+            loadingReport = true;
             Cursor = Cursors.WaitCursor;
+            try {
             RecogeParametros();
-            CreaRepo();
-            Cursor = Cursors.Default;
+            await CreaRepo();
+            } catch (Exception ex) { MessageBox.Show("No se pudo generar el reporte: " + ex.Message); }
+            finally { loadingReport = false; if (!IsDisposed) Cursor = Cursors.Default; }
         }
 
         private void visor_Drillthrough(object sender, DrillthroughEventArgs e)
         {
+            if (ActDb == null) return;
             LocalReport localReport = (LocalReport)e.Report;
             string fn = System.IO.Path.GetFileNameWithoutExtension(localReport.ReportPath);
             localReport.DataSources.Clear();
@@ -162,12 +170,17 @@ namespace GUI.baseClass
          
         }
 
-        private void visor_ReportRefresh(object sender, CancelEventArgs e)
+        private async void visor_ReportRefresh(object sender, CancelEventArgs e)
         {
+            e.Cancel = true;
+            if (loadingReport) return;
+            loadingReport = true;
             Cursor = Cursors.WaitCursor;
+            try {
             RecogeParametros();
-            CreaRepo();
-            Cursor = Cursors.Default;
+            await CreaRepo();
+            } catch (Exception ex) { MessageBox.Show("No se pudo generar el reporte: " + ex.Message); }
+            finally { loadingReport = false; if (!IsDisposed) Cursor = Cursors.Default; }
 
         }
     }

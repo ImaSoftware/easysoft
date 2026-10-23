@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XadesNet", "XadesNet\XadesNet.csproj", "{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XadesNetLib", "XadesNetLib\XadesNetLib.csproj", "{041B6B99-B4AF-4A68-918F-03FCC9999FCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{A8CC9528-ACE0-47A1-82B8-C909597CE14A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

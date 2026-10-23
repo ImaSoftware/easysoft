@@ -17,7 +17,7 @@ namespace GUI.Interfaz
         public event EventHandler Resultado;
         protected virtual void OnRaiseResultado(){
             EventHandler handler = Resultado;
-            handler(this,null);//Provoca el evento
+            if (handler != null) handler(this, EventArgs.Empty);//Provoca el evento
         }
         DataTable Empresas = new DataTable();
         private bool _Acceso =false;
@@ -38,11 +38,19 @@ namespace GUI.Interfaz
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            if (cmbEmpresas.SelectedValue == null || string.IsNullOrWhiteSpace(txtusernom.Text) || string.IsNullOrEmpty(txtuserpwd.Text))
+            { MessageBox.Show("Seleccione empresa e ingrese usuario y contraseña."); return; }
+            string user = txtusernom.Text;
+            string password = txtuserpwd.Text;
+            int company = Convert.ToInt32(cmbEmpresas.SelectedValue);
+            Enabled = false;
+            _Acceso = false;
             try
             {
-                if (!DLIB.Globales.Parametros.Inicia_Sesion(System.Configuration.ConfigurationManager.ConnectionStrings[1].ConnectionString, txtusernom.Text, txtuserpwd.Text, (int)cmbEmpresas.SelectedValue))
+                string connection = DLIB.RuntimeConfig.RootConnectionString;
+                if (!await Task.Run(() => DLIB.Globales.Parametros.Inicia_Sesion(connection, user, password, company)))
                 {
                     MessageBox.Show("Combinación inválida de parámetros para inicio de sesion", "ERROR CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -55,24 +63,34 @@ namespace GUI.Interfaz
             catch (Exception ex)
             {
                 MessageBox.Show("Error de conexión:" +Environment.NewLine  +  ex.Message, "ERROR CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _Acceso = true;
+                _Acceso = false;
             }
+            finally { if (!IsDisposed) { Enabled = true; txtuserpwd.Clear(); } }
            
         }
 
-        public void loader()
+        public async Task loader()
         {
-            DLIB.Globales.Parametros.CadenaConexionRoot = System.Configuration.ConfigurationManager.ConnectionStrings[1].ConnectionString;
-            Empresas = DLIB.Globales.Parametros.connSql.TraerTabla("LOGGIN_001",null,true);
+            Enabled = false;
+            try
+            {
+            DLIB.Globales.Parametros.CadenaConexionRoot = DLIB.RuntimeConfig.RootConnectionString;
+            Empresas = await Task.Run(() => DLIB.Globales.Parametros.connSql.TraerTabla("LOGGIN_001",null,true));
+            if (IsDisposed) return;
             if (Empresas == null)
             {
-                Environment.Exit(Environment.ExitCode);
+                throw new InvalidOperationException("No se pudieron cargar las empresas.");
             }
             cmbEmpresas.DataSource = Empresas;
             cmbEmpresas.ValueMember = "codcia";
             cmbEmpresas.DisplayMember = "Nombre";
+            if (Empresas.Rows.Count == 0) throw new InvalidOperationException("No existen empresas configuradas.");
             cmbEmpresas.SelectedIndex = 0;
-
+            string[] remembered = DLIB.DFUNC.UsrWinReg();
+            int rememberedCompany;
+            if (int.TryParse(remembered[1], out rememberedCompany)) cmbEmpresas.SelectedValue = rememberedCompany;
+            }
+            finally { if (!IsDisposed) Enabled = true; }
         }
 
         private void button2_Click(object sender, EventArgs e)

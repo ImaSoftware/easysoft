@@ -4,8 +4,8 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="REPO07001D" GeneratorFunctionsComponentClassName="REPO07001D" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="REPO07001D" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=PROGRAMACION;Initial Catalog=davmerCorp;Persist Security Info=True;User ID=sa;Password=Rootpass1" IsAppSettingsProperty="false" Modifier="Assembly" Name="programacion.davmerCorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
-          <Connection ConnectionStringObject="Data Source=192.168.100.20\sqlexpress;Initial Catalog=davmercorp;Persist Security Info=True;User ID=sa;Password=Rootpass1" IsAppSettingsProperty="false" Modifier="Assembly" Name="apserver01\sqlexpress.davmercorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection ConnectionStringObject="Data Source=localhost;Initial Catalog=davmerCorp;Integrated Security=True;Encrypt=True;TrustServerCertificate=False;Persist Security Info=False" IsAppSettingsProperty="false" Modifier="Assembly" Name="programacion.davmerCorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection ConnectionStringObject="Data Source=localhost;Initial Catalog=davmerCorp;Integrated Security=True;Encrypt=True;TrustServerCertificate=False;Persist Security Info=False" IsAppSettingsProperty="false" Modifier="Assembly" Name="apserver01\sqlexpress.davmercorp.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_07001DTableAdapter" GeneratorDataComponentClassName="sp_07001DTableAdapter" Name="sp_07001D" UserDataComponentName="sp_07001DTableAdapter">

@@ -1,0 +1,15 @@
+{
+  "ruc": "REEMPLAZAR_RUC",
+  "razonSocial": "REEMPLAZAR_RAZON_SOCIAL",
+  "nombreComercial": null,
+  "dirMatriz": "REEMPLAZAR_DIRECCION_MATRIZ",
+  "dirEstablecimiento": "REEMPLAZAR_DIRECCION_ESTABLECIMIENTO",
+  "establecimiento": "001",
+  "puntoEmision": "001",
+  "obligadoContabilidad": false,
+  "contribuyenteEspecial": null,
+  "agenteRetencion": null,
+  "contribuyenteRimpe": null,
+  "rucProveedor": null,
+  "primerSecuencial": 1
+}

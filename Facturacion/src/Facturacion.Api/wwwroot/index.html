@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EasySoft · Facturación SRI</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<header><div class="brand"><span class="mark" aria-hidden="true">e.</span><div>EasySoft <span class="subbrand">/ Facturación electrónica</span></div></div><span class="badge">AMBIENTE DE PRUEBAS</span></header>
+<main>
+  <section id="login" class="card narrow">
+    <p class="eyebrow">CONSOLA LOCAL · SRI</p><h1>Tu primera factura electrónica</h1>
+    <p>Configura el emisor, carga su firma y comprueba el ciclo de autorización en el SRI.</p>
+    <form id="login-form"><label>Clave de acceso a la consola<input id="api-key" type="password" required autocomplete="off"></label><p class="hint">Usa la clave local creada por Start-Pruebas.ps1. Esta clave protege la consola y su API.</p><button type="submit">Entrar a la consola</button></form>
+    <p id="login-error" role="alert" tabindex="-1"></p>
+  </section>
+  <div id="workspace" hidden>
+    <div class="intro"><div><p class="eyebrow">CENTRO DE EMISIÓN</p><h1>Facturación electrónica</h1><p>De la factura al XML autorizado, con cada paso a la vista.</p></div><button id="logout" class="secondary">Salir</button></div>
+    <nav aria-label="Pasos de emisión"><button data-target="config" aria-controls="config"><span>01</span> Configuración</button><button data-target="invoice" aria-controls="invoice"><span>02</span> Factura de prueba</button><button data-target="tracking" aria-controls="tracking"><span>03</span> Seguimiento</button></nav>
+    <div id="notice" class="notice" role="status" hidden><p tabindex="-1" id="notice-text"></p></div>
+    <section id="config" class="panel" hidden>
+      <div class="section-title"><p class="eyebrow">PREPARAR</p><h2 tabindex="-1">Configura tu emisor</h2><p>Los datos se guardan en esta instalación. Las facturas conservan una copia de la configuración con la que se crearon.</p></div>
+      <div class="columns"><article class="card"><h3>Datos tributarios</h3><form id="issuer-form">
+        <div class="grid"><label>RUC<input name="ruc" required pattern="[0-9]{13}" maxlength="13" inputmode="numeric"></label><label>Razón social<input name="razonSocial" required maxlength="300"></label><label>Nombre comercial <small>opcional</small><input name="nombreComercial" maxlength="300"></label><label>Dirección matriz<input name="dirMatriz" required maxlength="300"></label><label>Dirección establecimiento<input name="dirEstablecimiento" required maxlength="300"></label><label>Establecimiento<input name="establecimiento" value="001" required pattern="[0-9]{3}" maxlength="3" inputmode="numeric"></label><label>Punto de emisión<input name="puntoEmision" value="001" required pattern="[0-9]{3}" maxlength="3" inputmode="numeric"></label><label>Primer secuencial de pruebas<input name="primerSecuencial" type="number" min="1" max="999999999" value="1" required></label><label>Obligado a llevar contabilidad<select name="obligadoContabilidad"><option value="false">No</option><option value="true">Sí</option></select></label><label>Contribuyente especial <small>opcional</small><input name="contribuyenteEspecial" maxlength="13"></label><label>Resolución agente de retención <small>opcional</small><input name="agenteRetencion" maxlength="8"></label><label>Régimen RIMPE<select name="contribuyenteRimpe"><option value="">No aplica</option><option>CONTRIBUYENTE RÉGIMEN RIMPE</option><option>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</option></select></label><label>RUC proveedor de facturación <small>si aplica</small><input name="rucProveedor" pattern="[0-9]{13}" maxlength="13" inputmode="numeric"></label></div>
+        <p class="hint">El secuencial inicial se utiliza solo al crear la primera factura de esta serie. No modifica la numeración ya asignada.</p><button type="submit">Guardar emisor</button>
+      </form></article>
+      <aside class="card"><div class="icon" aria-hidden="true">✓</div><h3>Firma electrónica</h3><p id="certificate-status">Firma pendiente de cargar.</p><form id="certificate-form"><label>Ruta local del archivo .p12 o .pfx<input name="ruta" required placeholder="C:\Firmas\mi-firma.p12" autocomplete="off"></label><label>Contraseña de la firma<input name="password" type="password" required autocomplete="off"></label><label class="check"><input type="checkbox" required> Confirmo que esta firma corresponde al emisor configurado o a su representante autorizado.</label><button type="submit">Cargar firma en memoria</button></form><p class="hint">Guarda primero el emisor. La contraseña no se guarda en disco. Después de reiniciar, carga la firma de nuevo. Este hito admite firmas en archivo; los tokens requieren otro adaptador.</p></aside></div>
+    </section>
+    <section id="invoice" class="panel" hidden>
+      <div class="section-title"><p class="eyebrow">EMITIR EN PRUEBAS</p><h2 tabindex="-1">Prepara una factura</h2><p>Factura nacional en dólares. Este primer circuito admite IVA 0 % y 15 %, sin casos sectoriales.</p></div>
+      <form id="invoice-form"><article class="card"><h3>Comprador y referencia</h3><div class="grid three"><label>Referencia comercial única<input name="referencia" required maxlength="100" placeholder="PRUEBA-001"></label><label>Fecha de emisión<input name="fechaEmision" type="date" required></label><label>Tipo de identificación<select name="tipoIdentificacion"><option value="07">Consumidor final</option><option value="04">RUC</option><option value="05">Cédula</option><option value="06">Pasaporte</option><option value="08">Identificación del exterior</option></select></label><label>Identificación<input name="identificacion" value="9999999999999" required maxlength="20"></label><label>Razón social del comprador<input name="razonSocial" value="CONSUMIDOR FINAL" required maxlength="300"></label><label>Dirección <small>opcional</small><input name="direccion" maxlength="300"></label></div></article>
+      <article class="card"><div class="row"><h3 id="details-title" tabindex="-1">Detalle de la factura</h3><button type="button" id="add-line" class="secondary">+ Añadir línea</button></div><div id="lines"></div><div class="grid three payment"><label>Forma de pago<select name="formaPago"><option value="01">Sin utilización del sistema financiero</option><option value="20">Otros con utilización del sistema financiero</option><option value="16">Tarjeta de débito</option><option value="19">Tarjeta de crédito</option></select></label><label>Propina<input name="propina" type="number" min="0" step="0.01" value="0" required></label><div class="total"><span>Total estimado</span><output id="preview-total">$0.00</output></div></div><p class="hint">El motor recalcula y valida los importes antes de asignar el secuencial. Consumidor final: hasta USD 50.</p><div class="actions"><span>Sin validez tributaria · Solo pruebas SRI</span><button type="submit" id="emit">Firmar y enviar a pruebas</button></div></article></form>
+    </section>
+    <section id="tracking" class="panel" hidden>
+      <div class="section-title"><p class="eyebrow">CONSULTAR</p><h2 tabindex="-1">Seguimiento de comprobantes</h2><p>Las consultas automáticas conservan tu posición en la pantalla.</p></div>
+      <div class="columns"><article class="card"><div class="row"><h3>Últimas solicitudes</h3><button id="refresh" class="secondary">Actualizar</button></div><div id="invoice-list"></div></article><article class="card" id="result"><h3 tabindex="-1">Detalle del comprobante</h3><div id="result-body"><p>Selecciona una solicitud para ver sus estados y archivos.</p></div></article></div>
+    </section>
+  </div>
+</main><footer>EasySoft · Motor independiente de facturación SRI <span>Certificación · v0.1</span></footer>
+</body></html>

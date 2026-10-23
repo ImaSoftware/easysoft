@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "utilWs", "utilWs\utilWs.csproj", "{B865D50A-047D-40F6-A5D9-59F86621894D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proofC", "probador\proofC.csproj", "{BFDEC316-422F-46BE-929E-EA6774E589F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B865D50A-047D-40F6-A5D9-59F86621894D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B865D50A-047D-40F6-A5D9-59F86621894D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B865D50A-047D-40F6-A5D9-59F86621894D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B865D50A-047D-40F6-A5D9-59F86621894D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFDEC316-422F-46BE-929E-EA6774E589F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFDEC316-422F-46BE-929E-EA6774E589F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFDEC316-422F-46BE-929E-EA6774E589F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFDEC316-422F-46BE-929E-EA6774E589F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

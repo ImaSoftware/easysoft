@@ -41,7 +41,7 @@ namespace GUI.Controles
             if (Generado == null)
             {
                 MessageBox.Show("Error");
-                Environment.Exit(Environment.ExitCode);
+                throw new InvalidOperationException("No se pudo cargar el menú.");
             }
             if (Generado.Rows.Count == 0)
             {
@@ -97,7 +97,7 @@ namespace GUI.Controles
                 object button = this.panel1.Controls.Find("menubtn" + codCode.ToString().Trim(), false)[0];
                 ret = (easymenubutton)button;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ret = null;
             }
@@ -133,7 +133,7 @@ namespace GUI.Controles
                     }
                     if (tipo == easymenubutton.Tipo.Modulo && ebutt.myInfo.xtip != (int)easymenubutton.Tipo.Modulo && ebutt.myInfo.Nivel > ((int)tipo) + 2)
                     {
-                        ebutt.Visible = (ebutt.Visible ? !ebutt.Visible : !ebutt.Padre.contraido);
+                        ebutt.Visible = (ebutt.Visible ? !ebutt.Visible : !(ebutt.Padre == null || ebutt.Padre.contraido));
                     }
                     if (tipo == easymenubutton.Tipo.Menu && ebutt.myInfo.xtip != (int)easymenubutton.Tipo.Menu)
                     {

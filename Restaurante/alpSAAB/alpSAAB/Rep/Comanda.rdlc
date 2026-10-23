@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix2">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>9.50198cm</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>3.86469cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Rectangle Name="Rectangle2">
+                      <ReportItems>
+                        <Line Name="Line2">
+                          <Top>0.2293cm</Top>
+                          <Height>0cm</Height>
+                          <Width>9.19396cm</Width>
+                          <Style>
+                            <Border>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </Line>
+                        <Line Name="Line1">
+                          <Top>3.77332cm</Top>
+                          <Left>0.12913cm</Left>
+                          <Height>0cm</Height>
+                          <Width>9.19396cm</Width>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </Line>
+                        <Textbox Name="ExecutionTime">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Globals!ExecutionTime</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ExecutionTime</rd:DefaultName>
+                          <Top>1.95847cm</Top>
+                          <Left>0.49324cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>8.36903cm</Width>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>COMANDA # </Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Top>1.18208cm</Top>
+                          <Left>0.49324cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.26188cm</Width>
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Mesa</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Top>0.44097cm</Top>
+                          <Left>0.49324cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>1.30937cm</Width>
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="AliasMesa">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AliasMesa.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>AliasMesa</rd:DefaultName>
+                          <Top>0.44097cm</Top>
+                          <Left>2.23477cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>6.6275cm</Width>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="id">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!id.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>id</rd:DefaultName>
+                          <Top>1.18208cm</Top>
+                          <Left>2.93686cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.5cm</Width>
+                          <ZIndex>6</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cuenta</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Top>2.78526cm</Top>
+                          <Left>0.49324cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.5cm</Width>
+                          <ZIndex>7</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="AliasCuenta">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AliasCuenta.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>AliasCuenta</rd:DefaultName>
+                          <Top>2.74999cm</Top>
+                          <Left>3.16963cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.5cm</Width>
+                          <ZIndex>8</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                      <KeepTogether>true</KeepTogether>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Rectangle>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Detalles" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>SD_Comanda_Cabecera</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!id.Value</FilterExpression>
+            <Operator>Equal</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!IdComanda.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Left>0.0233cm</Left>
+        <Height>3.86469cm</Height>
+        <Width>9.50198cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+      <Tablix Name="Tablix3">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>9.29979cm</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>2.85665cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Rectangle Name="Rectangle4">
+                      <ReportItems>
+                        <Textbox Name="NombreProducto">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NombreProducto.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NombreProducto</rd:DefaultName>
+                          <Top>0.4713cm</Top>
+                          <Left>2.66692cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>5.92541cm</Width>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Cantidad">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Cantidad.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Cantidad</rd:DefaultName>
+                          <Top>0.43602cm</Top>
+                          <Left>0.59907cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>1.89146cm</Width>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Comentario">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Comentario.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Comentario</rd:DefaultName>
+                          <Top>1.21241cm</Top>
+                          <Left>0.59907cm</Left>
+                          <Height>1.26146cm</Height>
+                          <Width>7.69812cm</Width>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Line Name="Line3">
+                          <Top>2.85665cm</Top>
+                          <Height>0cm</Height>
+                          <Width>9.29979cm</Width>
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </Line>
+                      </ReportItems>
+                      <KeepTogether>true</KeepTogether>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Rectangle>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Detalles1" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>SD_Comandas_Detalle</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!idComanda.Value</FilterExpression>
+            <Operator>Equal</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!IdComanda.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+          <Filter>
+            <FilterExpression>=Fields!idCocina.Value</FilterExpression>
+            <Operator>Equal</Operator>
+            <FilterValues>
+              <FilterValue>=Int(Parameters!idCocina.Value)</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Top>4.21747cm</Top>
+        <Left>0.0466cm</Left>
+        <Height>2.85665cm</Height>
+        <Width>9.29979cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2.98491in</Height>
+    <Style />
+  </Body>
+  <Width>3.75545in</Width>
+  <Page>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>2cm</LeftMargin>
+    <RightMargin>2cm</RightMargin>
+    <TopMargin>2cm</TopMargin>
+    <BottomMargin>2cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="alpwinsqlDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>1407885a-ec62-4c99-a9d0-d2495ae275c1</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="SD_Comanda_Cabecera">
+      <Query>
+        <DataSourceName>alpwinsqlDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idImpresora">
+          <DataField>idImpresora</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idUsuarioCrea">
+          <DataField>idUsuarioCrea</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="tiempoCreacion">
+          <DataField>tiempoCreacion</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UsuarioImprime">
+          <DataField>UsuarioImprime</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UltimaImpresion">
+          <DataField>UltimaImpresion</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Cuenta">
+          <DataField>Cuenta</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AliasCuenta">
+          <DataField>AliasCuenta</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Mesa">
+          <DataField>Mesa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AliasMesa">
+          <DataField>AliasMesa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="notificar">
+          <DataField>notificar</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>alpwinSQLDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\user\Documents\Visual Studio 2015\Projects\SmartDolphin\SmartDolphin\alpwinSQLDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>SD_Comanda_Cabecera</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>SD_Comanda_CabeceraTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="SD_Comandas_Detalle">
+      <Query>
+        <DataSourceName>alpwinsqlDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="idComanda">
+          <DataField>idComanda</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idConsumo">
+          <DataField>idConsumo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Cantidad">
+          <DataField>Cantidad</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idProducto">
+          <DataField>idProducto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreProducto">
+          <DataField>NombreProducto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Comentario">
+          <DataField>Comentario</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tiempoEmision">
+          <DataField>tiempoEmision</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="idMesero">
+          <DataField>idMesero</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idCocina">
+          <DataField>idCocina</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>alpwinSQLDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\user\Documents\Visual Studio 2015\Projects\SmartDolphin\SmartDolphin\alpwinSQLDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>SD_Comandas_Detalle</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>SD_Comandas_DetalleTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="IdComanda">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="idCocina">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="WINLOGO">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>3a137c71-5250-4ffd-bb16-f95e6459311e</rd:ReportID>
+</Report>
