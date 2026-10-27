@@ -175,4 +175,3 @@ $sql | Set-Content (Join-Path $folder '001-vistas-descriptivas.sql') -Encoding u
 $rollback | Set-Content (Join-Path $folder '001-revertir-vistas-descriptivas.sql') -Encoding utf8
 $verify | Set-Content (Join-Path $folder '001-verificar-vistas-descriptivas.sql') -Encoding utf8
 Write-Output "Inventario: $($tables.Count) tablas y $($columns.Count) campos. Primera capa: $($mapping.Count) vistas y $(@($columnRows | Where-Object campo_descriptivo).Count) campos."
-
