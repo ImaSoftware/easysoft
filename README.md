@@ -1,5 +1,15 @@
 # EasySoft
 
+## Visión de la versión final
+
+EasySoft evolucionará hacia una **plataforma ERP web**, accesible desde el navegador. Este es el objetivo del producto final; los proyectos de escritorio y componentes actuales son la base existente para esa evolución.
+
+El stack definido para la plataforma ERP web es **.NET 10 con ASP.NET Core y Razor**, con **Microsoft SQL Server (MSSQL)** como base de datos. Esta elección queda registrada como preferencia del propietario para este proyecto.
+
+En esta etapa se registra únicamente la visión del producto. La arquitectura, el alcance de los módulos y el plan de migración se definirán posteriormente, sin iniciar ahora su implementación.
+
+La navegación web deberá dirigir la vista y el foco accesible al contenido de destino una vez renderizado, también al reseleccionar la sección actual. El título o primer contenido relevante deberá quedar cerca del centro visible, sin quedar oculto por cabeceras fijas, sin activar controles ni abrir el teclado innecesariamente. Se respetará `prefers-reduced-motion` y no se desplazará la vista por actualizaciones de fondo ni durante la escritura. Este comportamiento deberá verificarse al crear o modificar flujos de navegación.
+
 ## Proyectos incluidos y entrega a desarrollo
 
 | Proyecto | Solución / instrucciones |
