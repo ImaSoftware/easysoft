@@ -109,3 +109,7 @@ En todas estas ventanas: al abrir, cambiar o volver a seleccionar una sección, 
 ## Próximos pasos del diccionario y renombrado
 
 El renombrado físico sigue pendiente. Primero recuperar acceso a la copia local y leer definiciones de rutinas, vistas, SQL de reportes y dependencias externas. Completar una correspondencia por cada tabla/campo, distinguiendo significado verificado, inferido y desconocido. Preparar migración y reversión y comprobar consumidores antes de ejecutarlas. Este documento no cambia objetos SQL ni convierte una inferencia en una definición definitiva.
+
+## Ampliación AP y puerta de entrada a reportes definitivos
+
+La [investigación AP/cartera](ap-y-cartera-investigacion.md) distingue ausencia demostrada de historial de causas históricas no confirmadas. Priorizar diagnóstico de integridad y consulta de numeración electrónica; los reportes financieros definitivos esperan aplicaciones, cabeceras e historial de reversos contrastados. La nueva capa alcanza 29 vistas / 332 alias y no permite aún traducir estados electrónicos ni sumar AP a ventas/cartera. Los riesgos de concurrencia en sp_secuenciaCE y los filtros distintos de sp_06nc/spWW_CuotasDOC requieren pruebas con fuentes completas antes de implementar emisión o cálculos.
