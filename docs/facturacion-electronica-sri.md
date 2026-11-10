@@ -108,3 +108,5 @@ Para la siguiente fase hacen falta decisiones de negocio: cuál instalación emi
 ## Resultado de esta fase
 
 El análisis inicial identificó una base histórica útil y un camino viable hacia un servicio común. Después de autorizarse la implementación, se creó el motor y la consola local en `Facturacion/`. Consulte [el estado e instrucciones actuales](../Facturacion/README.md). Se verificaron firma local, persistencia, respuestas simuladas y conectividad con los servicios de pruebas. La autorización real sigue pendiente de cargar el emisor y su firma; no se declara conseguido ese hito.
+
+Para integrar varias aplicaciones, consulte [el diseño propuesto del servicio compartido](servicio-facturacion-compartido.md).
