@@ -80,6 +80,12 @@ Add-Table 'tbmarca' 'marcas_productos' 'inventario' 'columnas.csv' 'codmarca=cod
 Add-Table 'tbpais' 'paises' 'catalogos' 'columnas.csv' 'codpais=codigo_pais;nompais=nombre_pais'
 Add-Table 'ALPTABLA' 'catalogos_generales_heredados' 'configuracion' 'sp_05P330; sp_05PACA; sp_06P320' 'master=codigo_catalogo_padre;codigo=codigo_elemento;nombre=nombre_elemento;nomtag=etiqueta_catalogo'
 
+# Bloque AP limitado a campos utilizados por sp_secuenciaCE. No publicar
+# credenciales de APCIAS/APUsersWEB ni deducir estados por sus nombres.
+foreach ($item in @(@('APCabFac','facturas_electronicas_numeracion'), @('APCabCre','notas_credito_electronicas_numeracion'), @('APCabDeb','notas_debito_electronicas_numeracion'), @('APCabGui','guias_electronicas_numeracion'), @('apCabRet','retenciones_electronicas_numeracion'))) {
+    Add-Table $item[0] $item[1] 'facturacion_electronica' 'sp_secuenciaCE: rama FE/CE/DE/GE/RE, consulta de duplicados estab+ptoemi+secuencia; no demuestra autorizacion' 'estab=codigo_establecimiento;ptoemi=codigo_punto_emision;secuencia=numero_secuencial'
+}
+Add-Table 'apPtoEmi' 'puntos_emision_electronica' 'facturacion_electronica' 'sp_secuenciaCE: lee e incrementa consecutivos por ptoestab y ptoemi; no acredita concurrencia segura' 'ptoestab=codigo_establecimiento;ptoemi=codigo_punto_emision;conseFactu=consecutivo_factura;conseGuia=consecutivo_guia;conseCredi=consecutivo_nota_credito;conseDebit=consecutivo_nota_debito;conseRete=consecutivo_retencion'
 # Rechazar inferencias que no correspondan al inventario, alias repetidos o
 # identificadores que requieran SQL construido de forma insegura.
 foreach ($source in $mapping.Keys) {
@@ -152,7 +158,14 @@ BEGIN TRANSACTION;
 '@)
 $verify = [System.Collections.Generic.List[string]]::new()
 $verify.Add('SET NOCOUNT ON;')
+$apSql = [System.Collections.Generic.List[string]]::new()
+$apRollback = [System.Collections.Generic.List[string]]::new()
+$apVerify = [System.Collections.Generic.List[string]]::new()
+$apSql.Add($sql[0])
+$apRollback.Add($rollback[0])
+$apVerify.Add($verify[0])
 foreach ($source in @($mapping.Keys | Sort-Object)) {
+    $sqlStart = $sql.Count; $rollbackStart = $rollback.Count; $verifyStart = $verify.Count
     $m = $mapping[$source]
     $target = $m.Name
     $projection = ($m.Fields.GetEnumerator() | ForEach-Object { '[' + $_.Key + '] AS [' + $_.Value + ']' }) -join ",`n    "
@@ -166,12 +179,21 @@ foreach ($source in @($mapping.Keys | Sort-Object)) {
     foreach ($pair in $m.Fields.GetEnumerator()) {
         $verify.Add("IF NOT EXISTS (SELECT 1 FROM sys.columns s JOIN sys.columns v ON v.object_id=OBJECT_ID(N'erp_lectura.$target') AND v.name=N'$($pair.Value)' AND v.system_type_id=s.system_type_id AND v.max_length=s.max_length AND v.precision=s.precision AND v.scale=s.scale AND v.is_nullable=s.is_nullable WHERE s.object_id=OBJECT_ID(N'dbo.$source') AND s.name=N'$($pair.Key)') THROW 51004, 'Tipo o alias distinto: $target.$($pair.Value)', 1;")
     }
+    if ($source -like 'AP*' -and $mapping[$source].Module -eq 'facturacion_electronica') {
+        for ($i=$sqlStart; $i -lt $sql.Count; $i++) { $apSql.Add($sql[$i]) }
+        for ($i=$rollbackStart; $i -lt $rollback.Count; $i++) { $apRollback.Add($rollback[$i]) }
+        for ($i=$verifyStart; $i -lt $verify.Count; $i++) { $apVerify.Add($verify[$i]) }
+    }
 }
 $end = "COMMIT TRANSACTION;`nEND TRY`nBEGIN CATCH`nIF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;`nTHROW;`nEND CATCH;"
 $sql.Add($end)
+$apSql.Add($end); $apRollback.Add($end)
 $rollback.Add('-- Se conserva el esquema: podria haber existido antes de esta instalacion.')
 $rollback.Add($end)
 $sql | Set-Content (Join-Path $folder '001-vistas-descriptivas.sql') -Encoding utf8
 $rollback | Set-Content (Join-Path $folder '001-revertir-vistas-descriptivas.sql') -Encoding utf8
 $verify | Set-Content (Join-Path $folder '001-verificar-vistas-descriptivas.sql') -Encoding utf8
 Write-Output "Inventario: $($tables.Count) tablas y $($columns.Count) campos. Primera capa: $($mapping.Count) vistas y $(@($columnRows | Where-Object campo_descriptivo).Count) campos."
+$apSql | Set-Content (Join-Path $folder '003-ampliar-numeracion-electronica.sql') -Encoding utf8
+$apRollback | Set-Content (Join-Path $folder '003-revertir-numeracion-electronica.sql') -Encoding utf8
+$apVerify | Set-Content (Join-Path $folder '003-verificar-numeracion-electronica.sql') -Encoding utf8

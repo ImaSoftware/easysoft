@@ -46,3 +46,5 @@ Restaurante contiene código Visual Basic en `Restaurante/alpSAAB/alpSAAB`. Sus 
 EasySoft llama a `LOGGIN_001` y `LOBBY_001` desde `easySoft/Datos/Datos.cs`. Ninguno existe en esta copia. Su configuración actual también apunta a una base raíz `davmerRoot`, mientras Restaurante tiene configuraciones históricas para una base `Restaurante`. Esto requiere revisar la arquitectura de conexión y las dependencias antes de sustituir cadenas de conexión. No se modificó ninguna configuración de las aplicaciones.
 
 La copia permite consultar el esquema y los datos para desarrollar; todavía no se ha validado el funcionamiento completo de ambas aplicaciones contra ella.
+
+Ampliación posterior del 27 de octubre: **29 vistas / 332 alias**; `003-*` amplía y revierte únicamente numeración AP, conservando las 23 vistas anteriores. Consulte [evidencia y pendientes de AP/cartera](ap-y-cartera-investigacion.md), `004-investigar-cartera-y-ap.sql` y sus resultados agregados. No se consideran conciliados los saldos de la copia.

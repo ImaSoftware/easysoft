@@ -43,3 +43,7 @@ Las vistas conservan tipos y valores y no calculan saldos. Tampoco validan refer
 ## Comprobación antes de implementar
 
 Resolver el significado de fechas de anulación alternativas, los estados de cheques y los documentos de origen/destino polimórficos. Probar casos de cuotas, anticipos, retenciones, aplicaciones parciales, reversos posteriores al corte y referencias repetidas. Verificar resultados contra auxiliares y mayor antes de presentar los totales como financieros.
+
+## Diagnóstico previo obligatorio
+
+La [investigación AP/cartera](ap-y-cartera-investigacion.md) concreta una ventana de integridad anterior a los saldos definitivos: 140 cuotas de 40 documentos sin cabecera y tres acumulados de créditos sin aplicaciones disponibles. La ventana mostrará fuente y limitación, sin ocultar huérfanos mediante INNER JOIN ni convertirlos automáticamente en cuotas por cobrar. Las diferencias entre criterios de anulación/proveedor de rutinas heredadas deben resolverse con historial antes de calcular saldos al corte. Aplican las mismas reglas de foco y desplazamiento a cada apertura y reselección del diagnóstico.

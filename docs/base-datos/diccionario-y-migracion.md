@@ -98,3 +98,7 @@ No basta `sp_rename`: las rutinas contienen nombres SQL y referencias construida
 Para completar el renombrado físico se debe resolver el resto del diccionario, identificar lectores y escritores externos, transformar las rutinas y SQL de reportes con revisión de cada contexto y probar en una segunda copia. No reemplazar texto globalmente: `tipo`, `codigo` o `numero` cambian de significado por tabla, y una sustitución ciega altera literales y lógica.
 
 El siguiente bloque de investigación debe cubrir `AP*` (emisión electrónica), `DP02*` (bancos/configuración), saldos y lotes de inventario, nómina `ROL*` y restaurante `SD_*`. Los prefijos restantes no se asignarán a módulos solo por su número. Mantener las tablas auxiliares, de importación y antiguas separadas de los maestros hasta verificar su uso.
+
+## Ampliación posterior AP del 27 de octubre
+
+La capa completa pasa a **29 vistas y 332 alias**. Las cifras anteriores describen la primera entrega. Se incorporan seis vistas de numeración electrónica con 22 alias sustentados por `sp_secuenciaCE`, sin interpretar estados ni exponer credenciales. Para ampliar una instalación de 23 vistas se usa `003-*`, sin retirar objetos previos; `001-*` queda como instalación completa. Evidencia, reproducción, riesgos de la rutina y causas demostrables/límites de cartera en [investigación AP y cartera](ap-y-cartera-investigacion.md). No hay renombrado físico ni saldos conciliados.

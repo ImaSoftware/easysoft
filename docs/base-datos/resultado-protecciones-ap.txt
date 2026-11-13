@@ -1,0 +1,8 @@
+Mensaje 2714, Nivel 16, Estado 3, Servidor PCHOLGER\LOCALDB#318BAFE2, Procedimiento notas_credito_electronicas_numeracion, Línea 1
+There is already an object named 'notas_credito_electronicas_numeracion' in the database.
+PASS: instalacion repetida rechazada.
+Mensaje 51001, Nivel 16, Estado 1, Servidor PCHOLGER\LOCALDB#318BAFE2, Línea 11
+Objeto ajeno al diccionario.
+PASS: reversion rechazada ante marca ajena; la transaccion externa de prueba se revierte.
+Sqlcmd: las opciones i y -Q/-q se excluyen mutuamente.
+PASS: verificacion corregida ejecutada por separado (-i y -Q son excluyentes); 29 vistas y marcas v1 conservadas. Ver resultado-verificacion-vistas.txt.
